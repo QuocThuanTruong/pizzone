@@ -1400,6 +1400,8 @@ body.overflow {overflow: hidden;}
 /* 11 - PAGE MENU */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 .list-style-2.ul-list .simple-text, .list-style-1.ul-list.type-2 .simple-text{padding-right: 40px;}
+.padd-right-60{padding-right: 60px;}
+.padd-left-60{padding-left: 60px;}
 .padd-right-30{padding-right: 30px;}
 .padd-left-30{padding-left: 30px;}
 .padd-right-25{padding-right: 25px;}
