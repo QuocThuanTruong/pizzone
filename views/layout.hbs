@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+
+{{> __head__}}
+
+<body class="page-color-style-1 page-style-1">
+
+{{> preloader}}
+
+{{> colorPicker}}
+
+{{> header}}
+
+<div class="main-content">
     {{{body}}}
-  </body>
+</div>
+
+{{> footer}}
+
+{{> quickView}}
+
+{{> signIn}}
+
+{{> signUp}}
+
+{{> __script__}}
+
+</body>
 </html>
