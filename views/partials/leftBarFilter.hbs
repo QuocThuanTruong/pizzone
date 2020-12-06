@@ -33,9 +33,9 @@
         <h5 class="tt h5 color-2">Loại món ăn</h5>
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
-            <li><a href="/dishes?category=1" class="link-hover">Pizza <span>(30)</span></a></li>
-            <li><a href="/dishes?category=2" class="link-hover">Thức uống  <span>(30)</span></a></li>
-            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm  <span>(30)</span></a></li>
+            <li><a href="/dishes?category=1" class="link-hover">Pizza <span>({{totalPizza}})</span></a></li>
+            <li><a href="/dishes?category=2" class="link-hover">Thức uống  <span>({{totalDrink}})</span></a></li>
+            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm  <span>({{totalSide}})</span></a></li>
         </ul>
     </aside>
     <aside>
@@ -43,15 +43,15 @@
         <h5 class="tt h5 color-2">Giá tiền</h5>
         <div class="empty-sm-20 empty-xs-10"></div>
         <form action="/" class="input-range">
-            <div class="slider-range" data-counter="$" data-position="start" data-from="2" data-to="300" data-min="0" data-max="400">
+            <div class="slider-range" data-counter="$" data-position="start" data-from="0" data-to="1000000" data-min="0" data-max="1000000">
                 <div class="range"></div>
                 <div class="range-val flex-align">
                     <div class="range-title">
                         Price:
                     </div>
-                    <span class="amount-start">$2</span>
+                    <span class="amount-start">0</span>
                     <span>-</span>
-                    <span class="amount-end" value="$300"></span>
+                    <span class="amount-end" value="1000000">1000000</span>
                 </div>
             </div>
         </form>
@@ -64,7 +64,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Truyền thống</p>
@@ -74,7 +74,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Hải sản</p>
@@ -84,7 +84,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Thập cẩm</p>
@@ -100,7 +100,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked="">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Ớt chuông</p>
@@ -110,7 +110,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked="">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Thịt heo</p>
@@ -120,7 +120,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked="">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Nấm</p>
@@ -130,7 +130,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked="">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Cải xà lách</p>
@@ -140,7 +140,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked="">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>Cà Chua</p>
@@ -157,7 +157,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>25cm (250g)</p>
@@ -167,7 +167,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>30cm (450g)</p>
@@ -177,7 +177,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>40cm (550g)</p>
@@ -195,7 +195,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>L</p>
@@ -205,7 +205,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>M</p>
@@ -222,7 +222,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>1 Người Ăn</p>
@@ -232,7 +232,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span>
                         <i></i>
                         <p>2 Người Ăn</p>
