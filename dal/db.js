@@ -11,14 +11,4 @@ function connectDatabase() {
 
 const db = connectDatabase();
 
-db.connect( (err) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log("Database connecting...")
-    }
-})
-
-
-
 module.exports.db = db;
