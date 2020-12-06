@@ -972,7 +972,7 @@ textarea.input-field.sm {height: 125px;}
 .countdown-type .ClassyCountdown-wrapper > div { border-radius: 50%; position: relative;}
 
 .countdown-type .ClassyCountdown-wrapper > div > div {display: block!important; margin-top: 0px!important;}
-.countdown-type .ClassyCountdown-value div {font-size: 65px; font-weight: 700; color: #fff;  line-height: 80px; text-align: center; font-family: 'Great Vibes', cursive;}
+.countdown-type .ClassyCountdown-value div {font-size: 40px; font-weight: 700; color: #fff;  line-height: 50px; text-align: center; font-family: 'Great Vibes', cursive;}
 .countdown .ClassyCountdown-value {position: absolute; top: 50%; left: 0px; width: 100%; margin-top: 0px!important; font-size: inherit!important; transform: translateY(-50%);}
 .countdown-type .ClassyCountdown-value span {font-size: 14px!important; font-weight: 400; color: rgba(255,255,255,0.6); font-family: 'Lora', sans-serif; text-transform: uppercase;}
 
@@ -1332,6 +1332,7 @@ body.overflow {overflow: hidden;}
 .left-slider-item-img {margin-left: -175px; position: relative;}
 .simple-item svg {vertical-align: bottom;}
 .custome-padd-top-130 {padding: 130px 0px;}
+.custome-padd-top-60 {padding: 60px 0px;}
 .item-padd-30 {padding: 0 30px;}
 .select-open {position: relative; width: 280px; margin: 0 auto; border: 1px solid #898989; height: 45px; line-height: 45px; padding: 0 15px; font-size: 14px; display: none; cursor: pointer;}
 .select-open img {position: absolute; right: 15px; top: 50%; margin-top: -2px; display: block;}
@@ -1360,6 +1361,33 @@ body.overflow {overflow: hidden;}
 .page-style-6 .main-title .title-end{font-size: 56px;line-height: 56px;font-weight: 700;display: block;font-family: 'Cormorant Garamond', serif;}
 .page-style-6 .reservation > [class*="col"]{padding: 0 10px;}
 .wrapp-border{position: relative;}
+
+.page-style-4 .simple-item-style-1 {
+    border: 1px solid #fff;
+    padding: 80px 120px 80px;
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.page-style-4 .simple-item-style-1.color-type-2:before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: #fff;
+}
+
+.img-item-center .simple-item {
+    max-width: 300px;
+    padding: 70px 50px;
+    margin: 0 auto;
+}
+
+.slider-wrapper {
+    position: relative;
+}
 
 @media(max-width: 991px){
 	.page-style-6 .reservation > [class*="col"] {padding: 0;}

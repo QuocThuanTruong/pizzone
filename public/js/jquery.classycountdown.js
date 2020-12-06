@@ -25,7 +25,7 @@
                     minutes: 'Minutes',
                     seconds: 'Seconds'
                 },
-                style: 'font-size: 0.5em;'
+                style: 'font-size: 0.5em; color: #000;'
             },
             style: {
                 element: '',
@@ -119,6 +119,7 @@
             }, settings.style.minutes.gauge));
             element.find('.ClassyCountdown-seconds input').knob($.extend({
                 width: '100%',
+                height: '100%',
                 displayInput: false,
                 readOnly: true,
                 max: 60
@@ -174,7 +175,7 @@
         
         function doResponsive() {
             element.find('.ClassyCountdown-wrapper > div').each(function() {
-                $(this).css('height', $(this).width() + 'px');
+                $(this).css('height', $(this).width()*2 + 'px');
             });
             if (settings.style.textResponsive) {
                 element.find('.ClassyCountdown-value').css('font-size', Math.floor(element.find('> div').eq(0).width() * settings.style.textResponsive / 10) + 'px');
