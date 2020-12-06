@@ -64,3 +64,27 @@ exports.getSubCategory = async (id) => {
 
     return subCategory[0]
 }
+
+exports.totalDish = async () => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes')
+
+    return queryResult[0].total
+}
+
+exports.totalPizza = async () => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes where category = 1')
+
+    return queryResult[0].total
+}
+
+exports.totalDrink = async () => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes where category = 2')
+
+    return queryResult[0].total
+}
+
+exports.totalSide = async () => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes where category = 3')
+
+    return queryResult[0].total
+}

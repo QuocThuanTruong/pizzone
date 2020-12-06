@@ -12,29 +12,38 @@ exports.index = async (req, res, next) => {
     if (categoryId) {
         dishes = await dishModel.listByCategory(categoryId)
 
-        if (categoryId === '1') {
-            isPizzaCatActive = true;
-        }
+        switch (categoryId) {
+            case '1':
+                isPizzaCatActive = true;
+                break;
 
-        if (categoryId === '2') {
-            isDrinkCatActive = true;
-        }
+            case '2':
+                isDrinkCatActive = true;
+                break;
 
-        if (categoryId === '3') {
-            isSideCatActive = true;
+            case '3':
+                isSideCatActive = true;
+                break;
         }
-
     } else {
         dishes = await dishModel.dishlist()
     }
 
+
+
     const dataContext = {
         menuPageActive: "active",
+        totalResult: await dishModel.totalDish(),
+        totalPizza: await dishModel.totalPizza(),
+        totalDrink: await dishModel.totalDrink(),
+        totalSide: await dishModel.totalSide(),
         isPizzaCatActive: isPizzaCatActive,
         isDrinkCatActive: isDrinkCatActive,
         isSideCatActive: isSideCatActive,
         dishes: dishes
     }
+
+    console.log(await dishModel.totalDish())
 
     res.render('../components/dishes/views/index', dataContext);
 }
