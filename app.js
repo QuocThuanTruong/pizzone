@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs')
 
-require('./components/dishes/helper')(hbs);
-
 const homeRouter = require('./components/home/router');
 const dishesRouter = require('./components/dishes/router');
 

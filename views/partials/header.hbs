@@ -274,18 +274,15 @@
                     </div>
                 </div>
                 <nav>
-                    {{renderHeaderMenu active}}
-                </nav>
-                <nav>
                     <ul class="header-menu">
-                        <li class="active"><a href="/">Home</a>
+                        <li class="{{homePageActive}}"><a href="/">Home</a>
                         </li>
-                        <li><a href="/about">About</a></li>
-                        <li ><a href="/dishes">Menu</a>
+                        <li class="{{aboutPageActive}}"><a href="/about">About</a></li>
+                        <li class="{{menuPageActive}}"><a href="/dishes">Menu</a>
                         </li>
-                        <li><a href="/blog">Blog<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <li class="{{blogPageActive}}"><a href="/blog">Blog<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
                         </li>
-                        <li><a href="/contact">Contact<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <li class="{{contactPageActive}}"><a href="/contact">Contact<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
                         </li>
                     </ul>
                 </nav>
