@@ -85,14 +85,20 @@
                     <div class="empty-sm-25 empty-xs-20"></div>
                     {{/if}}
 
-                    <!-- Nếu là pizza thì chỗ này để loại còn không phải thì cho nó là mô tả của thức uống hoặc đồ ăn kèm -->
+
                     <aside>
-                        <h5 class="h5 sm color-2 inline-box">Mô tả: </h5>
                         {{#if isPizzaCatActive}}
+                            <h5 class="h5 sm color-2 inline-box">Loại pizza: </h5>
                         <div class="simple-text">
                             <p>Pizza {{subCategoryName}}</p>
                         </div>
+                            <div class="empty-sm-25 empty-xs-20"></div>
+                            <h5 class="h5 sm color-2 inline-box">Nguyên liệu: </h5>
+                            <div class="simple-text">
+                                <p>{{igredients}}</p>
+                            </div>
                         {{else}}
+                            <h5 class="h5 sm color-2 inline-box">Mô tả: </h5>
                         <div class="simple-text">
                             <p>{{detail_description}}</p>
                         </div>
@@ -193,9 +199,11 @@
                 <div class="tab-container-wraps">
                     <div class="tab-container-item min-h-430">
                         <div class="empty-sm-60 empty-xs-30"></div>
+                        {{#if isPizzaCatActive}}
                         <div class="simple-text">
                             <p>{{detail_description}}</p>
                         </div>
+                        {{/if}}
                         <div class="row">
                             {{#each images}}
                                 <div class="col-sm-4 col-xs-12">

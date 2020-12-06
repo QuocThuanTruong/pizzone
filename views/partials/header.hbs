@@ -199,9 +199,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="login-item">
-                        <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a> / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
-                    </div>
+
+                    {{#if isLoginSignup}}
+                        <div class="login-item">
+                            <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a> / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
+                        </div>
+                    {{else}}
+                        <div class="login-item">
+                            <a href="/user-profile" class="open-popup" data-open="popup-login" data-rel="3">Log in</a> / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
+                        </div>
+                    {{/if}}
+
                     <div class="follow">
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 155.139 155.139" style="enable-background:new 0 0 155.139 155.139;" xml:space="preserve" width="16px" height="16px">
