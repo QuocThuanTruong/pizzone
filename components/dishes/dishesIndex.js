@@ -4,5 +4,6 @@ const dishesController = require('./dishesController')
 
 /* GET home page. */
 router.get('/', dishesController.index);
+router.get('/detail', dishesController.detail);
 
 module.exports = router;
