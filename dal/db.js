@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-function connectionFactory() {
+function connectDatabase() {
     return mysql.createConnection({
         host: process.env.DB_HOST || 'localhost',
         user: process.env.DB_USER || 'root',
@@ -9,4 +9,16 @@ function connectionFactory() {
     });
 }
 
-module.exports = () => connectionFactory;
+const db = connectDatabase();
+
+db.connect( (err) => {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log("Database connecting...")
+    }
+})
+
+
+
+module.exports.db = db;

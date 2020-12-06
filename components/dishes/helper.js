@@ -1,4 +1,4 @@
-function dishesHelper(hbs) {
+function helper(hbs) {
     hbs.registerHelper('renderHeaderMenu', (active) => {
         let html = '<ul className="header-menu">';
         let home = '<li><a href="/">Home</a></li>';
@@ -30,4 +30,4 @@ function dishesHelper(hbs) {
     });
 }
 
-module.exports = dishesHelper;
+module.exports = helper;

@@ -1,16 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var hbs = require('hbs')
+require('dotenv').config()
 
-require('./components/dishes/dishesHelper')(hbs);
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const hbs = require('hbs')
 
-var homeRouter = require('./components/user/userIndex');
-var dishesRouter = require('./components/dishes/dishesIndex');
+require('./components/dishes/helper')(hbs);
 
-var app = express();
+const homeRouter = require('./components/home/router');
+const dishesRouter = require('./components/dishes/router');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +44,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('errors/error');
 });
 
 module.exports = app;
