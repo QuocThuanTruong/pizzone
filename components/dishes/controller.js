@@ -74,6 +74,7 @@ exports.detail = async (req, res, next) => {
         name: dish.name,
         avatar: dish.avatar,
         price: dish.price,
+        igredients: dish.igredients,
         detail_description: dish.detail_description,
         subCategoryName: subCategory.name,
         doughs: doughs,
