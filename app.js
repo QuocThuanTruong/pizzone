@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs')
 
+require('./components/dishes/dishesHelper')(hbs);
+
 var homeRouter = require('./components/user/userIndex');
 var dishesRouter = require('./components/dishes/dishesIndex');
 
