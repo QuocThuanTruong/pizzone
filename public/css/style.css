@@ -1045,6 +1045,8 @@ textarea.input-field.sm {height: 125px;}
 .burger-menu.open-menu i:after {transform: rotate(-45deg); bottom: 0px;} 
 body.overflow {overflow: hidden;}
 .menu-arr {position: absolute; right: -10px; top: 1px; max-width: 15px;}
+.user-profile {max-width: 115px !important;}
+.user-profile-img {padding: 0px 20px 0px 0px !important;}
 .header-menu > li > ul li a .menu-arr {top: 12px; right: -30px; opacity: 0.5;}
 
 .nav-align-wrap {display: inline-block; width: 100%; vertical-align: middle;}
@@ -2091,6 +2093,75 @@ transition: all 0.35s ease-out; }
 .scroll-type-1.animated {opacity: 1; transform: translateY(0); -webkit-transform: translateY(0);-ms-transform: translateY(0);}
 
 .no-animated .scroll-type-1 {opacity: 1; transform: translateY(0); -webkit-transform: translateY(0);-ms-transform: translateY(0);}
+}
+
+.img-rounded {
+    border-radius: 6px;
+}
+
+.img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.img-picker-container {
+    padding-left: 0px;
+}
+
+.clear-padding-left {
+    padding-left: 0px;
+}
+
+.btn-remove-img-upload {
+    margin-top: 15px;
+}
+
+
+
+.img-upload-btn {
+    position: relative;
+    overflow: hidden;
+    padding-top: 95%;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.img-upload-btn input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.img-upload-btn i {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: -8px;
 }
 
 

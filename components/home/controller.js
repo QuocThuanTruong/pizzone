@@ -8,6 +8,8 @@ exports.index = async (req, res, next) => {
     const sides = await  dishesModel.sideList()
 
     const dataContext = {
+        isLogin: true,
+        userFullName: "Nguyen Van A",
         homePageActive: "active",
         pizza: pizza,
         drinks: drinks,

@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs')
 
+const userRouter = require('./components/user/router');
 const homeRouter = require('./components/home/router');
 const dishesRouter = require('./components/dishes/router');
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/dishes', dishesRouter);
+app.use('/user-profile', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
