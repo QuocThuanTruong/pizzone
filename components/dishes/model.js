@@ -32,3 +32,7 @@ exports.drinkList = async () => {
 exports.sideList = async () => {
     return await execQuery('SELECT * FROM dishes WHERE category = 3')
 }
+
+exports.listByCategory = async (categoryId) => {
+    return await execQuery('SELECT * FROM dishes WHERE category ='+categoryId)
+}

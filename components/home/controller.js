@@ -8,6 +8,7 @@ exports.index = async (req, res, next) => {
     const sides = await  dishesModel.sideList()
 
     const dataContext = {
+        homePageActive: "active",
         pizza: pizza,
         drinks: drinks,
         sides: sides
