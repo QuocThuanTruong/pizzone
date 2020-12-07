@@ -90,3 +90,7 @@ exports.totalSide = async () => {
 
     return queryResult[0].total
 }
+
+exports.searchByKeyName = async (keyName) => {
+    return await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\'')
+}

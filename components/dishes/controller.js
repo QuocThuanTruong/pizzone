@@ -1,6 +1,8 @@
 const dishModel = require('./model')
 
 exports.index = async (req, res, next) => {
+    const key_name = req.query.key_name
+
     let categoryId = req.query.category;
     let currentPage = req.query.page;
     let totalDishPerPage = req.query.total_dish_per_page;
@@ -14,7 +16,7 @@ exports.index = async (req, res, next) => {
         currentPage = 1;
 
     if (totalDishPerPage === undefined)
-        totalDishPerPage = 8
+        totalDishPerPage = 1
 
     let totalPage = Math.ceil(await dishModel.totalDish() / (totalDishPerPage * 1.0))
 
@@ -23,36 +25,50 @@ exports.index = async (req, res, next) => {
     let isSideCatActive = false;
 
     let dishes;
+    let totalResult = await dishModel.totalDish();
+    let totalPizza = await dishModel.totalPizza();
+    let totalDrink = await dishModel.totalDrink();
+    let totalSide = await dishModel.totalSide();
 
-    if (categoryId !== 0) {
-        dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
+    console.log("Key name: ", key_name)
 
-        switch (categoryId) {
-            case '1':
-                isPizzaCatActive = true;
-                totalPage = Math.ceil(await dishModel.totalPizza() / (totalDishPerPage * 1.0))
-                break;
-
-            case '2':
-                isDrinkCatActive = true;
-                totalPage = Math.ceil(await dishModel.totalDrink() / (totalDishPerPage * 1.0))
-                break;
-
-            case '3':
-                isSideCatActive = true;
-                totalPage = Math.ceil(await dishModel.totalSide() / (totalDishPerPage * 1.0))
-                break;
-        }
+    if (key_name !== undefined) {
+        dishes = await dishModel.searchByKeyName(key_name)
+        totalResult = dishes.length
     } else {
-        dishes = await dishModel.dishlist(currentPage, totalDishPerPage)
+        if (categoryId !== 0) {
+            dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
+
+            switch (categoryId) {
+                case '1':
+                    isPizzaCatActive = true;
+                    totalResult = totalPizza;
+                    totalPage = Math.ceil(totalPizza / (totalDishPerPage * 1.0))
+                    break;
+
+                case '2':
+                    isDrinkCatActive = true;
+                    totalResult = totalDrink;
+                    totalPage = Math.ceil(totalDrink / (totalDishPerPage * 1.0))
+                    break;
+
+                case '3':
+                    isSideCatActive = true;
+                    totalResult = totalSide;
+                    totalPage = Math.ceil(totalSide / (totalDishPerPage * 1.0))
+                    break;
+            }
+        } else {
+            dishes = await dishModel.dishlist(currentPage, totalDishPerPage)
+        }
     }
 
     const dataContext = {
         menuPageActive: "active",
-        totalResult: await dishModel.totalDish(),
-        totalPizza: await dishModel.totalPizza(),
-        totalDrink: await dishModel.totalDrink(),
-        totalSide: await dishModel.totalSide(),
+        totalResult: totalResult,
+        totalPizza: totalPizza,
+        totalDrink: totalDrink,
+        totalSide: totalSide,
         isPizzaCatActive: isPizzaCatActive,
         isDrinkCatActive: isDrinkCatActive,
         isSideCatActive: isSideCatActive,
@@ -61,6 +77,8 @@ exports.index = async (req, res, next) => {
         page: currentPage,
         category: categoryId
     }
+
+    console.log(dataContext)
 
     res.render('../components/dishes/views/index', dataContext);
 }

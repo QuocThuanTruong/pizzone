@@ -1,3 +1,4 @@
+<div id="pagination">
 <section class="full-height-slider type-1">
     <div class="bg ready data-jarallax" data-jarallax="5" style="background-image: url(/img/shop/main-naner-bg-2.jpg)" data-swiper-parallax="50%"></div>
     <div class="table-view mobile-rel-block">
@@ -158,18 +159,28 @@
         if (categoryId === 0)
             categoryId = ""
 
-        const totalDishPerPageArr = [8, 12, 16, 20]
+        const totalDishPerPageArr = [1, 2, 3, 4]
         const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
 
-        const Http = new XMLHttpRequest();
         const url='/dishes?category='+categoryId+'&page='+page+'&total_dish_per_page='+totalDishPerPage;
-        Http.open("GET", url);
-        Http.send();
 
-        Http.onreadystatechange = (e) => {
-            console.log(Http.responseText)
-        }
+        /*$.ajax({
+            url: url,
+            type: "GET",
+            success: function (data) {
+                console.log(data)
+                $("#pagination").html(data)
+            },
+            error: function (err) {
+                conole.log(err)
+            }
+        })*/
 
-        console.log("ccc")
+        $.get(url, () => {
+
+        })
+
+        window.location.replace(url)
     }
 </script>
+</div>
