@@ -2,6 +2,8 @@ const {db} = require('../../dal/db')
 
 function execQuery(queryString) {
     return new Promise(data => {
+        console.log(queryString)
+
         db.query(queryString, (err, results, fields) => {
             if (err) {
                 console.log(err)
@@ -17,8 +19,8 @@ function execQuery(queryString) {
     })
 }
 
-exports.dishlist = async () => {
-    return await execQuery('SELECT * FROM dishes')
+exports.dishlist = async (page, totalDishPerPage) => {
+    return await execQuery('SELECT * FROM dishes LIMIT '+totalDishPerPage+' OFFSET '+((page - 1) * totalDishPerPage))
 }
 
 exports.pizzaList = async () => {
@@ -33,8 +35,8 @@ exports.sideList = async () => {
     return await execQuery('SELECT * FROM dishes WHERE category = 3')
 }
 
-exports.listByCategory = async (categoryId) => {
-    return await execQuery('SELECT * FROM dishes WHERE category =' +categoryId)
+exports.listByCategory = async (categoryId, page, totalDishPerPage) => {
+    return await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' LIMIT '+totalDishPerPage+' OFFSET '+((page - 1) * totalDishPerPage))
 }
 
 exports.getDishById = async (id) => {

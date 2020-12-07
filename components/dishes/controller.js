@@ -1,7 +1,22 @@
 const dishModel = require('./model')
 
 exports.index = async (req, res, next) => {
-    const categoryId = req.query.category;
+    let categoryId = req.query.category;
+    let currentPage = req.query.page;
+    let totalDishPerPage = req.query.total_dish_per_page;
+
+    console.log(req.query)
+
+    if (categoryId === undefined || categoryId === "")
+        categoryId = 0
+
+    if (currentPage === undefined)
+        currentPage = 1;
+
+    if (totalDishPerPage === undefined)
+        totalDishPerPage = 8
+
+    let totalPage = Math.ceil(await dishModel.totalDish() / (totalDishPerPage * 1.0))
 
     let isPizzaCatActive = false;
     let isDrinkCatActive = false;
@@ -9,27 +24,28 @@ exports.index = async (req, res, next) => {
 
     let dishes;
 
-    if (categoryId) {
-        dishes = await dishModel.listByCategory(categoryId)
+    if (categoryId !== 0) {
+        dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
 
         switch (categoryId) {
             case '1':
                 isPizzaCatActive = true;
+                totalPage = Math.ceil(await dishModel.totalPizza() / (totalDishPerPage * 1.0))
                 break;
 
             case '2':
                 isDrinkCatActive = true;
+                totalPage = Math.ceil(await dishModel.totalDrink() / (totalDishPerPage * 1.0))
                 break;
 
             case '3':
                 isSideCatActive = true;
+                totalPage = Math.ceil(await dishModel.totalSide() / (totalDishPerPage * 1.0))
                 break;
         }
     } else {
-        dishes = await dishModel.dishlist()
+        dishes = await dishModel.dishlist(currentPage, totalDishPerPage)
     }
-
-
 
     const dataContext = {
         menuPageActive: "active",
@@ -40,10 +56,11 @@ exports.index = async (req, res, next) => {
         isPizzaCatActive: isPizzaCatActive,
         isDrinkCatActive: isDrinkCatActive,
         isSideCatActive: isSideCatActive,
-        dishes: dishes
+        dishes: dishes,
+        totalPage: totalPage,
+        page: currentPage,
+        category: categoryId
     }
-
-    console.log(await dishModel.totalDish())
 
     res.render('../components/dishes/views/index', dataContext);
 }

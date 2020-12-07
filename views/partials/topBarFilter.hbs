@@ -11,11 +11,11 @@
                     <p>Shown items per page</p>
                 </div>
             </div>
-            <select class="input-field type-2 main-col">
-                <option value="val1">10</option>
-                <option value="val1">40</option>
-                <option value="val1">25</option>
-                <option value="val1">38</option>
+            <select class="input-field type-2 main-col" id="total_dish_per_page" onchange="getTotalRecipePerPage(this)">
+                <option value="val1">8</option>
+                <option value="val1">12</option>
+                <option value="val1">16</option>
+                <option value="val1">20</option>
             </select>
         </div>
         <div class="sort-by">
@@ -49,3 +49,9 @@
         </ul>
     </div>
 </div>
+
+<script>
+    function getTotalRecipePerPage() {
+        return 8
+    }
+</script>
