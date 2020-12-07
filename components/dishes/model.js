@@ -94,3 +94,9 @@ exports.totalSide = async () => {
 exports.searchByKeyName = async (keyName) => {
     return await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\'')
 }
+
+/*
+exports.test = async () => {
+   await execQuery('UPDATE user SET avatar = \'https://res.cloudinary.com/hcmus-web/image/upload/v1607362757/WebFinalProject/Images/user/1/73083634_2453241641624544_6378836173334249472_o_z20x96.jpg\' where user_id = 1')
+    await execQuery('UPDATE user SET avatar = \'https://res.cloudinary.com/hcmus-web/image/upload/v1607362758/WebFinalProject/Images/user/2/125188747_1812004398964904_2867076902945476380_n_k0xc51.jpg\' where user_id = 2')
+}*/

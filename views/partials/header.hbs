@@ -202,7 +202,7 @@
 
                     {{#if isLoginSignup}}
                         <div class="login-item">
-                            <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a> / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
+                            <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a>  / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
                         </div>
                     {{else}}
                         <div class="login-item">
@@ -212,14 +212,13 @@
 
                                     <div class="login-item user-profile-img">
                                         <a href="/user-profile">
-                                            <img width="40px" height="40px" src="/img/home-4/people-1.png">
+                                            <img width="40px" height="40px" src="{{userAvatar}}">
                                         </a>
                                     </div>
 
                                     <ul>
-                                        <li><a href="/user-profile/edit">Edit profile</a></li>
-                                        <li><a href="/user-profile/change-password">Chage password</a></li>
-
+                                        <li><a href="/user-profile/edit/{{userID}}">Edit profile</a></li>
+                                        <li><a href="/user-profile/change-password/{{userID}}">Chage password</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -31,20 +31,19 @@
                 <div class="main-caption text-center color-type-2">
                     <h2 class="h2 title">User profile</h2>
                     <div class="empty-sm-55 empty-xs-25"></div>
-                    <form action="/" onsubmit="return MessageForm6();" method="post" id="messageForm6" class="reservation">
-
+                    <form action="/user-profile/edit/{{userID}}" onsubmit="return MessageForm6();" method="post" id="messageForm6" class="reservation" enctype="multipart/form-data">
                         <div class="col-md-12 col-md-offset-3">
                             <div class="form-group col-sm-6 img-picker-container">
                                 <label>Ảnh đại diện</label>
                                 <div class="empty-sm-10  empty-xs-10"></div>
-                                <div class="img-picker" id="avatarPicker" data-url=""></div>
+                                <div class="img-picker" id="avatarPicker" data-url="{{userAvatar}}"></div>
                             </div>
                             <div class="empty-sm-30  empty-xs-20"></div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Full name*" name="data" required="">
+                                <input type="text" class="input-field" placeholder="Full name*" name="name" required="" value="{{userFullName}}">
                                 <div class="icon">
                                     <i class="fa fa-user"></i>
                                 </div>
@@ -54,7 +53,7 @@
 
                         <div class="col-md-7">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Email*" name="data" required="">
+                                <input type="text" class="input-field" placeholder="Email*" name="email" required="" value="{{email}}">
                                 <div class="icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -64,7 +63,7 @@
 
                         <div class="col-md-5">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Phone*" name="data" required="">
+                                <input type="text" class="input-field" placeholder="Phone*" name="phone" required="" value="{{phone}}">
                                 <div class="icon">
                                     <i class="fas fa-phone"></i>
                                 </div>
@@ -74,7 +73,7 @@
 
                         <div class="col-md-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Address*" name="data" required="">
+                                <input type="text" class="input-field" placeholder="Address*" name="address" required="" value="{{address}}">
                                 <div class="icon">
                                     <i class="fas fa-map-marker"></i>
                                 </div>
@@ -93,6 +92,4 @@
         </div>
         <div class="empty-lg-100 empty-md-100 empty-sm-60 empty-xs-60"></div>
 </section>
-
-
 </div>
