@@ -1,4 +1,5 @@
 const dishModel = require('./model')
+const userModel = require('../user/model')
 
 exports.index = async (req, res, next) => {
     const key_name = req.query.key_name
@@ -77,8 +78,14 @@ exports.index = async (req, res, next) => {
         }
     }
 
+    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
+
     const dataContext = {
         menuPageActive: "active",
+        isLogin: true,
+        userID: admin1.user_id,
+        userFullName: admin1.name,
+        userAvatar: admin1.avatar,
         totalDishPerPageOption1Selected: totalDishPerPageOption1Selected,
         totalDishPerPageOption2Selected: totalDishPerPageOption2Selected,
         totalDishPerPageOption3Selected: totalDishPerPageOption3Selected,
@@ -129,7 +136,14 @@ exports.detail = async (req, res, next) => {
             break;
     }
 
+    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
+
     const dataContext = {
+        menuPageActive: "active",
+        isLogin: true,
+        userID: admin1.user_id,
+        userFullName: admin1.name,
+        userAvatar: admin1.avatar,
         isPizzaCatActive: isPizzaCatActive,
         isDrinkCatActive: isDrinkCatActive,
         isSideCatActive: isSideCatActive,
