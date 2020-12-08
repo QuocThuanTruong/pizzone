@@ -11,11 +11,27 @@
                     <p>Shown items per page</p>
                 </div>
             </div>
-            <select class="input-field type-2 main-col" id="total_dish_per_page">
-                <option value="val1">1</option>
-                <option value="val1">2</option>
-                <option value="val1">3</option>
-                <option value="val1">4</option>
+            <select class="input-field type-2 main-col" id="total_dish_per_page" onchange="gotoPage({{category}}, 1)">
+                {{#if totalDishPerPageOption1Selected}}
+                    <option selected>1</option>
+                {{else}}
+                    <option>1</option>
+                {{/if}}
+                {{#if totalDishPerPageOption2Selected}}
+                    <option selected>2</option>
+                {{else}}
+                    <option>2</option>
+                {{/if}}
+                {{#if totalDishPerPageOption3Selected}}
+                    <option selected>3</option>
+                {{else}}
+                    <option>3</option>
+                {{/if}}
+                {{#if totalDishPerPageOption4Selected}}
+                    <option selected>4</option>
+                {{else}}
+                    <option>4</option>
+                {{/if}}
             </select>
         </div>
         <div class="sort-by">

@@ -2,7 +2,7 @@ const {db} = require('../../dal/db')
 
 function execQuery(queryString) {
     return new Promise(data => {
-        console.log(queryString)
+/*        console.log(queryString)*/
 
         db.query(queryString, (err, results, fields) => {
             if (err) {

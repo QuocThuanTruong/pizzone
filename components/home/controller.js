@@ -10,7 +10,7 @@ exports.index = async (req, res, next) => {
 
     let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
 
-    console.log(admin1)
+/*    console.log(admin1)*/
 
     ///img/home-4/people-1.png
 
@@ -25,7 +25,7 @@ exports.index = async (req, res, next) => {
         sides: sides
     }
 
-    console.log(dataContext)
+/*    console.log(dataContext)*/
 
     res.render('../components/home/views/index', dataContext);
 };

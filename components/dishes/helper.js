@@ -24,7 +24,7 @@ function helper(hbs) {
             html += '<a onClick="gotoPage('+category+', '+previousPage+')">'+previousPage+'</a>'
         }
 
-        html += '<a onClick="gotoPage('+category+', '+currentPage+')">'+currentPage+'</a>'
+        html += '<a style="background-color: darksalmon" onClick="gotoPage('+category+', '+currentPage+')">'+currentPage+'</a>'
 
         if (rearRightPage <= totalPage) {
             html += '<a onClick="gotoPage('+category+', '+nextPage+')">'+nextPage+'</a>'

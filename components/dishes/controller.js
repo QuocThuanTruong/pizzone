@@ -7,7 +7,7 @@ exports.index = async (req, res, next) => {
     let currentPage = req.query.page;
     let totalDishPerPage = req.query.total_dish_per_page;
 
-    console.log(req.query)
+/*    console.log(req.query)*/
 
     if (categoryId === undefined || categoryId === "")
         categoryId = 0
@@ -30,7 +30,25 @@ exports.index = async (req, res, next) => {
     let totalDrink = await dishModel.totalDrink();
     let totalSide = await dishModel.totalSide();
 
-    console.log("Key name: ", key_name)
+    let totalDishPerPageOption1Selected = false;
+    let totalDishPerPageOption2Selected = false;
+    let totalDishPerPageOption3Selected = false;
+    let totalDishPerPageOption4Selected = false;
+
+    switch (totalDishPerPage) {
+        case '1':
+            totalDishPerPageOption1Selected = true;
+            break;
+        case '2':
+            totalDishPerPageOption2Selected = true;
+            break;
+        case '3':
+            totalDishPerPageOption3Selected = true;
+            break;
+        case '4':
+            totalDishPerPageOption4Selected = true;
+            break;
+    }
 
     if (key_name !== undefined) {
         dishes = await dishModel.searchByKeyName(key_name)
@@ -38,24 +56,20 @@ exports.index = async (req, res, next) => {
     } else {
         if (categoryId !== 0) {
             dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
+            totalResult = await dishModel.totalDishByCategory(categoryId);
+            totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
             switch (categoryId) {
                 case '1':
                     isPizzaCatActive = true;
-                    totalResult = totalPizza;
-                    totalPage = Math.ceil(totalPizza / (totalDishPerPage * 1.0))
                     break;
 
                 case '2':
                     isDrinkCatActive = true;
-                    totalResult = totalDrink;
-                    totalPage = Math.ceil(totalDrink / (totalDishPerPage * 1.0))
                     break;
 
                 case '3':
                     isSideCatActive = true;
-                    totalResult = totalSide;
-                    totalPage = Math.ceil(totalSide / (totalDishPerPage * 1.0))
                     break;
             }
         } else {
@@ -65,6 +79,10 @@ exports.index = async (req, res, next) => {
 
     const dataContext = {
         menuPageActive: "active",
+        totalDishPerPageOption1Selected: totalDishPerPageOption1Selected,
+        totalDishPerPageOption2Selected: totalDishPerPageOption2Selected,
+        totalDishPerPageOption3Selected: totalDishPerPageOption3Selected,
+        totalDishPerPageOption4Selected: totalDishPerPageOption4Selected,
         totalResult: totalResult,
         totalPizza: totalPizza,
         totalDrink: totalDrink,
@@ -78,7 +96,7 @@ exports.index = async (req, res, next) => {
         category: categoryId
     }
 
-    console.log(dataContext)
+/*    console.log(dataContext)*/
 
     res.render('../components/dishes/views/index', dataContext);
 }
@@ -87,10 +105,10 @@ exports.detail = async (req, res, next) => {
     const id = req.params.id
 
     const dish = await dishModel.getDishById(id)
-    const doughs = await  dishModel.getLístDoughById(id)
-    const toppings = await dishModel.getLístToppingById(id)
-    const sizes = await dishModel.getLístSizeById(id)
-    const images = await dishModel.getLístImageById(id)
+    const doughs = await  dishModel.getListDoughById(id)
+    const toppings = await dishModel.getListToppingById(id)
+    const sizes = await dishModel.getListSizeById(id)
+    const images = await dishModel.getListImageById(id)
     const subCategory = await dishModel.getSubCategory(dish.subcategory)
 
     let isPizzaCatActive = false;
