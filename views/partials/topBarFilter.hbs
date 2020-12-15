@@ -1,8 +1,11 @@
 <div class="shop-filter">
     <div class="found-items">
-        <div class="simple-text">
+        <div class="simple-text" id="total-result">
             <p>Found <span class="main-col"><b>{{totalResult}}</b></span> items</p>
         </div>
+        <script type="text/x-handlebars-template" id="total-result-template">
+            <p>Found <span class="main-col"><b>\{{totalResult}}</b></span> items</p>
+        </script>
     </div>
     <div class="shop-select">
         <div class="show-item">

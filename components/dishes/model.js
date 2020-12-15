@@ -18,6 +18,109 @@ function execQuery(queryString) {
         })
     })
 }
+exports.totalDishByCategoryAndFilter = async (category, subcategory, size, topping, dough) => {
+    let query = 'SELECT COUNT(DISTINCT(d.dish_id)) as total FROM dishes as d';
+
+    if (size !== '') {
+        query += ', dishes_sizes as ds';
+    }
+
+    if (topping !== '') {
+        query += ', dishes_toppings as dt';
+    }
+
+    if (dough !== '') {
+        query += ', dishes_doughs as dd';
+    }
+
+    query += ' WHERE';
+    query += ' d.category = ' + category + ' AND d.is_active = 1';
+
+    if (size !== '') {
+        query += ' AND d.dish_id = ds.dish';
+        query += ' AND ';
+        query += size;
+    }
+
+    if (topping !== '') {
+        query += ' AND d.dish_id = dt.dish';
+        query += ' AND ';
+        query += topping;
+    }
+
+    if (dough !== '') {
+        query += ' AND d.dish_id = dd.dish';
+        query += ' AND ';
+        query += dough;
+    }
+
+    if (subcategory !== '') {
+        query += ' AND ';
+        query += subcategory;
+    }
+
+    query = query.split('%20').join(' ');
+    query = query.split('%27').join('\'');
+
+    let result = await execQuery(query);
+
+    console.log(result);
+
+    return result[0].total
+}
+
+exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, size, topping, dough) => {
+    let query = 'SELECT DISTINCT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
+
+    if (size !== '') {
+        query += ', dishes_sizes as ds';
+    }
+
+    if (topping !== '') {
+        query += ', dishes_toppings as dt';
+    }
+
+    if (dough !== '') {
+        query += ', dishes_doughs as dd';
+    }
+
+    query += ' WHERE';
+    query += ' d.category = ' + category + ' AND d.is_active = 1';
+
+    if (size !== '') {
+        query += ' AND d.dish_id = ds.dish';
+        query += ' AND ';
+        query += size;
+    }
+
+    if (topping !== '') {
+        query += ' AND d.dish_id = dt.dish';
+        query += ' AND ';
+        query += topping;
+    }
+
+    if (dough !== '') {
+        query += ' AND d.dish_id = dd.dish';
+        query += ' AND ';
+        query += dough;
+    }
+
+    if (subcategory !== '') {
+        query += ' AND ';
+        query += subcategory;
+    }
+
+    query += ' ORDER BY d.dish_id LIMIT ' + totalDishPerPage + ' OFFSET ' + ((page - 1) * totalDishPerPage);
+
+    query = query.split('%20').join(' ');
+    query = query.split('%27').join('\'');
+
+    console.log(query);
+
+    return await execQuery(query);
+    // as d, dishes_sizes as ds WHERE d.dish_id = ds.dish and ds.name = N\'25cm (250g)\' or ds.name = N\'30cm (450g)\' or ds.name = N\'40cm (550g)\'';
+}
+
 
 exports.dishlist = async (page, totalDishPerPage) => {
     return await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY dish_id LIMIT '+totalDishPerPage+' OFFSET '+((page - 1) * totalDishPerPage))
@@ -100,6 +203,8 @@ exports.totalDishByCategory = async (categoryId) => {
 exports.searchByKeyName = async (keyName) => {
     return await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\' AND is_active = 1')
 }
+
+
 
 /*
 exports.test = async () => {

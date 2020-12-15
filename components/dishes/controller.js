@@ -2,17 +2,49 @@ const dishModel = require('./model')
 const userModel = require('../user/model')
 
 exports.index = async (req, res, next) => {
-    if (Object.keys(req.query).length === 0 && req.query.constructor === Object) {
+    if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category!== undefined)) {
+        let categoryId = req.query.category
+
+        if (categoryId === undefined)
+            categoryId = 0
+
         let totalDishPerPage = 1
-
-        let totalPage = Math.ceil(await dishModel.totalDish() / (totalDishPerPage * 1.0))
-
-        let dishes = await dishModel.dishlist(1, totalDishPerPage)
 
         let totalResult = await dishModel.totalDish();
         let totalPizza = await dishModel.totalPizza();
         let totalDrink = await dishModel.totalDrink();
         let totalSide = await dishModel.totalSide();
+
+        let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
+
+        let isPizzaCatActive = false;
+        let isDrinkCatActive = false;
+        let isSideCatActive = false;
+
+        let dishes;
+
+        if (categoryId !== 0) {
+            dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage)
+
+            totalResult = await dishModel.totalDishByCategory(categoryId);
+            totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
+
+            switch (categoryId) {
+                case '1':
+                    isPizzaCatActive = true;
+                    break;
+
+                case '2':
+                    isDrinkCatActive = true;
+                    break;
+
+                case '3':
+                    isSideCatActive = true;
+                    break;
+            }
+        } else {
+            dishes = await dishModel.dishlist(1, totalDishPerPage)
+        }
 
         let user = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
 
@@ -30,13 +62,13 @@ exports.index = async (req, res, next) => {
             totalPizza: totalPizza,
             totalDrink: totalDrink,
             totalSide: totalSide,
-            isPizzaCatActive: false,
-            isDrinkCatActive: false,
-            isSideCatActive: false,
+            isPizzaCatActive: isPizzaCatActive,
+            isDrinkCatActive: isDrinkCatActive,
+            isSideCatActive: isSideCatActive,
             dishes: dishes,
             totalPage: totalPage,
             page: 1,
-            category: 0
+            category: categoryId
         }
 
         res.render('../components/dishes/views/index', dataContext);
@@ -51,6 +83,35 @@ exports.pagination = async (req, res, next) => {
     let categoryId = req.query.category;
     let currentPage = req.query.page;
     let totalDishPerPage = req.query.total_dish_per_page;
+    let subcategory = req.query.subcategory;
+    let size = req.query.size;
+    let topping = req.query.topping;
+    let dough = req.query.dough;
+
+    if (subcategory === undefined) {
+        subcategory = ''
+    }
+
+    if (size === undefined) {
+        size = ''
+    } else {
+        size = size.split('%20').join(' ');
+        size = size.split('%27').join('\'')
+    }
+
+    if (topping === undefined) {
+        topping = ''
+    } else {
+        topping = topping.split('%20').join(' ');
+        topping = topping.split('%27').join('\'')
+    }
+
+    if (dough === undefined) {
+        dough = ''
+    } else {
+        dough = dough.split('%20').join(' ');
+        dough = dough.split('%27').join('\'')
+    }
 
     if (categoryId === undefined || categoryId === "")
         categoryId = 0
@@ -63,14 +124,14 @@ exports.pagination = async (req, res, next) => {
 
     let dishes;
     let totalResult = await dishModel.totalDish();
-    let totalPage = Math.ceil(await dishModel.totalDish() / (totalDishPerPage * 1.0))
+    let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
     if (key_name !== undefined) {
         dishes = await dishModel.searchByKeyName(key_name)
     } else {
         if (categoryId !== 0) {
-            dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
-            totalResult = await dishModel.totalDishByCategory(categoryId);
+            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, size, topping, dough);
+            totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, subcategory, size, topping, dough);
 
             totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
         } else {
@@ -78,13 +139,16 @@ exports.pagination = async (req, res, next) => {
         }
     }
 
-    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
-
     const data = {
         category: categoryId,
         currentPage: currentPage,
         totalPage: totalPage,
-        dishes: dishes
+        totalResult: totalResult,
+        dishes: dishes,
+        subcategory: subcategory,
+        size: size,
+        topping: topping,
+        dough: dough
     }
 
     res.send(data)

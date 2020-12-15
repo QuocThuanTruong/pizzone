@@ -30,6 +30,18 @@ function helper(hbs) {
         html += '<a class="right-arr" onclick="gotoPage('+category+', '+lastPage+')"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g> <path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a></div>'
         return html
     });
+
+    hbs.registerHelper('render_description', function(description) {
+        const MAX_LENGTH = 90;
+
+        if (description.length > MAX_LENGTH) {
+            description = description.substring(0, MAX_LENGTH-1)
+        }
+
+        description += "..."
+
+        return description;
+    });
 }
 
 module.exports = helper;
