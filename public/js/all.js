@@ -152,7 +152,7 @@ jQuery(function($) { "use strict";
                 updateTranslate: true,
                 observer:true,
                 parallax:parallaxVal,
-                preventClicks: true,
+                preventClicks: false,
                 longSwipesRatio: 0.1,
                 spaceBetween: ($t.is('[data-space]'))?parseInt($t.data('space'), 10):0,
                 onSlideChangeStart: function(swiper){
@@ -193,10 +193,10 @@ jQuery(function($) { "use strict";
 	}
                
     $(document).on('click','.slide-swich', function(){
-		var swichIndex = $(this).closest('.slider-swiching').find('.slide-swich').index(this);
+		var switchIndex = $(this).closest('.slider-swiching').find('.slide-swich').index(this);
 		 $(this).closest('.slider-swiching').find('.slide-swich').removeClass('active');	
 		  $(this).addClass('active');	
-			swipers['swiper-'+$(this).closest('.slider-swiching').find('.container-swich').attr('id')].slideTo(swichIndex);		
+			swipers['swiper-'+$(this).closest('.slider-swiching').find('.container-swich').attr('id')].slideTo(switchIndex);
 		  return false;
 	});                
            
