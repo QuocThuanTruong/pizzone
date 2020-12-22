@@ -2,61 +2,30 @@ const dishModel = require('./model')
 const userModel = require('../user/model')
 
 exports.index = async (req, res, next) => {
-    const key_name = req.query.key_name
+    if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category!== undefined)) {
+        let categoryId = req.query.category
 
-    let categoryId = req.query.category;
-    let currentPage = req.query.page;
-    let totalDishPerPage = req.query.total_dish_per_page;
+        if (categoryId === undefined)
+            categoryId = 0
 
-/*    console.log(req.query)*/
+        let totalDishPerPage = 1
 
-    if (categoryId === undefined || categoryId === "")
-        categoryId = 0
+        let totalResult = await dishModel.totalDish();
+        let totalPizza = await dishModel.totalPizza();
+        let totalDrink = await dishModel.totalDrink();
+        let totalSide = await dishModel.totalSide();
 
-    if (currentPage === undefined)
-        currentPage = 1;
+        let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
-    if (totalDishPerPage === undefined)
-        totalDishPerPage = 1
+        let isPizzaCatActive = false;
+        let isDrinkCatActive = false;
+        let isSideCatActive = false;
 
-    let totalPage = Math.ceil(await dishModel.totalDish() / (totalDishPerPage * 1.0))
+        let dishes;
 
-    let isPizzaCatActive = false;
-    let isDrinkCatActive = false;
-    let isSideCatActive = false;
-
-    let dishes;
-    let totalResult = await dishModel.totalDish();
-    let totalPizza = await dishModel.totalPizza();
-    let totalDrink = await dishModel.totalDrink();
-    let totalSide = await dishModel.totalSide();
-
-    let totalDishPerPageOption1Selected = false;
-    let totalDishPerPageOption2Selected = false;
-    let totalDishPerPageOption3Selected = false;
-    let totalDishPerPageOption4Selected = false;
-
-    switch (totalDishPerPage) {
-        case '1':
-            totalDishPerPageOption1Selected = true;
-            break;
-        case '2':
-            totalDishPerPageOption2Selected = true;
-            break;
-        case '3':
-            totalDishPerPageOption3Selected = true;
-            break;
-        case '4':
-            totalDishPerPageOption4Selected = true;
-            break;
-    }
-
-    if (key_name !== undefined) {
-        dishes = await dishModel.searchByKeyName(key_name)
-        totalResult = dishes.length
-    } else {
         if (categoryId !== 0) {
-            dishes = await dishModel.listByCategory(categoryId, currentPage, totalDishPerPage)
+            dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage)
+
             totalResult = await dishModel.totalDishByCategory(categoryId);
             totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
@@ -74,38 +43,115 @@ exports.index = async (req, res, next) => {
                     break;
             }
         } else {
+            dishes = await dishModel.dishlist(1, totalDishPerPage)
+        }
+
+        let user = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
+
+        const dataContext = {
+            menuPageActive: "active",
+            isLogin: true,
+            userID: user.user_id,
+            userFullName: user.name,
+            userAvatar: user.avatar,
+            totalDishPerPageOption1Selected: true,
+            totalDishPerPageOption2Selected: false,
+            totalDishPerPageOption3Selected: false,
+            totalDishPerPageOption4Selected: false,
+            totalResult: totalResult,
+            totalPizza: totalPizza,
+            totalDrink: totalDrink,
+            totalSide: totalSide,
+            isPizzaCatActive: isPizzaCatActive,
+            isDrinkCatActive: isDrinkCatActive,
+            isSideCatActive: isSideCatActive,
+            dishes: dishes,
+            totalPage: totalPage,
+            page: 1,
+            category: categoryId
+        }
+
+        res.render('../components/dishes/views/index', dataContext);
+    } else {
+        this.pagination(req, res, next)
+    }
+}
+
+exports.pagination = async (req, res, next) => {
+    const key_name = req.query.key_name
+
+    let categoryId = req.query.category;
+    let currentPage = req.query.page;
+    let totalDishPerPage = req.query.total_dish_per_page;
+    let subcategory = req.query.subcategory;
+    let size = req.query.size;
+    let topping = req.query.topping;
+    let dough = req.query.dough;
+
+    if (subcategory === undefined) {
+        subcategory = ''
+    }
+
+    if (size === undefined) {
+        size = ''
+    } else {
+        size = size.split('%20').join(' ');
+        size = size.split('%27').join('\'')
+    }
+
+    if (topping === undefined) {
+        topping = ''
+    } else {
+        topping = topping.split('%20').join(' ');
+        topping = topping.split('%27').join('\'')
+    }
+
+    if (dough === undefined) {
+        dough = ''
+    } else {
+        dough = dough.split('%20').join(' ');
+        dough = dough.split('%27').join('\'')
+    }
+
+    if (categoryId === undefined || categoryId === "")
+        categoryId = 0
+
+    if (currentPage === undefined)
+        currentPage = 1;
+
+    if (totalDishPerPage === undefined)
+        totalDishPerPage = 1
+
+    let dishes;
+    let totalResult = await dishModel.totalDish();
+    let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
+
+    if (key_name !== undefined) {
+        dishes = await dishModel.searchByKeyName(key_name)
+    } else {
+        if (categoryId !== 0) {
+            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, size, topping, dough);
+            totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, subcategory, size, topping, dough);
+
+            totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
+        } else {
             dishes = await dishModel.dishlist(currentPage, totalDishPerPage)
         }
     }
 
-    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
-
-    const dataContext = {
-        menuPageActive: "active",
-        isLogin: true,
-        userID: admin1.user_id,
-        userFullName: admin1.name,
-        userAvatar: admin1.avatar,
-        totalDishPerPageOption1Selected: totalDishPerPageOption1Selected,
-        totalDishPerPageOption2Selected: totalDishPerPageOption2Selected,
-        totalDishPerPageOption3Selected: totalDishPerPageOption3Selected,
-        totalDishPerPageOption4Selected: totalDishPerPageOption4Selected,
-        totalResult: totalResult,
-        totalPizza: totalPizza,
-        totalDrink: totalDrink,
-        totalSide: totalSide,
-        isPizzaCatActive: isPizzaCatActive,
-        isDrinkCatActive: isDrinkCatActive,
-        isSideCatActive: isSideCatActive,
-        dishes: dishes,
+    const data = {
+        category: categoryId,
+        currentPage: currentPage,
         totalPage: totalPage,
-        page: currentPage,
-        category: categoryId
+        totalResult: totalResult,
+        dishes: dishes,
+        subcategory: subcategory,
+        size: size,
+        topping: topping,
+        dough: dough
     }
 
-/*    console.log(dataContext)*/
-
-    res.render('../components/dishes/views/index', dataContext);
+    res.send(data)
 }
 
 exports.detail = async (req, res, next) => {
@@ -157,7 +203,6 @@ exports.detail = async (req, res, next) => {
         toppings: toppings,
         sizes: sizes,
         images: images,
-        menuPageActive: "active",
         dishes: dish
     }
 

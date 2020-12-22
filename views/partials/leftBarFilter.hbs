@@ -33,9 +33,9 @@
         <h5 class="tt h5 color-2">Loại món ăn</h5>
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
-            <li><a href="/dishes?category=1" class="link-hover">Pizza <span>({{totalPizza}})</span></a></li>
-            <li><a href="/dishes?category=2" class="link-hover">Thức uống  <span>({{totalDrink}})</span></a></li>
-            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm  <span>({{totalSide}})</span></a></li>
+            <li><a href="/dishes?category=1" class="link-hover">Pizza<span>({{totalPizza}})</span></a></li>
+            <li><a href="/dishes?category=2" class="link-hover">Thức uống<span>({{totalDrink}})</span></a></li>
+            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm<span>({{totalSide}})</span></a></li>
         </ul>
     </aside>
     <aside>
@@ -64,7 +64,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="traditional" id="traditional" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>Truyền thống</p>
@@ -74,20 +74,20 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="mixed" id="mixed" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
-                        <p>Hải sản</p>
+                        <p>Thập cẩm</p>
                       </span>
                 </label>
             </div>
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="seaFood" id="seaFood" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
-                        <p>Thập cẩm</p>
+                        <p>Hải sản</p>
                       </span>
                 </label>
             </div>
@@ -100,7 +100,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="bellPepper" id="bellPepper" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>Ớt chuông</p>
@@ -110,17 +110,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
-                    <span>
-                        <i></i>
-                        <p>Thịt heo</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="mushroom" id="mushroom" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>Nấm</p>
@@ -130,7 +120,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="salad" id="salad" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>Cải xà lách</p>
@@ -140,10 +130,10 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="smokedPork" id="smokedPork" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
-                        <p>Cà Chua</p>
+                        <p>Thịt xông khói</p>
                       </span>
                 </label>
             </div>
@@ -157,7 +147,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="pizzaSize1" id="pizzaSize1" onchange="gotoPage({{category}}, 1)" >
                     <span>
                         <i></i>
                         <p>25cm (250g)</p>
@@ -167,7 +157,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="pizzaSize2" id="pizzaSize2" onchange="gotoPage({{category}}, 1)" >
                     <span>
                         <i></i>
                         <p>30cm (450g)</p>
@@ -177,10 +167,35 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="pizzaSize3" id="pizzaSize3" onchange="gotoPage({{category}}, 1)" >
                     <span>
                         <i></i>
                         <p>40cm (550g)</p>
+                      </span>
+                </label>
+            </div>
+        </aside>
+
+        <aside>
+            <div class="empty-sm-65 empty-xs-30"></div>
+            <h5 class="tt h5 color-2">LOẠI ĐẾ</h5>
+            <div class="empty-sm-20 empty-xs-10"></div>
+            <div class="checkbox-entry-wrap type-1">
+                <label class="checkbox-entry">
+                    <input type="checkbox"  name="dough1" id="dough1" onchange="gotoPage({{category}}, 1)" >
+                    <span>
+                        <i></i>
+                        <p>Mỏng</p>
+                      </span>
+                </label>
+            </div>
+            <div class="empty-sm-20 empty-xs-10"></div>
+            <div class="checkbox-entry-wrap type-1">
+                <label class="checkbox-entry">
+                    <input type="checkbox"  name="dough2" id="dough2" onchange="gotoPage({{category}}, 1)" >
+                    <span>
+                        <i></i>
+                        <p>Dày</p>
                       </span>
                 </label>
             </div>
@@ -198,7 +213,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="drinkSize1" id="drinkSize1" onchange="gotoPage({{category}}, 1)" >
                     <span>
                         <i></i>
                         <p>L</p>
@@ -208,7 +223,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="drinkSize2" id="drinkSize2" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>M</p>
@@ -225,7 +240,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="sideSize1" id="sideSize1" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>1 Người Ăn</p>
@@ -235,7 +250,7 @@
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" checked>
+                    <input type="checkbox"  name="sideSize2" id="sideSize2" onchange="gotoPage({{category}}, 1)">
                     <span>
                         <i></i>
                         <p>2 Người Ăn</p>
@@ -244,6 +259,5 @@
             </div>
         </aside>
     {{/if}}
-
 </div>
 <div class="empty-md-0 empty-sm-30 empty-xs-30"></div>
