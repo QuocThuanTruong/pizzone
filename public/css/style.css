@@ -51,8 +51,10 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700');
 @import url('https://fonts.googleapis.com/css?family=Lora:400,700');
 @import url('https://fonts.googleapis.com/css?family=Euphoria+Script');
-@import url('https://fonts.googleapis.com/css?family=Norican');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+
 
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 01 - RESET */
@@ -334,10 +336,11 @@ div[class*="empty-"] {width: 100%; clear: both;}
 .page-style-3 .menu-price {font-weight: 400;}
 
 .page-style-4, .page-style-4 textarea, .page-style-4 input {font-family: 'Lato', sans-serif;}
-.page-style-4 .title {font-family: 'Norican', cursive;}
+.page-style-4 .title {font-family: "Pacifico", cursive;}
 .page-style-4 .title:not(.main-col), .page-style-4 .h5.color-1, .page-style-4 .color-2 .simple-text {color: #464646;}
 .page-style-4 h1, .page-style-4 h3, .page-style-4 h4, .page-style-4 h5, .page-style-4 h6 {font-weight: 700;}
 .page-style-4 .h1 {font-size: 60px; line-height: 70px;}
+.page-style-4 .h2 {font-size: 46px; line-height: 70px;}
 .page-style-4 .h3 {font-size: 35px; line-height: 45px;}
 .page-style-4 .menu-item .color-type-1 .simple-text.opacity p {color: rgba(254,254,254,0.6);}
 .page-style-4 .list-style-2 b {font-weight:700; color: #464646;}
