@@ -42,6 +42,7 @@
                     <div class="tab-container-item min-h-430">
                         <div class="row row-4-columns row-3-columns row-2-columns">
                             <div id="dishes">
+
                                 {{#each dishes}}
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                         <div class="empty-sm-50 empty-xs-30"></div>
@@ -73,7 +74,8 @@
                                                     <p>{{{render_description detail_description}}}</p>
                                                 </div>
                                                 <div class="empty-sm-10 empty-xs-10"></div>
-                                                <div class="menu-price style-2 title main-col">{{price}} VNĐ</div>
+                                                <div class="menu-price style-2 title main-col">{{price}}đ </div>
+                                                <div class="custome-padd-top-10 style-2 ">-60% </span>&nbsp;&nbsp;&nbsp;<span class="line-through">350.00đ</span> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +113,8 @@
                                                     <p>\{{{render_description this.detail_description}}}</p>
                                                 </div>
                                                 <div class="empty-sm-10 empty-xs-10"></div>
-                                                <div class="menu-price style-2 title main-col">\{{this.price}} VNĐ</div>
+                                                <div class="menu-price style-2 title main-col">\{{this.price}}đ</div>
+                                                 <div class="custome-padd-top-10 style-2 ">-60% </span>&nbsp;&nbsp;&nbsp;<span class="line-through">350.00đ</span> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -136,5 +139,6 @@
             </div>
         </div>
     </div>
+
 </section>
 </div>
