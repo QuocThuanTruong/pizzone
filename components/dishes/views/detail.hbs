@@ -1,36 +1,17 @@
-<section class="full-height-slider type-1">
-    <div class="bg ready data-jarallax" data-jarallax="5" style="background-image: url(/img/shop/main-naner-bg-2.jpg)" data-swiper-parallax="50%"></div>
-    <div class="table-view mobile-rel-block">
-        <div class="table-cell">
-            <div class="container no-padd">
-                <div class="row vertical-wrap">
-                    <div class="col-lg-6 col-lg-offset-3 col-sm-12 col-sm-offset-0">
-                        <div class="simple-item color-type-1 text-center">
-                            <div class="main-title">
-                                <h2 class="h2 title">Our Shop</h2>
-                                <div class="empty-sm-30"></div>
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="simple-text md">
-                                        <p>FROM MIXIGAMING WITH LOVE</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <section class="section">
+    <div class="empty-lg-100 empty-md-80 empty-sm-60 empty-xs-50"></div>
     <div class="empty-lg-100 empty-md-80 empty-sm-60 empty-xs-50"></div>
 
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-5 col-xs-12">
 
+            <div class="col-lg-5 col-md-5 col-xs-12">
+                <div class="sale-badge">
+                    <h5 class="h5"><b>GIẢM GIÁ</br> 63%</b></h5>
+                </div>
                 <!-- top -->
                 <div class="main-product-slider-wrapper swipers-couple-wrapper">
                     <div class="swiper-container swiper-control-top" data-mode="horizontal">
@@ -39,7 +20,7 @@
 
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <div class="product-small-preview-entry">
+                                <div class="product-big-preview-entry">
                                     <img src="{{avatar}}" alt="" class="full-img" />
 
                                 </div>
@@ -47,7 +28,7 @@
 
                             {{#each images}}
                             <div class="swiper-slide">
-                                <div class="product-small-preview-entry">
+                                <div class="product-big-preview-entry">
                                     <img src="{{image_url}}" alt="" class="full-img" />
                                 </div>
                             </div>
@@ -79,20 +60,45 @@
                 </div>
             </div>
 
+            <div class="col-lg-1 col-md-1 col-xs-1"></div>
 
             <div class="col-lg-6 col-md-7 col-xs-12">
-                <div class="empty-sm-0 empty-xs-30"></div>
                 <!-- name -->
                 <aside>
+                    <h4 class="h3 sm tt color-2">{{name}}</h4>
+
+                    <div class="empty-sm-10 empty-xs-10"></div>
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="rate-wrapper align-inline">
+                                <span><i class="fa fa-eye"></i></span>
+                            </div>
+                            <div class="simple-article size-2 align-inline">128 Lượt xem</div>
+                        </div>
+<!--                        <div class="col-lg-5">-->
+<!--                                <input type="hidden" class="rating"/>-->
+<!--                            <div class="simple-article size-2 align-inline">128 Đánh giá</div>-->
+<!--                        </div>-->
+                    </div>
+
+
+
                     <div class="empty-sm-20 empty-xs-20"></div>
-                    <h4 class="h4 sm tt color-2">{{name}}</h4>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <h5 class="h5 sm color-2">Price: <span class="h4 main-col"><b>{{price}} VNĐ</b></span></h5>
+                    <h5 class="h5 sm color-2">Giá:
+                        <span class="h4 main-col"><b>{{price}} VNĐ</b></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="h5 line-through simple-text">
+                                                                                230.000đ
+                                                                            </span>
+
+
+                    </h5>
                 </aside>
                 <div class="empty-sm-20 empty-xs-20"></div>
                 <!-- size -->
                 <aside class="product-size">
-                    <h5 class="h5 sm color-2 inline-box">Size:</h5>
+                    <h5 class="h5 sm color-2 inline-box">Kích cỡ:</h5>
                     {{#each sizes}}
                     <div class="checkbox-entry-wrap">
                         <label class="checkbox-entry">
@@ -204,28 +210,55 @@
                     {{/if}}
 
                     <aside>
-                        <div class="buy-bar type-2">
-                            <div class="fl">
-                                <h5 class="h5 sm follow-title quntity">Quantity:</h5>
-                                <div class="custom-input-number type-2">
-                                    <button type="button" class="cin-btn cin-decrement">
-                                        <img src="/img/left_arr.png" alt="">
-                                    </button>
-                                    <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                    <button type="button" class="cin-btn cin-increment">
-                                        <img src="/img/right_arr.png" alt="">
-                                    </button>
-                                </div>
-                                <div class="empty-sm-0 empty-xs-15"></div>
-                            </div>
-                            <div class="fr">
-                                <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">MY favourite</span></a>
-                            </div>
-                        </div>
+
                     </aside>
                 </aside>
             </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-lg-3"></div>
+
+            <div class="col-lg-8">
+                <div class="fl">
+                    <h5 class="h5 sm follow-title quntity">Quantity:</h5>
+                    <div class="custom-input-number type-2">
+                        <button type="button" class="cin-btn cin-decrement">
+                            <img src="/img/left_arr.png" alt="">
+                        </button>
+                        <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                        <button type="button" class="cin-btn cin-increment">
+                            <img src="/img/right_arr.png" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-offset-2"/>
+
+                <div class="row">
+                    <div class="button-wrap col-md-4    " data-swiper-parallax="-500"
+                         data-swiper-parallax-duration="1000">
+                        <a href="#" class="button size-2 style-3">
+                       <span class="button-wrapper">
+                               <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
+                               <span class="text">Thêm vào giỏ</span>
+                       </span>
+                        </a>
+                    </div>
+
+                    <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
+                         data-swiper-parallax-duration="1000">
+                        <a class="button size-2 style-2" href="#">
+                                                                    <span class="button-wrapper">
+                                                                        <span class="icon"><i class="fa fa-heart-o"></i></span>
+                                                                        <span class="text">Yêu thích</span>
+                                                                     </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-1"></div>
         </div>
 
     </div>
@@ -381,13 +414,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="simple-item color-type-2 text-center">
-                    <h2 class="h2 title">You can also order</h2>
+                    <h2 class="h2 title">Bạn cũng có thể đặt kèm với</h2>
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <img src="/img/title_sepp_3.png" alt="" class="color-overlay">
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="col-md-6 col-md-offset-3 col-xs-12">
                         <div class="simple-text md opacity-1">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <p>Dưới đây là những gợi ý tuyệt vời để kết hợp các món ăn của bạn.</p>
                         </div>
                     </div>
                 </div>
@@ -395,305 +428,68 @@
         </div>
         <div class="row">
             <div class="also-order-col-wrapper">
-                <div class="col-20">
-                    <div class="empty-sm-60 empty-xs-50"></div>
-                    <div class="menu-item menu-item-6 type-3">
-                        <div class="image">
-                            <a href="#" class="like-product main-fill-col">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                          <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                          C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                      </svg>
-                            </a>
-                            <img src="/img/product-detail/order-2-1.png" alt="">
-                            <div class="vertical-align full menu-button">
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-                                <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <div class="empty-sm-20 empty-xs-20"></div>
-                            <h5 class="h5 caption"><a href="#" class="link-hover-line">Greek Salad</a></h5>
-                            <div class="empty-sm-5 empty-xs-5"></div>
-                            <div class="simple-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                            </div>
-                            <div class="menu-price style-2 title main-col">$8.40</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-20">
-                    <div class="empty-sm-60 empty-xs-50"></div>
-                    <div class="menu-item menu-item-6 type-3">
-                        <div class="image">
-                            <a href="#" class="like-product main-fill-col">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                          <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                          C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                      </svg>
-                            </a>
-                            <img src="/img/product-detail/order-2-2.png" alt="">
-                            <div class="vertical-align full menu-button">
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-                                <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <div class="empty-sm-20 empty-xs-20"></div>
-                            <h5 class="h5 caption"><a href="#" class="link-hover-line">Steak</a></h5>
-                            <div class="empty-sm-5 empty-xs-5"></div>
-                            <div class="simple-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                            </div>
-                            <div class="menu-price style-2 title main-col">$9.20</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-20">
-                    <div class="empty-sm-60 empty-xs-50"></div>
-                    <div class="menu-item menu-item-6 type-3">
-                        <div class="image">
-                            <a href="#" class="like-product main-fill-col">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                          <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                          C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                      </svg>
-                            </a>
-                            <img src="/img/product-detail/order-2-3.png" alt="">
-                            <div class="vertical-align full menu-button">
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-                                <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <div class="empty-sm-20 empty-xs-20"></div>
-                            <h5 class="h5 caption"><a href="#" class="link-hover-line">Potato Crisps</a></h5>
-                            <div class="empty-sm-5 empty-xs-5"></div>
-                            <div class="simple-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                            </div>
-                            <div class="menu-price style-2 title main-col">$7.35</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-20">
-                    <div class="empty-sm-60 empty-xs-50"></div>
-                    <div class="menu-item menu-item-6 type-3">
-                        <div class="image">
-                            <a href="#" class="like-product main-fill-col">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                          <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                          C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                      </svg>
-                            </a>
-                            <img src="/img/product-detail/order-2-4.png" alt="">
-                            <div class="vertical-align full menu-button">
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-                                <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <div class="empty-sm-20 empty-xs-20"></div>
-                            <h5 class="h5 caption"><a href="#" class="link-hover-line">Coca-Cola</a></h5>
-                            <div class="empty-sm-5 empty-xs-5"></div>
-                            <div class="simple-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                            </div>
-                            <div class="menu-price style-2 title main-col">$9.20</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-20">
-                    <div class="empty-sm-60 empty-xs-50"></div>
-                    <div class="menu-item menu-item-6 type-3">
-                        <div class="image">
-                            <a href="#" class="like-product main-fill-col">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                          <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                          C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                      </svg>
-                            </a>
-                            <img src="/img/product-detail/order-2-5.png" alt="">
-                            <div class="vertical-align full menu-button">
-                                <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-                                <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <div class="empty-sm-20 empty-xs-20"></div>
-                            <h5 class="h5 caption"><a href="#" class="link-hover-line">Beer</a></h5>
-                            <div class="empty-sm-5 empty-xs-5"></div>
-                            <div class="simple-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                            </div>
-                            <div class="menu-price style-2 title main-col">$7.35</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="section">
-    <div class="empty-lg-120 empty-md-90 empty-sm-60 empty-xs-50"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="simple-item color-type-2 text-center">
-                    <h2 class="h2 title">You may also like</h2>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <img src="/img/title_sepp_3.png" alt="" class="color-overlay">
-                    <div class="empty-sm-15 empty-xs-15"></div>
-                    <div class="col-md-6 col-md-offset-3 col-xs-12">
-                        <div class="simple-text md opacity-1">
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        </div>
+                    <div id="dishes">
+
+
+                            <div class="col-sm-4">
+                                <div class="product-shortcode style-7">
+                                    <div class="product-label red">giảm giá 20%</div>
+                                    <div class="preview">
+                                        <img src="{{avatar}}" alt="" />
+                                        <div class="preview-buttons valign-middle ">
+                                            <div class="valign-middle-content">
+                                                <a class="button size-1 style-2" href="/dishes/{{dish_id}}">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
+                                                        <span class="text">Xem chi tiết</span>
+                                                    </span>
+                                                </a>
+                                                <a class="button size-1 style-3" href="#">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
+                                                        <span class="text">Thêm vào giỏ</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dishes-title">
+                                        <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
+                                        <div class="h5 dish-name animate-to-green">{{name}}</div>
+                                    </div>
+
+                                    <div class="price">
+                                        <div class="row ">
+                                            <div class="h4  new-price col-md-6">
+                                                <b>230.000đ</b>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                                            <span class="h4 line-through simple-text old-price ">
+                                                                                230.000đ
+                                                                            </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="icons">
+                                        <!-- quick view -->
+                                        <a class="entry open-popup" data-open="popup-gallery" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-xs-12">
-                <div class="empty-sm-60 empty-xs-50"></div>
-                <div class="menu-item menu-item-6 type-3">
-                    <div class="image">
-                        <a href="#" class="like-product main-fill-col">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                        <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                        c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                        l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                        C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                        s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                        c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                        C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                    </svg>
-                        </a>
-                        <img src="/img/shop/product-7.png" alt="">
-                        <div class="vertical-align full menu-button">
-                            <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                            <div class="empty-sm-10 empty-xs-10"></div>
-                            <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="empty-sm-20 empty-xs-20"></div>
-                        <h5 class="h5 caption"><a href="#" class="link-hover-line">Mediterranean Shrimp Pizza</a></h5>
-                        <div class="empty-sm-5 empty-xs-5"></div>
-                        <div class="simple-text">
-                            <p><b>Ingredients: </b>Pepperoni, mushrooms, sausage, pizza sauce, and mozzarella cheese.</p>
-                        </div>
-                        <div class="simple-text">
-                            <p><b>Weight: </b>450g</p>
-                        </div>
-                        <div class="menu-price style-2 title main-col">$8.40</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <div class="empty-sm-60 empty-xs-50"></div>
-                <div class="menu-item menu-item-6 type-3">
-                    <div class="image">
-                        <a href="#" class="like-product main-fill-col">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                        <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                        c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                        l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                        C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                        s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                        c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                        C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                    </svg>
-                        </a>
-                        <img src="/img/shop/product-8.png" alt="">
-                        <div class="vertical-align full menu-button">
-                            <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                            <div class="empty-sm-10 empty-xs-10"></div>
-                            <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="empty-sm-20 empty-xs-20"></div>
-                        <h5 class="h5 caption"><a href="#" class="link-hover-line">Pizza Margherita</a></h5>
-                        <div class="empty-sm-5 empty-xs-5"></div>
-                        <div class="simple-text">
-                            <p><b>Ingredients: </b>Mozzarella,  1/2 cup tomato sauce, drizzle with a few drops olive oil, basil and bake.</p>
-                        </div>
-                        <div class="simple-text">
-                            <p><b>Weight: </b>450g</p>
-                        </div>
-                        <div class="menu-price style-2 title main-col">$9.20</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <div class="empty-sm-60 empty-xs-50"></div>
-                <div class="menu-item menu-item-6 type-3">
-                    <div class="image">
-                        <a href="#" class="like-product main-fill-col">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                        <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                        c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                        l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                        C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                        s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                        c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                        C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                    </svg>
-                        </a>
-                        <img src="/img/shop/product-9.png" alt="">
-                        <div class="vertical-align full menu-button">
-                            <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                            <div class="empty-sm-10 empty-xs-10"></div>
-                            <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery"><span class="txt">quick view</span></a>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="empty-sm-20 empty-xs-20"></div>
-                        <h5 class="h5 caption"><a href="#" class="link-hover-line">Pizza al Prosciutto</a></h5>
-                        <div class="empty-sm-5 empty-xs-5"></div>
-                        <div class="simple-text">
-                            <p><b>Ingredients: </b>2-3 ounces finely sliced cooked ham, shredded, 1/2 cup tomato sauce , and 1/4 pound </p>
-                        </div>
-                        <div class="simple-text">
-                            <p><b>Weight: </b>450g</p>
-                        </div>
-                        <div class="menu-price style-2 title main-col">$7.35</div>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </div>
     <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
 </section>
+
+
 </div>
