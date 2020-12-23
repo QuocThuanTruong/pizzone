@@ -25,11 +25,85 @@
 
 <section class="section">
     <div class="empty-lg-100 empty-md-80 empty-sm-60 empty-xs-50"></div>
+
+
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-5 col-xs-12">
-                <img src="{{avatar}}" alt="" class="full-img">
+
+                <!-- top -->
+                <div class="main-product-slider-wrapper swipers-couple-wrapper">
+                    <div class="swiper-container swiper-control-top" data-mode="horizontal">
+                        <div class="swiper-button-prev hidden"></div>
+                        <div class="swiper-button-next hidden"></div>
+
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="product-small-preview-entry">
+                                    <img src="{{avatar}}" alt="" class="full-img" />
+
+                                </div>
+                            </div>
+
+                            {{#each images}}
+                            <div class="swiper-slide">
+
+                                <div class="product-small-preview-entry">
+                                    <img src="{{image_url}}" alt="" class="full-img" />
+
+                                </div>
+                            </div>
+                            {{/each}}
+
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-container swiper-control-bottom" data-mode="horizontal" data-breakpoints="1" data-xs-slides="3" data-sm-slides="3" data-md-slides="4" data-lt-slides="5" data-slides-per-view="5" data-center="1" data-click="1">
+                        <div class="swiper-button-prev hidden"></div>
+                        <div class="swiper-button-next hidden"></div>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide slide-swich slider-swiching" onclick="this">
+                                <div class="product-small-preview-entry">
+                                    <img src="{{avatar}}" alt="" class="full-img" />
+                                </div>
+                            </div>
+                            {{#each images}}
+                            <div class="swiper-slide slide-swich slider-swiching" onclick="this">
+                                <div class="product-small-preview-entry">
+                                    <img src="{{image_url}}" alt="" class="full-img" />
+                                </div>
+                            </div>
+                            {{/each}}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-product-preview align-left">
+                    <div class="product-preview-shortcode light">
+                        <div class="preview">
+                            <div class="entry full-size swiper-lazy active" data-background="{{avatar}}"></div>
+                            {{#each images}}
+                            <div class="entry full-size swiper-lazy" data-background="{{image_url}}"></div>
+                            {{/each}}
+
+                        </div>
+                        <div class="sidebar valign-middle" data-swiper-parallax-x="-300">
+                            <div class="valign-middle-content">
+                                <div class="entry active"><img src="{{avatar}}" alt="" /></div>
+                                {{#each images}}
+                                    <div class="entry"><img src="{{image_url}}" alt="" /></div>
+                                {{/each}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
             <div class="col-lg-6 col-md-7 col-xs-12">
                 <div class="empty-sm-0 empty-xs-30"></div>
                 <!-- name -->
@@ -177,6 +251,7 @@
                 </aside>
             </div>
         </div>
+
     </div>
 </section>
 
