@@ -30,8 +30,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-5 col-xs-12">
-<!--                <img src="{{avatar}}" alt="" class="full-img">-->
-<!--                <div class="empty-sm-10 empty-xs-10"></div>-->
+
                 <!-- top -->
                 <div class="main-product-slider-wrapper swipers-couple-wrapper">
                     <div class="swiper-container swiper-control-top" data-mode="horizontal">
@@ -77,6 +76,27 @@
                             </div>
                             {{/each}}
 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-product-preview align-left">
+                    <div class="product-preview-shortcode light">
+                        <div class="preview">
+                            <div class="entry full-size swiper-lazy active" data-background="{{avatar}}"></div>
+                            {{#each images}}
+                            <div class="entry full-size swiper-lazy" data-background="{{image_url}}"></div>
+                            {{/each}}
+
+                        </div>
+                        <div class="sidebar valign-middle" data-swiper-parallax-x="-300">
+                            <div class="valign-middle-content">
+                                <div class="entry active"><img src="{{avatar}}" alt="" /></div>
+                                {{#each images}}
+                                    <div class="entry"><img src="{{image_url}}" alt="" /></div>
+                                {{/each}}
+
+                            </div>
                         </div>
                     </div>
                 </div>

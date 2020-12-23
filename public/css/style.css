@@ -2459,3 +2459,79 @@ transition: all 0.35s ease-out; }
 .hidden {
    visibility: hidden;
 }
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+/* 12 - BANNER SHORTCODES */
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+.banner-shortcode.text-center .valign-middle-content{margin: 0 auto;}
+/*shortcode 1*/
+.banner-shortcode.style-1{padding-bottom: 40%; position: relative; overflow: hidden;}
+.banner-shortcode.style-1 .background{background-position: left center; background-size: cover; position: absolute; left: 0; top: 0; width: 100%; height: 100%;}
+.banner-shortcode.style-1 .banner-title{font-size: 30px; line-height: 32px; margin-bottom: 10px; text-transform: uppercase;}
+@media (min-width: 768px) {
+    .banner-shortcode.style-1 .description{position: absolute; height: 100%; width: 35%; text-align: center; right: 15px; background: none!important;}
+}
+/*Phones (<768px)*/
+@media (max-width: 767px) {
+    .banner-shortcode.style-1{padding-bottom: 0;}
+    .banner-shortcode.style-1 .background{position: relative; padding-bottom: 40%;}
+    .banner-shortcode.style-1 .description{padding: 20px 15px; background: #2c2c2c; text-align: center; border-top: 1px #555 solid; display: block;}
+}
+
+/*shortcode 2*/
+.banner-shortcode.style-2{position: relative; overflow: hidden; text-align: center; max-width: 270px;}
+.banner-shortcode.style-2 .content{padding-bottom: 155%;}
+.banner-shortcode.style-2 .background{background-position: center bottom; background-size: cover; position: absolute; left: 0; top: 0; width: 100%; height: 100%;}
+.banner-shortcode.style-2 .banner-title{font-size: 20px; line-height: 32px; text-transform: uppercase;}
+.banner-shortcode.style-2 .description{position: absolute; left: 15px; right: 15px; top: 15px; height: 30%;}
+
+/*shortcode 3*/
+.banner-shortcode.style-3{background-size: cover; background-position: right top; position: relative;}
+.banner-shortcode.style-3 .angle-left{width: 0; height: 0; border-style: solid; border-width: 15px 15px 15px 0; border-color: transparent #fff transparent transparent; position: absolute; right: 0; top: 50%; margin-top: -7px;}
+.banner-shortcode.style-3 .angle-right{width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 15px; border-color: transparent transparent transparent #fff; position: absolute; left: 0; top: 50%; margin-top: -7px;}
+.banner-shortcode.style-3 .valign-middle-cell{height: 480px; padding: 30px 50px; display: table-cell; width: 10000px; vertical-align: middle;}
+.banner-shortcode.style-3 .valign-middle-content{max-width: 390px;}
+.banner-shortcode.style-3 .slider-product-preview+.valign-middle-content{max-width: 50%;}
+/*Desktops (>=1200px)*/
+@media (min-width: 1200px) {
+    .banner-shortcode.style-3.wide .valign-middle{padding-left: 100px; padding-right: 100px;}
+}
+/*Phones (<768px)*/
+@media (max-width: 767px) {
+    .banner-shortcode.style-3 .valign-middle-cell{height: 0; padding-left: 30px; padding-right: 30px;}
+    .banner-shortcode.style-3 .slider-product-preview+.valign-middle-content{max-width: 100%;}
+}
+
+/*shortcode 4*/
+.banner-shortcode.style-4{background-size: cover; background-position: center top; position: relative;}
+.banner-shortcode.style-4 .valign-middle-cell{height: 650px; padding: 30px 15px; display: table-cell; vertical-align: middle; width: 10000px;}
+.banner-shortcode.style-4 .valign-middle-content{max-width: 390px; margin: 0 auto;}
+/* Tablets (>=768px)*/
+@media (max-width: 991px) {
+    .banner-shortcode.style-4 .valign-middle-cell{height: 0;}
+}
+
+/*shortcode 5*/
+.banner-shortcode.style-5{background-size: cover; background-position: center top; position: relative;}
+.banner-shortcode.style-5 .valign-middle{min-height: 225px; padding: 30px 50px;}
+.banner-shortcode.style-5 .valign-middle-content{max-width: 260px;}
+
+/*shortcode 6*/
+.banner-shortcode.style-6{padding: 50px 30px 50px 15px; background: #fff;}
+.banner-shortcode.style-6:after{display: block; content: ""; clear: both;}
+.banner-shortcode.style-6 .image{float: left; max-width: 250px; width: 100%; height: auto;}
+.banner-shortcode.style-6 .content{margin-left: 270px;}
+.banner-shortcode.style-6 .cell-view{height: 250px;}
+/*Desktops (>=1200px)*/
+@media (max-width: 1199px) {
+    .banner-shortcode.style-6 .image{max-width: 190px;}
+    .banner-shortcode.style-6 .content{margin-left: 210px;}
+}
+/*Phones (<768px)*/
+@media (max-width: 767px) {
+    .banner-shortcode.style-6{padding: 30px 15px;}
+    .banner-shortcode.style-6 .image{float: none; margin: 0 auto 30px auto; display: block;}
+    .banner-shortcode.style-6 .content{margin-left: 0;}
+    .banner-shortcode.style-6 .cell-view{height: 0;}
+}
