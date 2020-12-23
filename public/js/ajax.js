@@ -165,7 +165,6 @@ function gotoPage(categoryId, page) {
             hasFilter = false;
         }
     }
-
     else if (categoryId === 3) {
         //Size
         if (document.getElementById("sideSize1").checked) {
@@ -194,7 +193,10 @@ function gotoPage(categoryId, page) {
     const totalDishPerPageArr = [1, 2, 3, 4]
     const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
 
-    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&size=' + sizeFilter + '&topping=' + toppingFilter + '&dough=' + doughFilter + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage;
+    const sortByArr = [1, 2, 3, 4]
+    const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
+
+    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&size=' + sizeFilter + '&topping=' + toppingFilter + '&dough=' + doughFilter + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
     console.log(url)
     $.ajax({
         url: url,

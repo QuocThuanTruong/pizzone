@@ -2,8 +2,9 @@ const dishModel = require('./model')
 const userModel = require('../user/model')
 
 exports.index = async (req, res, next) => {
-    if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category!== undefined)) {
+    if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category !== undefined)) {
         let categoryId = req.query.category
+        let sortBy = '1'
 
         if (categoryId === undefined)
             categoryId = 0
@@ -24,7 +25,7 @@ exports.index = async (req, res, next) => {
         let dishes;
 
         if (categoryId !== 0) {
-            dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage)
+            dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage, sortBy)
 
             totalResult = await dishModel.totalDishByCategory(categoryId);
             totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
@@ -43,7 +44,7 @@ exports.index = async (req, res, next) => {
                     break;
             }
         } else {
-            dishes = await dishModel.dishlist(1, totalDishPerPage)
+            dishes = await dishModel.dishlist(1, totalDishPerPage, sortBy)
         }
 
         let user = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
@@ -87,6 +88,7 @@ exports.pagination = async (req, res, next) => {
     let size = req.query.size;
     let topping = req.query.topping;
     let dough = req.query.dough;
+    let sortBy = req.query.sortBy;
 
     if (subcategory === undefined) {
         subcategory = ''
@@ -130,12 +132,12 @@ exports.pagination = async (req, res, next) => {
         dishes = await dishModel.searchByKeyName(key_name)
     } else {
         if (categoryId !== 0) {
-            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, size, topping, dough);
+            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, size, topping, dough, sortBy);
             totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, subcategory, size, topping, dough);
 
             totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
         } else {
-            dishes = await dishModel.dishlist(currentPage, totalDishPerPage)
+            dishes = await dishModel.dishlist(currentPage, totalDishPerPage, sortBy)
         }
     }
 

@@ -43,11 +43,27 @@
                     <p>Sort by</p>
                 </div>
             </div>
-            <select class="input-field type-2 main-col">
-                <option value="val1">Date</option>
-                <option value="val1">Name</option>
-                <option value="val1">High Price</option>
-                <option value="val1">Low Price</option>
+            <select class="input-field type-2 main-col" id="sort-by" onchange="gotoPage({{category}}, 1)">
+                {{#if sortOption1Selected}}
+                    <option value="val1" selected>Date</option>
+                {{else}}
+                    <option value="val1">Date</option>
+                {{/if}}
+                {{#if sortOption2Selected}}
+                    <option value="val1" selected>Name</option>
+                {{else}}
+                    <option value="val1">Name</option>
+                {{/if}}
+                {{#if sortOption3Selected}}
+                    <option value="val1" selected>High Price</option>
+                {{else}}
+                    <option value="val1">High Price</option>
+                {{/if}}
+                {{#if sortOption4Selected}}
+                    <option value="val1" selected>Low Price</option>
+                {{else}}
+                    <option value="val1">Low Price</option>
+                {{/if}}
             </select>
         </div>
         <ul class="item-tabs type-2">
