@@ -7,11 +7,11 @@
                     <div class="col-lg-6 col-lg-offset-3 col-sm-12 col-sm-offset-0">
                         <div class="simple-item color-type-1 text-center">
                             <div class="main-title">
-                                <h2 class="h2 title">Our Shop</h2>
+                                <h2 class="h2 title">Our menu</h2>
                                 <div class="empty-sm-30"></div>
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="simple-text md">
-                                        <p>FROM MIXIGAMING WITH LOVE</p>
+                                        <p>Hãy khám phá menu của chúng tôi và đặt những món bạn thích nhé.</p>
                                     </div>
                                 </div>
                             </div>
@@ -39,43 +39,58 @@
                     <div class="empty-sm-15 empty-xs-30"></div>
                 </div>
                 <div class="tab-container-wraps">
+                    <!-- grid view -->
                     <div class="tab-container-item min-h-430">
                         <div class="row row-4-columns row-3-columns row-2-columns">
                             <div id="dishes">
 
                                 {{#each dishes}}
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="empty-sm-50 empty-xs-30"></div>
-                                        <div class="menu-item menu-item-2 type-3">
-                                            <div class="image hover-zoom">
-                                                <a href="#" class="like-product main-fill-col">
-                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                                        <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                                        c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                                        l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                                        C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                                        s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                                        c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                                        C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                                    </svg>
-                                                </a>
-                                                <img src="{{avatar}}" alt="">
-                                                <div class="vertical-align full menu-button">
-                                                    <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                                    <div class="empty-sm-10 empty-xs-10"></div>
-                                                    <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery" data-rel="1"><span class="txt">quick view</span></a>
+                                    <div class="col-sm-4">
+                                        <div class="product-shortcode style-7">
+                                            <div class="product-label red">giảm giá 20%</div>
+                                            <div class="preview">
+                                                <img src="{{avatar}}" alt="" />
+                                                <div class="preview-buttons valign-middle ">
+                                                    <div class="valign-middle-content">
+                                                        <a class="button size-1 style-2" href="/dishes/{{dish_id}}">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                        <span class="text">Xem chi tiết</span>
+                                                    </span>
+                                                        </a>
+                                                        <a class="button size-1 style-3" href="#">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                        <span class="text">Thêm vào giỏ</span>
+                                                    </span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="text">
-                                                <div class="empty-sm-15 empty-xs-10"></div>
-                                                <h5 class="h5 caption"><a href="/dishes/{{dish_id}}" class="link-hover-line">{{name}}</a></h5>
-                                                <div class="empty-sm-5 empty-xs-5"></div>
-                                                <div class="simple-text">
-                                                    <p>{{{render_description detail_description}}}</p>
+                                            <div class="dishes-title">
+                                                <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
+                                                <div class="h5 dish-name animate-to-green">{{name}}</div>
+                                            </div>
+
+                                            <div class="price">
+                                                <div class="row ">
+                                                    <div class="h4  new-price col-md-6">
+                                                        <b>230.000đ</b>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                                            <span class="h4 line-through simple-text old-price ">
+                                                                                230.000đ
+                                                                            </span>
+                                                    </div>
+
                                                 </div>
-                                                <div class="empty-sm-10 empty-xs-10"></div>
-                                                <div class="menu-price style-2 title main-col">{{price}}đ </div>
-                                                <div class="custome-padd-top-10 style-2 ">-60% </span>&nbsp;&nbsp;&nbsp;<span class="line-through">350.00đ</span> </div>
+                                            </div>
+
+                                            <div class="icons">
+                                                <!-- quick view -->
+                                                <a class="entry open-popup" data-open="popup-gallery" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,38 +99,51 @@
 
                             <script type="text/x-handlebars-template" id="dishes-template">
                                 \{{#each dishes}}
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="empty-sm-50 empty-xs-30"></div>
-                                        <div class="menu-item menu-item-2 type-3">
-                                            <div class="image hover-zoom">
-                                                <a href="#" class="like-product main-fill-col">
-                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
-                                        <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                                        c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                                        l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                                        C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                                        s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                                        c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                                        C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                                    </svg>
-                                                </a>
-                                                <img src="\{{this.avatar}}" alt="">
-                                                <div class="vertical-align full menu-button">
-                                                    <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
-                                                    <div class="empty-sm-10 empty-xs-10"></div>
-                                                    <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery" data-rel="1"><span class="txt">quick view</span></a>
+                                   <div class="col-sm-4">
+                                        <div class="product-shortcode style-7">
+                                            <div class="product-label red">giảm giá 20%</div>
+                                            <div class="preview">
+                                                <img src="\{{this.avatar}}" alt="" />
+                                                <div class="preview-buttons valign-middle ">
+                                                    <div class="valign-middle-content">
+                                                        <a class="button size-1 style-2" href="/dishes/\{{this.dish_id}}">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                        <span class="text">Xem chi tiết</span>
+                                                    </span>
+                                                        </a>
+                                                        <a class="button size-1 style-3" href="#">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                        <span class="text">Thêm vào giỏ</span>
+                                                    </span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="text">
-                                                <div class="empty-sm-15 empty-xs-10"></div>
-                                                <h5 class="h5 caption"><a href="/dishes/\{{this.dish_id}}" class="link-hover-line">\{{this.name}}</a></h5>
-                                                <div class="empty-sm-5 empty-xs-5"></div>
-                                                <div class="simple-text">
-                                                    <p>\{{{render_description this.detail_description}}}</p>
+                                            <div class="dishes-title">
+                                                <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
+                                                <div class="h5 dish-name animate-to-green">\{{this.name}}</div>
+                                            </div>
+
+                                            <div class="price">
+                                                <div class="row ">
+                                                    <div class="h4  new-price col-md-6">
+                                                        <b>230.000đ</b>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                                            <span class="h4 line-through simple-text old-price ">
+                                                                                230.000đ
+                                                                            </span>
+                                                    </div>
+
                                                 </div>
-                                                <div class="empty-sm-10 empty-xs-10"></div>
-                                                <div class="menu-price style-2 title main-col">\{{this.price}}đ</div>
-                                                 <div class="custome-padd-top-10 style-2 ">-60% </span>&nbsp;&nbsp;&nbsp;<span class="line-through">350.00đ</span> </div>
+                                            </div>
+
+                                            <div class="icons">
+                                                <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -123,6 +151,152 @@
                             </script>
                         </div>
                     </div>
+
+
+                    <!-- list view -->
+                    <div class="tab-container-item min-h-430">
+                        <div class="row">
+                            <div id="dishes">
+                            {{#each dishes}}
+                                <div class="empty-sm-50 empty-xs-30"></div>
+                                <div class="col-md-12 col-xs-12">
+                                <div class="menu-item menu-item-7">
+                                    <div class="image hover-zoom">
+                                        <a href="#" class="like-product main-fill-col">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
+                                <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
+                                c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
+                                l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
+                                C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
+                                s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
+                                c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
+                                C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                            </svg>
+                                        </a>
+                                        <a href="/dishes/{{dish_id}}" class="image-hover color-1 use-transparent"><img src="{{avatar}}" alt=""></a>
+                                    </div>
+
+                                    <div class="text">
+                                        <div class="product-shortcode style-7 sale-label-container">
+                                            <div class="product-label red sale-content">Giảm giá 20%</div>
+                                        </div>
+
+                                        <h5 class="h5 caption"><a href="/dishes/{{dish_id}}" class="link-hover-line">{{name}}</a></h5>
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="simple-text">
+                                            <p>{{igredients}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-button grid-button">
+
+                                        <a class="button size-1 style-2 margin-bot-10" href="/dishes/{{dish_id}}">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                        <span class="text">Xem chi tiết</span>
+                                                    </span>
+                                        </a>
+
+                                        <a class="button size-1 style-3" href="#">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                        <span class="text">Thêm vào giỏ</span>
+                                                    </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="menu-price style-2">
+
+
+                                            <div class="h4  new-price row">
+                                                <b>230.000đ</b>
+                                            </div>
+                                        <div class="custome-padd-top-10"/>
+                                            <div class="row">
+                                                                            <span class="h4 line-through simple-text old-price ">
+                                                                                230.000đ
+                                                                            </span>
+                                            </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            {{/each}}
+                            </div>
+
+                            <script type="text/x-handlebars-template" id="dishes-template-2">
+                                \{{#each dishes}}
+                                   <div class="empty-sm-50 empty-xs-30"></div>
+                                <div class="col-md-12 col-xs-12">
+                                <div class="menu-item menu-item-7">
+                                    <div class="image hover-zoom">
+                                        <a href="#" class="like-product main-fill-col">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
+                                <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
+                                c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
+                                l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
+                                C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
+                                s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
+                                c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
+                                C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                            </svg>
+                                        </a>
+                                        <a href="/dishes/\{{this.dish_id}}" class="image-hover color-1 use-transparent"><img src="\{{this.avatar}}" alt=""></a>
+                                    </div>
+
+                                    <div class="text">
+                                        <div class="product-shortcode style-7 sale-label-container">
+                                            <div class="product-label red sale-content">Giảm giá 20%</div>
+                                        </div>
+
+                                        <h5 class="h5 caption"><a href="/dishes/\{{this.dish_id}}" class="link-hover-line">\{{this.name}}</a></h5>
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="simple-text">
+                                            <p>\{{this.igredients}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-button grid-button">
+
+                                        <a class="button size-1 style-2 margin-bot-10" href="/dishes/\{{this.dish_id}}">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                        <span class="text">Xem chi tiết</span>
+                                                    </span>
+                                        </a>
+
+                                        <a class="button size-1 style-3" href="#">
+                                                    <span class="button-wrapper">
+                                                        <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                        <span class="text">Thêm vào giỏ</span>
+                                                    </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="menu-price style-2">
+
+
+                                            <div class="h4  new-price row">
+                                                <b>230.000đ</b>
+                                            </div>
+                                        <div class="custome-padd-top-10"/>
+                                            <div class="row">
+                                                                            <span class="h4 line-through simple-text old-price ">
+                                                                                230.000đ
+                                                                            </span>
+                                            </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                                \{{/each}}
+                            </script>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
                 <div class="row">
