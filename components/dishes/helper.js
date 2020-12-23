@@ -42,6 +42,18 @@ function helper(hbs) {
 
         return description;
     });
+
+    hbs.registerHelper('render_igredients', function(igredients) {
+        const MAX_LENGTH = 90;
+
+        if (igredients.length > MAX_LENGTH) {
+            igredients = igredients.substring(0, MAX_LENGTH-1)
+        }
+
+        igredients += "..."
+
+        return igredients;
+    });
 }
 
 module.exports = helper;

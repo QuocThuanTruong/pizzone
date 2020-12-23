@@ -99,6 +99,7 @@ jQuery(function($) { "use strict";
 			resizeCall();
 		}, false);
 	}
+
                                                   
 	/*============================*/
 	/* 02 - SWIPER SLIDER */
