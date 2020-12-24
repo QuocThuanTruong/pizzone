@@ -102,3 +102,8 @@ exports.chagePassword = (req, res, next) => {
 
     res.render('../components/user/views/changePassword', dataContext);
 }
+
+exports.orders = (req, res, next) => {
+
+    res.render('../components/user/views/orders', {});
+}

@@ -1,0 +1,182 @@
+<section class="section">
+    <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
+    <div class="empty-lg-50 empty-md-20 empty-sm-10 empty-xs-10"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+                <div class="simple-item color-type-2 text-center">
+                    <div class="main-title">
+                        <h1 class="h1 color-2">Đặt món</h1>
+                        <div class="empty-sm-25"></div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="simple-text md opacity-1">
+                                <p>Hoàn thành các thông tin bên dưới để tiến hành đặt món của chúng tôi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <div class="empty-sm-60 empty-xs-30"></div>
+                <div class="text-left check-subtitle">
+                    <h4 class="h4 sm color-2">Đơn hàng của bạn</h4>
+                </div>
+                <div class="empty-sm-40 empty-xs-20"></div>
+                <table class="order-list" cols="4" cellspacing="0">
+                    <tr>
+                        <td>
+                            <div class="img hover-zoom">
+                                <div class="color-type-1">
+                                    <a href="#" class="image-hover"><img src="img/checkout/order-1.png" alt=""></a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
+                        </td>
+                        <td>
+                            <div class="shop-item">
+                                <h6 class="h6">2 items</h6>
+                            </div>
+                        </td>
+                        <td>
+                            <h5 class="h5 sm order-price main-col">$16.80</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="img hover-zoom">
+                                <div class="color-type-1">
+                                    <a href="#" class="image-hover"><img src="img/checkout/order-2.png" alt=""></a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5 class="h5 caption"><a href="#" class="link-hover">Big Coca-Cola 2L</a></h5>
+                        </td>
+                        <td>
+                            <div class="shop-item">
+                                <h6 class="h6">1 item</h6>
+                            </div>
+                        </td>
+                        <td>
+                            <h5 class="h5 sm order-price main-col">$2.80</h5>
+                        </td>
+                    </tr>
+                </table>
+                <div class="empty-sm-30 empty-xs-15"></div>
+
+                <div class="row">
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="input-field-icon">
+                            <input type="text" class="input-field" placeholder="Mã giảm giá" name="voucher" required="">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-5 col-xs-12">
+                        <a class="button size-2 style-3" href="#">
+                                                                    <span class="button-wrapper">
+                                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                                        <span class="text">Kiểm tra</span>
+                                                                     </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="empty-sm-30 empty-xs-15"></div>
+                <div class="cart-total">
+                    <ul>
+                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">$19.80</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">free</b></span></h5></li>
+                        <div class="empty-sm-15 empty-xs-15"></div>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">$21.60</b></span></h4></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <div class="empty-sm-60 empty-xs-30"></div>
+                <div class="text-left check-subtitle">
+                    <h4 class="h4 sm color-2">Thông tin của bạn</h4>
+                </div>
+                <div class="empty-sm-40 empty-xs-20"></div>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="input-field-icon">
+                                <input type="text" class="input-field" placeholder="Họ và tên*" name="name" required="" value="{{userFullName}}">
+                                <div class="icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="input-field-icon">
+                                <input type="text" class="input-field" placeholder="Email*" name="email" required="">
+                                <div class="icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="input-field-icon">
+                                <input type="text" class="input-field" placeholder="Số điện thoại*" name="email" required="">
+                                <div class="icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="input-field-icon">
+                                <input type="text" class="input-field" placeholder="Địa chỉ*" name="address" required="" value="{{address}}">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                        </div>
+                    </div>
+                    <div class="input-field-wrap">
+                        <textarea placeholder="Message" class="input-field color-2"></textarea>
+                        <div class="focus"></div>
+                    </div>
+                    <div class="empty-sm-20 empty-xs-20"></div>
+                    <div class="h4 tt delivery">
+
+                            <span>
+								  <p>Thanh toán khi nhận hàng</p>
+                            </span>
+                    </div>
+
+                    <div class="empty-sm-50 empty-xs-50"></div>
+                    <div class="fr button-full-width">
+
+                            <a class="button size-2 style-3" href="#">
+                                                                    <span class="button-wrapper">
+                                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                                        <span class="text">Đặt món</span>
+                                                                     </span>
+                            </a>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
+</section>
+

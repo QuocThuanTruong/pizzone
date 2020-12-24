@@ -99,6 +99,7 @@ jQuery(function($) { "use strict";
 			resizeCall();
 		}, false);
 	}
+
                                                   
 	/*============================*/
 	/* 02 - SWIPER SLIDER */
@@ -106,8 +107,8 @@ jQuery(function($) { "use strict";
                           
 	function initSwiper(){
 		var initIterator = 0;
-		$('.swiper-container').each(function(){								  
-			var $t = $(this);								  
+		$('.swiper-container').each(function(){
+			var $t = $(this);
 			var index = 'swiper-unique-id-'+initIterator;
 
 			$t.addClass('swiper-'+index + ' initialized').attr('id', index);
@@ -116,7 +117,7 @@ jQuery(function($) { "use strict";
 			var autoPlayVar = parseInt($t.attr('data-autoplay'),10);
             var slideEffect = $t.attr('data-effect');
 			var slidesPerViewVar = $t.attr('data-slides-per-view');
-	
+
 			if(slidesPerViewVar == 'responsive'){
 				slidesPerViewVar = updateSlidesPerView($t);
 			}
@@ -136,7 +137,7 @@ jQuery(function($) { "use strict";
 				paginationClickable: true,
 				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
-				keyboardControl: true, 
+				keyboardControl: true,
 				simulateTouch: true,
 				centeredSlides: centerVar,
 				effect: slideEffect,
@@ -178,9 +179,9 @@ jQuery(function($) { "use strict";
 						swiper.slideTo(activeIndex1);
 					}
 				}
-                
+
 			});
-			
+
 			swipers['swiper-'+index].update();
 			initIterator++;
 		});
@@ -194,6 +195,7 @@ jQuery(function($) { "use strict";
                
     $(document).on('click','.slide-swich', function(){
 		var switchIndex = $(this).closest('.slider-swiching').find('.slide-swich').index(this);
+		console.log(switchIndex);
 		 $(this).closest('.slider-swiching').find('.slide-swich').removeClass('active');	
 		  $(this).addClass('active');	
 			swipers['swiper-'+$(this).closest('.slider-swiching').find('.container-swich').attr('id')].slideTo(switchIndex);
@@ -316,7 +318,8 @@ jQuery(function($) { "use strict";
 					$container.isotope({filter: filterValue});
 			});  
 	  }
-	}                
+	}
+
                     
     /*============================*/
 	/* 07 - GOOGLE MAP */
