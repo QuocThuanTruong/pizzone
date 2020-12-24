@@ -91,6 +91,7 @@
                             <g></g>
                   </svg>
                     </a>
+
                     <div class="shop-card-item">
                         <div class="shop-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129" width="16px" height="16px">
@@ -189,18 +190,24 @@
                                 </ul>
                                 <div class="buy-bar">
                                     <div class="fl">
-                                        <h4 class="h4 caption">Total:<b class="main-col">$19.60</b></h4>
+                                        <h4 class="h4 caption">Tổng:<b class="main-col">$19.60</b></h4>
                                     </div>
+
                                     <div class="fr">
-                                        <a href="#" class="page-button button-style-1 type-2"><span class="txt">Go to the cart</span></a>
-                                        <a href="#" class="page-button button-style-1 type-4"><span class="txt">go to checkout</span></a>
+
+                                            <a class="page-button button-style-1 type-2" href="/cart">
+                                                <span class="txt">Đặt món</span>
+                                            </a>
+
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{#if isLogin}}
+                    {{#if isLoginSignUp}}
                         <div class="login-item">
                             <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a>  / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
                         </div>
@@ -217,8 +224,10 @@
                                     </div>
 
                                     <ul>
-                                        <li><a href="/user-profile/edit/{{userID}}">Edit profile</a></li>
-                                        <li><a href="/user-profile/change-password/{{userID}}">Chage password</a></li>
+                                        <li><a href="/user-profile/edit/{{userID}}">Tài khoản của tôi</a></li>
+                                        <li><a href="/user-profile/change-password/{{userID}}">Đổi mật khẩu</a></li>
+                                        <li><a href="/user-profile/my-orders">Đơn mua</a></li>
+                                        <li><a href="/user-profile/logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>
