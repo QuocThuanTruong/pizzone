@@ -12,52 +12,54 @@
                 <div class="sale-badge">
                     <h5 class="h5"><b>GIẢM GIÁ</br> 63%</b></h5>
                 </div>
-                <!-- top -->
-                <div class="main-product-slider-wrapper swipers-couple-wrapper">
-                    <div class="swiper-container swiper-control-top" data-mode="horizontal">
-                        <div class="swiper-button-prev hidden"></div>
-                        <div class="swiper-button-next hidden"></div>
 
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-big-preview-entry">
-                                    <img src="{{avatar}}" alt="" class="full-img" />
+                <div class="swipers-wrapper">
+                    <div class="sideBarTopSwiper">
+                        <div class="swiperMainWrapper">
+                            <div class="swiper-container full-h animation-2 swiper-control-top" data-mode="horizontal" data-autoplay="0" data-effect="slide" data-slides-per-view="1" data-loop="0" data-speed="600">
+                                <div class="swiper-wrapper">
+
+                                    <div class="swiper-slide activeSlide">
+                                        <div class="content">
+                                            <img src="{{avatar}}" alt="" class="full-img">
+                                        </div>
+                                    </div>
+{{#each images}}
+                                    <div class="swiper-slide" >
+                                        <div class="content">
+                                            <img src="{{image_url}}" alt="" class="full-img">
+                                        </div>
+                                    </div>
+    {{/each}}
 
                                 </div>
                             </div>
-
-                            {{#each images}}
-                            <div class="swiper-slide">
-                                <div class="product-big-preview-entry">
-                                    <img src="{{image_url}}" alt="" class="full-img" />
-                                </div>
-                            </div>
-                            {{/each}}
-
                         </div>
                     </div>
+                    <div class="empty-sm-10 empty-xs-10"></div>
+                    <div class="sideBarSwiper">
+                        <div class="swiperMainWrapper">
+                            <div class="swiper-container swiper-control-bottom" data-mode="horizontal" data-autoplay="0" data-effect="slide" data-slides-per-view="5" data-loop="0" data-speed="800" data-space="10">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide active" >
+                                        <div class="content controlTopSwiper">
+                                            <img src="{{avatar}}" alt="" class="full-img">
+                                        </div>
+                                    </div>
+{{#each images}}
+                                    <div class="swiper-slide">
+                                        <div class="content controlTopSwiper">
+                                            <img src="{{image_url}}" alt="" class="full-img">
+                                        </div>
+                                    </div>
+{{/each}}
 
-
-                    <div class="swiper-container swiper-control-bottom" data-mode="horizontal" data-breakpoints="1" data-xs-slides="3" data-sm-slides="3" data-md-slides="4" data-lt-slides="5" data-slides-per-view="5" data-center="1" data-click="1">
-                        <div class="swiper-button-prev hidden"></div>
-                        <div class="swiper-button-next hidden"></div>
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide slide-swich slider-swiching" onclick="this">
-                                <div class="product-small-preview-entry">
-                                    <img src="{{avatar}}" alt="" class="full-img" />
                                 </div>
                             </div>
-                            {{#each images}}
-                            <div class="swiper-slide slide-swich slider-swiching" onclick="this">
-                                <div class="product-small-preview-entry">
-                                    <img src="{{image_url}}" alt="" class="full-img" />
-                                </div>
-                            </div>
-                            {{/each}}
-
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-lg-1 col-md-1 col-xs-1"></div>
