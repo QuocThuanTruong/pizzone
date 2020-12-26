@@ -29,11 +29,12 @@ exports.register = async (req, res, next) => {
             return
         }
 
-        console.log(fields)
         let username = fields.username;
         let email = fields.email;
         let password = fields.password;
         let retype = fields.rep_password;
+
+
 
     })
 }
