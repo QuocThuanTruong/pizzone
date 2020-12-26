@@ -24,6 +24,13 @@ global.cart = {
 
 global.isLogin = false;
 
+global.isActive = {
+  isPizzaCatActive: false,
+  isDrinkCatActive : false,
+  isSideCatActive : false
+};
+
+global.user = {}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -39,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/dishes', dishesRouter);
-app.use('/user-profile', userRouter);
+app.use('/user', userRouter);
 app.use('/cart', cartRouter);
 
 // catch 404 and forward to error handler

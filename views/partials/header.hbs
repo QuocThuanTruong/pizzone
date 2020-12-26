@@ -101,14 +101,14 @@
                                     </g>
                                 </g>
                             </svg>
-                            <div class="shop-number" id="total-dish-in-cart">{{totalDishInCart}}</div>
+                            <div class="shop-number" id="total-dish-in-cart">{{cart.totalDishInCart}}</div>
                             <script type="text/x-handlebars-template" id="total-dish-in-cart-template">
-                                \{{totalDishInCart}}
+                                \{{cart.totalDishInCart}}
                             </script>
                         </div>
-                        <span class="shop-card-price" id="total-cost-in-cart">Total: <b class="main-col">{{standardPrice 1 totalCostInCart}}</b></span>
+                        <span class="shop-card-price" id="total-cost-in-cart">Total: <b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span>
                         <script type="text/x-handlebars-template" id="total-cost-in-cart-template">
-                                Total: <b class="main-col">\{{standardPrice 1 totalCostInCart}}</b>
+                                Total: <b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b>
                         </script>
                         <div class="shop-card-list">
                             <div class="shop-card-align-mobile">
@@ -119,7 +119,7 @@
                                 </div>
                                 <div id="cart-item">
                                     <ul>
-                                        {{#each itemInCart}}
+                                        {{#each cart.itemInCart}}
                                         <li class="flex-align">
                                             <div class="img hover-zoom">
                                                 <a href="#"><img src="{{avatar}}" alt=""></a>
@@ -150,7 +150,7 @@
                                 </div>
                                 <script type="text/x-handlebars-template" id="cart-item-template">
                                     <ul>
-                                        \{{#each itemInCart}}
+                                        \{{#each cart.itemInCart}}
                                         <li class="flex-align">
                                             <div class="img hover-zoom">
                                                 <a href="#"><img src="\{{avatar}}" alt=""></a>
@@ -181,10 +181,10 @@
                                 </script>
                                 <div class="buy-bar">
                                     <div class="fl" id="total-cost-in-cart-2">
-                                        <h4 class="h4 caption">Tổng:<b class="main-col">{{standardPrice 1 totalCostInCart}}</b></h4>
+                                        <h4 class="h4 caption">Tổng:<b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></h4>
                                     </div>
                                     <script type="text/x-handlebars-template" id="total-cost-in-cart-template-2">
-                                        <h4 class="h4 caption">Tổng:<b class="main-col">\{{standardPrice 1 totalCostInCart}}</b></h4>
+                                        <h4 class="h4 caption">Tổng:<b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b></h4>
                                     </script>
 
                                     <div class="fr">
@@ -210,10 +210,10 @@
                                     </div>
 
                                     <ul>
-                                        <li><a href="/user-profile/edit/{{userID}}">Tài khoản của tôi</a></li>
-                                        <li><a href="/user-profile/change-password/{{userID}}">Đổi mật khẩu</a></li>
-                                        <li><a href="/user-profile/my-orders">Đơn mua</a></li>
-                                        <li><a href="/user-profile/logout">Đăng xuất</a></li>
+                                        <li><a href="/user/edit/{{userID}}">Tài khoản của tôi</a></li>
+                                        <li><a href="/user/change-password/{{userID}}">Đổi mật khẩu</a></li>
+                                        <li><a href="/user/my-orders">Đơn mua</a></li>
+                                        <li><a href="/user/logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>

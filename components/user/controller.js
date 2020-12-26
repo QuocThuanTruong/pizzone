@@ -107,3 +107,4 @@ exports.orders = (req, res, next) => {
 
     res.render('../components/user/views/orders', {});
 }
+

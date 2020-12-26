@@ -1,34 +1,39 @@
-const {db} = require('../../dal/db')
+const formidable = require('formidable');
 
 const dishModel = require('../dishes/model')
-const userModel = require('../user/model')
+const userService = require('../user/service')
 
 exports.index = async (req, res, next) => {
     const pizza = await dishModel.pizzaList()
     const drinks = await  dishModel.drinkList()
     const sides = await  dishModel.sideList()
 
-    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
-
-/*    console.log(admin1)*/
-
-    ///img/home-4/people-1.png
-
     const dataContext = {
-        itemInCart: global.cart.dishes,
-        totalCostInCart: global.cart.totalCostInCart,
-        totalDishInCart: global.cart.totalDishInCart,
+        cart: global.cart,
         isLogin: global.isLogin,
-        userID: admin1.user_id,
-        userFullName: admin1.name,
-        userAvatar: admin1.avatar,
+        user : global.user,
         homePageActive: "active",
         pizza: pizza,
         drinks: drinks,
         sides: sides
     }
 
-    /*console.log(dataContext)*/
-
     res.render('../components/home/views/index', dataContext);
 };
+
+exports.register = async (req, res, next) => {
+    const form = formidable({multiples: true})
+
+    await form.parse(req, async (err, fields, files) => {
+        if (err) {
+            return
+        }
+
+        console.log(fields)
+        let username = fields.username;
+        let email = fields.email;
+        let password = fields.password;
+        let retype = fields.rep_password;
+
+    })
+}
