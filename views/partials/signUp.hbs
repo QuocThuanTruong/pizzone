@@ -12,12 +12,13 @@
                     <h2 class="title h2 ">Register</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
-                <form action="#">
+                <form method="post" action="/register" enctype="multipart/form-data">
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" placeholder="Your name" name="name" required="">
+                        <input type="text" class="input-field" placeholder="Username" name="username" required="" onchange="checkExistUsername(this.value)">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
+                    <div id="check-exists-username-result"></div>
                     <div class="input-field-wrap">
                         <input type="email" class="input-field" placeholder="Your email" name="email" required="">
                         <div class="focus"></div>

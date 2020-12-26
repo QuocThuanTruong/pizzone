@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cloudinary": "^1.23.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -16,6 +17,9 @@
     "http-errors": "~1.6.3",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "redis": "^3.0.2",
     "rimraf": "^3.0.2"
   }
 }

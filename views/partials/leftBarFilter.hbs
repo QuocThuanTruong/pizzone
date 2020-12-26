@@ -33,9 +33,9 @@
         <h5 class="tt h5 color-2">Loại món ăn</h5>
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
-            <li><a href="/dishes?category=1" class="link-hover">Pizza<span>({{totalPizza}})</span></a></li>
-            <li><a href="/dishes?category=2" class="link-hover">Thức uống<span>({{totalDrink}})</span></a></li>
-            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm<span>({{totalSide}})</span></a></li>
+            <li><a href="/dishes?category=1" class="link-hover">Pizza<span>({{result.totalPizza}})</span></a></li>
+            <li><a href="/dishes?category=2" class="link-hover">Thức uống<span>({{result.totalDrink}})</span></a></li>
+            <li><a href="/dishes?category=3" class="link-hover">Đồ ăn kèm<span>({{result.totalSide}})</span></a></li>
         </ul>
     </aside>
     <aside>
@@ -57,7 +57,7 @@
         </form>
     </aside>
 
-    {{#if isPizzaCatActive}}
+    {{#if isActive.isPizzaCatActive}}
         <aside>
             <div class="empty-sm-65 empty-xs-30"></div>
             <h5 class="tt h5 color-2">Loại pizza</h5>
@@ -206,7 +206,7 @@
         </aside>
     {{/if}}
 
-    {{#if isDrinkCatActive}}
+    {{#if isActive.isDrinkCatActive}}
         <aside>
             <div class="empty-sm-65 empty-xs-30"></div>
             <h5 class="tt h5 color-2">Kích cỡ</h5>
@@ -233,7 +233,7 @@
         </aside>
     {{/if}}
 
-    {{#if isSideCatActive}}
+    {{#if isActive.isSideCatActive}}
         <aside>
             <div class="empty-sm-65 empty-xs-30"></div>
             <h5 class="tt h5 color-2">Khẩu phần</h5>

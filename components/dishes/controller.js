@@ -11,64 +11,53 @@ exports.index = async (req, res, next) => {
 
         let totalDishPerPage = 1
 
-        let totalResult = await dishModel.totalDish();
-        let totalPizza = await dishModel.totalPizza();
-        let totalDrink = await dishModel.totalDrink();
-        let totalSide = await dishModel.totalSide();
+        let result = {
+            totalResult : await dishModel.totalDish(),
+            totalPizza : await dishModel.totalPizza(),
+            totalDrink : await dishModel.totalDrink(),
+            totalSide : await dishModel.totalSide()
+        }
 
-        let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
-
-        let isPizzaCatActive = false;
-        let isDrinkCatActive = false;
-        let isSideCatActive = false;
+        let totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
 
         let dishes;
 
         if (categoryId !== 0) {
             dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage, sortBy)
 
-            totalResult = await dishModel.totalDishByCategory(categoryId);
-            totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
+            result.totalResult = await dishModel.totalDishByCategory(categoryId);
+            totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
 
             switch (categoryId) {
                 case '1':
-                    isPizzaCatActive = true;
+                    global.isActive.isPizzaCatActive = true;
+                    global.isActive.isDrinkCatActive = false;
+                    global.isActive.isSideCatActive = false;
                     break;
 
                 case '2':
-                    isDrinkCatActive = true;
+                    global.isActive.isPizzaCatActive = false;
+                    global.isActive.isDrinkCatActive = true;
+                    global.isActive.isSideCatActive = false;
                     break;
 
                 case '3':
-                    isSideCatActive = true;
+                    global.isActive.isPizzaCatActive = false;
+                    global.isActive.isDrinkCatActive = false;
+                    global.isActive.isSideCatActive = true;
                     break;
             }
         } else {
             dishes = await dishModel.dishlist(1, totalDishPerPage, sortBy)
         }
 
-        let user = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
-
         const dataContext = {
             menuPageActive: "active",
-            itemInCart: global.cart.dishes,
-            totalCostInCart: global.cart.totalCostInCart,
-            totalDishInCart: global.cart.totalDishInCart,
+            cart: global.cart,
             isLogin: global.isLogin,
-            userID: user.user_id,
-            userFullName: user.name,
-            userAvatar: user.avatar,
-            totalDishPerPageOption1Selected: true,
-            totalDishPerPageOption2Selected: false,
-            totalDishPerPageOption3Selected: false,
-            totalDishPerPageOption4Selected: false,
-            totalResult: totalResult,
-            totalPizza: totalPizza,
-            totalDrink: totalDrink,
-            totalSide: totalSide,
-            isPizzaCatActive: isPizzaCatActive,
-            isDrinkCatActive: isDrinkCatActive,
-            isSideCatActive: isSideCatActive,
+            user: global.user,
+            result: result,
+            isActive: global.isActive,
             dishes: dishes,
             totalPage: totalPage,
             page: 1,
@@ -163,55 +152,40 @@ exports.detail = async (req, res, next) => {
     const id = req.params.id
 
     const dish = await dishModel.getDishById(id)
-    const doughs = await  dishModel.getListDoughById(id)
-    const toppings = await dishModel.getListToppingById(id)
-    const sizes = await dishModel.getListSizeById(id)
-    const images = await dishModel.getListImageById(id)
+    dish.doughs = await  dishModel.getListDoughById(id)
+    dish.toppings = await dishModel.getListToppingById(id)
+    dish.sizes = await dishModel.getListSizeById(id)
+    dish.images = await dishModel.getListImageById(id)
     const subCategory = await dishModel.getSubCategory(dish.subcategory)
-
-    let isPizzaCatActive = false;
-    let isDrinkCatActive = false;
-    let isSideCatActive = false;
+    dish.subCategoryName = subCategory.name
 
     switch (dish.category) {
         case 1:
-            isPizzaCatActive = true;
+            global.isActive.isPizzaCatActive = true;
+            global.isActive.isDrinkCatActive = false;
+            global.isActive.isSideCatActive = false;
             break;
 
         case 2:
-            isDrinkCatActive = true;
+            global.isActive.isPizzaCatActive = false;
+            global.isActive.isDrinkCatActive = true;
+            global.isActive.isSideCatActive = false;
             break;
 
         case 3:
-            isSideCatActive = true;
+            global.isActive.isPizzaCatActive = false;
+            global.isActive.isDrinkCatActive = false;
+            global.isActive.isSideCatActive = true;
             break;
     }
-
-    let admin1 = await userModel.getUserByUsernameAndPassword('qtt1707', 'qtt1707')
 
     const dataContext = {
         menuPageActive: "active",
         isLogin: global.isLogin,
-        itemInCart: global.cart.dishes,
-        totalCostInCart: global.cart.totalCostInCart,
-        totalDishInCart: global.cart.totalDishInCart,
-        userID: admin1.user_id,
-        userFullName: admin1.name,
-        userAvatar: admin1.avatar,
-        isPizzaCatActive: isPizzaCatActive,
-        isDrinkCatActive: isDrinkCatActive,
-        isSideCatActive: isSideCatActive,
-        name: dish.name,
-        avatar: dish.avatar,
-        price: dish.price,
-        igredients: dish.igredients,
-        detail_description: dish.detail_description,
-        subCategoryName: subCategory.name,
-        doughs: doughs,
-        toppings: toppings,
-        sizes: sizes,
-        images: images,
-        dishes: dish
+        cart: global.cart,
+        user: global.user,
+        isActive : global.isActive,
+        dish: dish
     }
 
     res.render('../components/dishes/views/detail', dataContext);

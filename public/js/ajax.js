@@ -274,3 +274,24 @@ function isUserLogin(isLogin) {
 
     return isLogin
 }
+
+function checkExistUsername(username) {
+    const url='user/api/is-exist/' + username;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (data.isExists == 1) {
+                console.log('cc')
+                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username').html('Username is already exists<div class="empty-sm-15 empty-xs-15"></div>')
+            } else {
+                $('#check-exists-username-result').addClass('error-username').removeClass('valid-username').html('Username is valid<div class="empty-sm-15 empty-xs-15"></div>')
+            }
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}

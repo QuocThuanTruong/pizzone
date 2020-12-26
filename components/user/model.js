@@ -51,3 +51,9 @@ exports.modify = (fields, id) => {
 exports.update = async (newUser) => {
     const _ = await execQuery('UPDATE user SET name = \''+newUser.name+'\', avatar = \''+newUser.avatar+'\', email = \''+newUser.email+'\', phone = \''+newUser.phone+'\', address = \''+newUser.address+'\' WHERE user_id = '+newUser.user_id)
 }
+
+exports.isExistsUser = async (username) => {
+    let result = await execQuery('SELECT EXISTS(SELECT * FROM user WHERE username = \''+username+'\' and is_active = 1) as e')
+
+    return result[0].e;
+}
