@@ -13,8 +13,16 @@ const homeRouter = require('./components/home/router');
 const dishesRouter = require('./components/dishes/router');
 const cartRouter = require('./components/cart/router')
 
-//test
 const app = express();
+
+//declare global variable
+global.cart = {
+  dishes : [],
+  totalCostInCart : 0,
+  totalDishInCart : 0
+}
+
+global.isLogin = false;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

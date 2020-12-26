@@ -18,20 +18,18 @@
                         <div class="swiperMainWrapper">
                             <div class="swiper-container full-h animation-2 swiper-control-top" data-mode="horizontal" data-autoplay="0" data-effect="slide" data-slides-per-view="1" data-loop="0" data-speed="600">
                                 <div class="swiper-wrapper">
-
                                     <div class="swiper-slide activeSlide">
                                         <div class="content">
                                             <img src="{{avatar}}" alt="" class="full-img">
                                         </div>
                                     </div>
-{{#each images}}
+                                    {{#each images}}
                                     <div class="swiper-slide" >
                                         <div class="content">
                                             <img src="{{image_url}}" alt="" class="full-img">
                                         </div>
                                     </div>
-    {{/each}}
-
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -88,7 +86,7 @@
 
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <h5 class="h5 sm color-2">Giá:
-                        <span class="h4 main-col"><b>{{price}} VNĐ</b></span>
+                        <span class="h4 main-col"><b>{{{standardPrice price}}}</b></span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span class="h5 line-through simple-text">
                                                                                 230.000đ
@@ -161,8 +159,6 @@
                             <p>{{detail_description}}</p>
                         </div>
                         {{/if}}
-
-
                     </aside>
 
                     <div class="empty-sm-30 empty-xs-20"></div>

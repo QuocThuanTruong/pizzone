@@ -51,7 +51,10 @@ exports.index = async (req, res, next) => {
 
         const dataContext = {
             menuPageActive: "active",
-            isLogin: true,
+            itemInCart: global.cart.dishes,
+            totalCostInCart: global.cart.totalCostInCart,
+            totalDishInCart: global.cart.totalDishInCart,
+            isLogin: global.isLogin,
             userID: user.user_id,
             userFullName: user.name,
             userAvatar: user.avatar,
@@ -188,7 +191,10 @@ exports.detail = async (req, res, next) => {
 
     const dataContext = {
         menuPageActive: "active",
-        isLogin: true,
+        isLogin: global.isLogin,
+        itemInCart: global.cart.dishes,
+        totalCostInCart: global.cart.totalCostInCart,
+        totalDishInCart: global.cart.totalDishInCart,
         userID: admin1.user_id,
         userFullName: admin1.name,
         userAvatar: admin1.avatar,
