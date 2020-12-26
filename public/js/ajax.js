@@ -284,9 +284,11 @@ function checkExistUsername(username) {
         success: function (data) {
             if (data.isExists == 1) {
                 console.log('cc')
-                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username').html('Username is already exists<div class="empty-sm-15 empty-xs-15"></div>')
+                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
+                $('#check-exists-username-content').html('Username is already exists')
             } else {
-                $('#check-exists-username-result').addClass('error-username').removeClass('valid-username').html('Username is valid<div class="empty-sm-15 empty-xs-15"></div>')
+                $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
+                $('#check-exists-username-content').html('Username is valid')
             }
 
         },

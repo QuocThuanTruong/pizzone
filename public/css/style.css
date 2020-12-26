@@ -2686,11 +2686,16 @@ transition: all 0.35s ease-out; }
 }
 
 .valid-username {
-    height: 30px;
-    color: #33CC33;
+    height: 30px !important;
+    color: #33CC33 !important;
 }
 
 .error-username {
-    height: 15px;
-    color: #FF3300;
+    height: 15px !important;
+    color: #FF3300 !important;
+}
+
+.validation-content {
+    font-weight: lighter !important;
+    font-size: 12px !important;
 }
