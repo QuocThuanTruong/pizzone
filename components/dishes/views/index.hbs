@@ -58,7 +58,7 @@
                                                         <span class="text">Xem chi tiết</span>
                                                     </span>
                                                         </a>
-                                                        <a class="button size-1 style-3" href="#">
+                                                        <a class="button size-1 style-3" onclick="changeCart({{dish_id}}, 1)">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="img/icon-3.png" alt=""></span>
                                                         <span class="text">Thêm vào giỏ</span>
@@ -96,7 +96,6 @@
                                     </div>
                                 {{/each}}
                             </div>
-
                             <script type="text/x-handlebars-template" id="dishes-template">
                                 \{{#each dishes}}
                                    <div class="col-sm-4">
@@ -112,7 +111,7 @@
                                                         <span class="text">Xem chi tiết</span>
                                                     </span>
                                                         </a>
-                                                        <a class="button size-1 style-3" href="#">
+                                                        <a class="button size-1 style-3" onclick="changeCart(\{{dish_id}}, 1)">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="img/icon-3.png" alt=""></span>
                                                         <span class="text">Thêm vào giỏ</span>
@@ -188,38 +187,32 @@
                                         </div>
                                     </div>
                                     <div class="menu-button grid-button">
-
                                         <a class="button size-1 style-2 margin-bot-10" href="/dishes/{{dish_id}}">
-                                                    <span class="button-wrapper">
-                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                                        <span class="text">Xem chi tiết</span>
-                                                    </span>
+                                            <span class="button-wrapper">
+                                                <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                                <span class="text">Xem chi tiết</span>
+                                            </span>
                                         </a>
 
-                                        <a class="button size-1 style-3" href="#">
-                                                    <span class="button-wrapper">
-                                                        <span class="icon"><img src="img/icon-3.png" alt=""></span>
-                                                        <span class="text">Thêm vào giỏ</span>
-                                                    </span>
+                                        <a class="button size-1 style-3" onclick="return addToCart({{dish_id}})">
+                                            <span class="button-wrapper">
+                                                <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                <span class="text">Thêm vào giỏ</span>
+                                            </span>
                                         </a>
                                     </div>
 
                                     <div class="menu-price style-2">
-
-
-                                            <div class="h4  new-price row">
-                                                <b>230.000đ</b>
-                                            </div>
-                                        <div class="custome-padd-top-10"/>
-                                            <div class="row">
-                                                                            <span class="h4 line-through simple-text old-price ">
-                                                                                230.000đ
-                                                                            </span>
-                                            </div>
-
-
+                                        <div class="h4  new-price row">
+                                            <b>{{standardPrice price}}</b>
+                                        </div>
+                                    <div class="custome-padd-top-10"/>
+                                        <div class="row">
+                                            <span class="h4 line-through simple-text old-price ">
+                                                230.000đ
+                                            </span>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                             {{/each}}
@@ -304,6 +297,7 @@
                         <div class="page-navigation" id="page-navigation">
                             {{{render_pagination category page totalPage}}}
                         </div>
+
                         <script type="text/x-handlebars-template" id="page-navigation-template">
                             \{{{render_pagination category page totalPage}}}
                         </script>

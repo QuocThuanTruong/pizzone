@@ -165,7 +165,6 @@ function gotoPage(categoryId, page) {
             hasFilter = false;
         }
     }
-
     else if (categoryId === 3) {
         //Size
         if (document.getElementById("sideSize1").checked) {
@@ -194,7 +193,10 @@ function gotoPage(categoryId, page) {
     const totalDishPerPageArr = [1, 2, 3, 4]
     const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
 
-    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&size=' + sizeFilter + '&topping=' + toppingFilter + '&dough=' + doughFilter + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage;
+    const sortByArr = [1, 2, 3, 4]
+    const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
+
+    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&size=' + sizeFilter + '&topping=' + toppingFilter + '&dough=' + doughFilter + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
     console.log(url)
     $.ajax({
         url: url,
@@ -227,3 +229,48 @@ function gotoPage(categoryId, page) {
     /*window.location.replace(url)*/
 }
 
+function changeCart(dish_id, type) {
+    const url='cart/change/' + dish_id + '?type= ' + type;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            console.log(data)
+
+            //render mini cart
+            let cartTemplate = Handlebars.compile($('#cart-item-template').html());
+            let cart = cartTemplate({itemInCart: data.dishes, totalCostInCart: data.totalCostInCart, totalDishInCart: data.totalDishInCart})
+            $('#cart-item').html(cart)
+
+            //render total dish in cart
+            let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
+            let totalDishInCart = totalDishInCartTemplate({totalDishInCart: data.totalDishInCart})
+            $('#total-dish-in-cart').html(totalDishInCart)
+
+            //render mini cost in cart
+            let totalCostInCartTemplate = Handlebars.compile($('#total-cost-in-cart-template').html());
+            let totalCostInCart = totalCostInCartTemplate({totalCostInCart: data.totalCostInCart})
+            $('#total-cost-in-cart').html(totalCostInCart)
+
+            //render mini cost in cart 2
+            let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
+            let totalCostInCart2 = totalCostInCart2Template({totalCostInCart: data.totalCostInCart})
+            $('#total-cost-in-cart-2').html(totalCostInCart2)
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function isUserLogin(isLogin) {
+    if (!isLogin) {
+        alert('Cần đăng nhập để tiếp tục')
+    } else {
+
+    }
+
+    return isLogin
+}

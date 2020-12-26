@@ -30,46 +30,28 @@
                 </div>
                 <div class="empty-sm-40 empty-xs-20"></div>
                 <table class="order-list" cols="4" cellspacing="0">
-                    <tr>
-                        <td>
-                            <div class="img hover-zoom">
-                                <div class="color-type-1">
-                                    <a href="#" class="image-hover"><img src="img/checkout/order-1.png" alt=""></a>
+                    {{#each itemInCart}}
+                        <tr>
+                            <td>
+                                <div class="img hover-zoom">
+                                    <div class="color-type-1">
+                                        <a href="/dishes/{{dish_id}}" class="image-hover"><img src="{{avatar}}" alt=""></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
-                        </td>
-                        <td>
-                            <div class="shop-item">
-                                <h6 class="h6">2 items</h6>
-                            </div>
-                        </td>
-                        <td>
-                            <h5 class="h5 sm order-price main-col">$16.80</h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="img hover-zoom">
-                                <div class="color-type-1">
-                                    <a href="#" class="image-hover"><img src="img/checkout/order-2.png" alt=""></a>
+                            </td>
+                            <td>
+                                <h5 class="h5 caption"><a href="#" class="link-hover">{{name}}</a></h5>
+                            </td>
+                            <td>
+                                <div class="shop-item">
+                                    <h6 class="h6">{{quantity}} items</h6>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h5 class="h5 caption"><a href="#" class="link-hover">Big Coca-Cola 2L</a></h5>
-                        </td>
-                        <td>
-                            <div class="shop-item">
-                                <h6 class="h6">1 item</h6>
-                            </div>
-                        </td>
-                        <td>
-                            <h5 class="h5 sm order-price main-col">$2.80</h5>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <h5 class="h5 sm order-price main-col">{{standardPrice quantity price}}</h5>
+                            </td>
+                        </tr>
+                    {{/each}}
                 </table>
                 <div class="empty-sm-30 empty-xs-15"></div>
 
@@ -82,10 +64,10 @@
                     </div>
                     <div class="col-sm-5 col-xs-12">
                         <a class="button size-2 style-3" href="#">
-                                                                    <span class="button-wrapper">
-                                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                                                        <span class="text">Kiểm tra</span>
-                                                                     </span>
+                            <span class="button-wrapper">
+                                <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                <span class="text">Kiểm tra</span>
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -93,10 +75,10 @@
                 <div class="empty-sm-30 empty-xs-15"></div>
                 <div class="cart-total">
                     <ul>
-                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">$19.80</b></span></h5></li>
-                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">free</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 totalCostInCart}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">0đ</b></span></h5></li>
                         <div class="empty-sm-15 empty-xs-15"></div>
-                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">$21.60</b></span></h4></li>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 totalCostInCart}}</b></span></h4></li>
                     </ul>
                 </div>
             </div>
@@ -155,23 +137,19 @@
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <div class="h4 tt delivery">
-
-                            <span>
-								  <p>Thanh toán khi nhận hàng</p>
-                            </span>
+                        <span>
+                            <p>Thanh toán khi nhận hàng</p>
+                        </span>
                     </div>
 
                     <div class="empty-sm-50 empty-xs-50"></div>
                     <div class="fr button-full-width">
-
-                            <a class="button size-2 style-3" href="#">
-                                                                    <span class="button-wrapper">
-                                                                        <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                                                        <span class="text">Đặt món</span>
-                                                                     </span>
-                            </a>
-
-
+                        <a class="button size-2 style-3" onclick="return isUserLogin({{isLogin}})">
+                            <span class="button-wrapper">
+                                <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                                <span class="text">Đặt món</span>
+                            </span>
+                        </a>
                     </div>
                 </form>
             </div>

@@ -69,7 +69,7 @@ exports.totalDishByCategoryAndFilter = async (category, subcategory, size, toppi
     return result[0].total
 }
 
-exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, size, topping, dough) => {
+exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, size, topping, dough, sortBy) => {
     let query = 'SELECT DISTINCT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
 
     if (size !== '') {
@@ -110,7 +110,25 @@ exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subca
         query += subcategory;
     }
 
-    query += ' ORDER BY d.dish_id LIMIT ' + totalDishPerPage + ' OFFSET ' + ((page - 1) * totalDishPerPage);
+    let sort = '';
+
+    switch (sortBy) {
+        case '1':
+            sort = 'd.created_date';
+            break;
+        case '2':
+            sort = 'd.name';
+            break;
+        case '3':
+            sort = 'd.price DESC';
+            break;
+        case '4':
+            sort = 'd.price ASC';
+            break;
+    }
+
+
+    query += ' ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET ' + ((page - 1) * totalDishPerPage);
 
     query = query.split('%20').join(' ');
     query = query.split('%27').join('\'');
@@ -122,8 +140,27 @@ exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subca
 }
 
 
-exports.dishlist = async (page, totalDishPerPage) => {
-    return await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY dish_id LIMIT '+totalDishPerPage+' OFFSET '+((page - 1) * totalDishPerPage))
+exports.dishlist = async (page, totalDishPerPage, sortBy) => {
+    console.log(sortBy)
+
+    let sort = '';
+
+    switch (sortBy) {
+        case '1':
+            sort = 'created_date';
+            break;
+        case '2':
+            sort = 'name';
+            break;
+        case '3':
+            sort = 'price DESC';
+            break;
+        case '4':
+            sort = 'price ASC';
+            break;
+    }
+
+    return await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
 }
 
 exports.pizzaList = async () => {
@@ -138,8 +175,25 @@ exports.sideList = async () => {
     return await execQuery('SELECT * FROM dishes WHERE category = 3 AND is_active = 1')
 }
 
-exports.listByCategory = async (categoryId, page, totalDishPerPage) => {
-    return await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 ORDER BY dish_id LIMIT '+totalDishPerPage+' OFFSET '+((page - 1) * totalDishPerPage))
+exports.listByCategory = async (categoryId, page, totalDishPerPage, sortBy) => {
+    let sort = '';
+
+    switch (sortBy) {
+        case '1':
+            sort = 'created_date';
+            break;
+        case '2':
+            sort = 'name';
+            break;
+        case '3':
+            sort = 'price DESC';
+            break;
+        case '4':
+            sort = 'price ASC';
+            break;
+    }
+
+    return await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
 }
 
 exports.getDishById = async (id) => {

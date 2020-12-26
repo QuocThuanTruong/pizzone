@@ -15,7 +15,10 @@ exports.index = async (req, res, next) => {
     ///img/home-4/people-1.png
 
     const dataContext = {
-        isLogin: true,
+        itemInCart: global.cart.dishes,
+        totalCostInCart: global.cart.totalCostInCart,
+        totalDishInCart: global.cart.totalDishInCart,
+        isLogin: global.isLogin,
         userID: admin1.user_id,
         userFullName: admin1.name,
         userAvatar: admin1.avatar,
@@ -25,7 +28,7 @@ exports.index = async (req, res, next) => {
         sides: sides
     }
 
-/*    console.log(dataContext)*/
+    /*console.log(dataContext)*/
 
     res.render('../components/home/views/index', dataContext);
 };
