@@ -201,17 +201,17 @@
                         <div class="login-item">
                             <ul class="header-menu">
                                 <li>
-                                    <a href="/user-profile" class="menu-arr user-profile">Hi {{userFullName}}</a>
+                                    <a href="/user-profile" class="menu-arr user-profile">Hi {{user.name}}</a>
 
                                     <div class="login-item user-profile-img">
                                         <a href="/user-profile">
-                                            <img width="40px" height="40px" src="{{userAvatar}}">
+                                            <img width="40px" height="40px" src="{{linkAvatar user.avatar}}">
                                         </a>
                                     </div>
 
                                     <ul>
-                                        <li><a href="/user/edit/{{userID}}">Tài khoản của tôi</a></li>
-                                        <li><a href="/user/change-password/{{userID}}">Đổi mật khẩu</a></li>
+                                        <li><a href="/user/edit">Tài khoản của tôi</a></li>
+                                        <li><a href="/user/change-password">Đổi mật khẩu</a></li>
                                         <li><a href="/user/my-orders">Đơn mua</a></li>
                                         <li><a href="/user/logout">Đăng xuất</a></li>
                                     </ul>

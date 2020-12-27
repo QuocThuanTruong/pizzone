@@ -2,10 +2,9 @@ const dishModel = require('../dishes/model')
 
 exports.index = async (req, res, next) => {
     const dataContext = {
-        isLogin: global.isLogin,
-        itemInCart: global.cart.dishes,
-        totalCostInCart: global.cart.totalCostInCart,
-        totalDishInCart: global.cart.totalDishInCart
+        isLogin: req.user ? true : false,
+        user: req.user,
+        cart: global.cart
     }
 
     res.render('../components/cart/views/index', dataContext);
@@ -57,11 +56,7 @@ exports.add = async (req, res, next) => {
                 global.cart.dishes.splice(index, 1)
 
             }
-
-
     }
-
-
 
     res.send(global.cart)
 }

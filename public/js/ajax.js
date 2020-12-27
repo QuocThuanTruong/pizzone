@@ -237,25 +237,30 @@ function changeCart(dish_id, type) {
         type: "GET",
         success: function (data) {
             console.log(data)
+            let cartItem = {
+                itemInCart: data.dishes,
+                totalCostInCart: data.totalCostInCart,
+                totalDishInCart: data.totalDishInCart
+            }
 
             //render mini cart
             let cartTemplate = Handlebars.compile($('#cart-item-template').html());
-            let cart = cartTemplate({itemInCart: data.dishes, totalCostInCart: data.totalCostInCart, totalDishInCart: data.totalDishInCart})
+            let cart = cartTemplate({cart: cartItem})
             $('#cart-item').html(cart)
 
             //render total dish in cart
             let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
-            let totalDishInCart = totalDishInCartTemplate({totalDishInCart: data.totalDishInCart})
+            let totalDishInCart = totalDishInCartTemplate({cart: cartItem})
             $('#total-dish-in-cart').html(totalDishInCart)
 
             //render mini cost in cart
             let totalCostInCartTemplate = Handlebars.compile($('#total-cost-in-cart-template').html());
-            let totalCostInCart = totalCostInCartTemplate({totalCostInCart: data.totalCostInCart})
+            let totalCostInCart = totalCostInCartTemplate({cart: cartItem})
             $('#total-cost-in-cart').html(totalCostInCart)
 
             //render mini cost in cart 2
             let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
-            let totalCostInCart2 = totalCostInCart2Template({totalCostInCart: data.totalCostInCart})
+            let totalCostInCart2 = totalCostInCart2Template({cart: cartItem})
             $('#total-cost-in-cart-2').html(totalCostInCart2)
 
         },
@@ -283,17 +288,86 @@ function checkExistUsername(username) {
         type: "GET",
         success: function (data) {
             if (data.isExists == 1) {
-                console.log('cc')
-                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
-                $('#check-exists-username-content').html('Username is already exists')
-            } else {
                 $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
+                $('#check-exists-username-content').html('Username is already exists')
+
+            } else {
+                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
                 $('#check-exists-username-content').html('Username is valid')
             }
+
+            $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function validationForm(element, name) {
+    let username = document.getElementById('username').value;
+
+    const url='user/api/is-exist/' + username;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (data.isExists == 1) {
+                $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
+                $('#check-exists-username-content').html('Username is already exists')
+
+                alert("failed username");
+                return false
+            } else {
+                $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
+                $('#check-exists-username-content').html('Username is valid')
+
+            }
+
+            $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
 
         },
         error: function (err) {
             console.log(err)
         }
     })
+
+    let password = document.getElementById('password').value;
+    let retype = document.getElementById('retype').value;
+
+    console.log(password)
+
+    if (password.length > 0 && password === retype) {
+        return true;
+    } else {
+        alert("failed retype");
+        return false;
+    }
+}
+
+function checkUser() {
+    let username = document.getElementById('username-sign-in').value;
+    let password = document.getElementById('password-sign-in').value;
+    let result = true;
+
+    const url='user/api/check-user?username=' + username + '&password=' + password;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            console.log(data)
+
+            if (!data) {
+                result = false;
+                alert('username or password is incorrect')
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+    return result;
 }

@@ -12,14 +12,14 @@
                     <h2 class="title h2">Log in</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
-                <form action="#">
+                <form method="post" action="/auth/login" onsubmit="return(checkUser())">
                     <div class="input-field-wrap">
-                        <input type="email" class="input-field" placeholder="Your email" name="email" required="">
+                        <input type="text" class="input-field" placeholder="Your username" name="username" id="username-sign-in" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" placeholder="Enter password" name="password" required="">
+                        <input type="password" class="input-field" placeholder="Enter password" name="password" id="password-sign-in" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
@@ -33,7 +33,7 @@
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">
                             <input type="submit">
-                            <span class="txt">register</span><i></i>
+                            <span class="txt">Sign In</span><i></i>
                         </div>
                     </div>
                 </form>

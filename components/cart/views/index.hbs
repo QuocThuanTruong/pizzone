@@ -30,7 +30,7 @@
                 </div>
                 <div class="empty-sm-40 empty-xs-20"></div>
                 <table class="order-list" cols="4" cellspacing="0">
-                    {{#each itemInCart}}
+                    {{#each cart.itemInCart}}
                         <tr>
                             <td>
                                 <div class="img hover-zoom">
@@ -75,10 +75,10 @@
                 <div class="empty-sm-30 empty-xs-15"></div>
                 <div class="cart-total">
                     <ul>
-                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 totalCostInCart}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span></h5></li>
                         <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">0đ</b></span></h5></li>
                         <div class="empty-sm-15 empty-xs-15"></div>
-                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 totalCostInCart}}</b></span></h4></li>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span></h4></li>
                     </ul>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Họ và tên*" name="name" required="" value="{{userFullName}}">
+                                <input type="text" class="input-field" placeholder="Họ và tên*" name="name" required="" value="{{user.name}}">
                                 <div class="icon">
                                     <i class="fa fa-user"></i>
                                 </div>
@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Địa chỉ*" name="address" required="" value="{{address}}">
+                                <input type="text" class="input-field" placeholder="Địa chỉ*" name="address" required="" value="{{user.address}}">
                                 <div class="icon">
                                     <i class="fas fa-map-marker"></i>
                                 </div>

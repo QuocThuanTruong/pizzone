@@ -53,9 +53,9 @@ exports.index = async (req, res, next) => {
 
         const dataContext = {
             menuPageActive: "active",
+            isLogin: req.user ? true : false,
+            user: req.user,
             cart: global.cart,
-            isLogin: global.isLogin,
-            user: global.user,
             result: result,
             isActive: global.isActive,
             dishes: dishes,
@@ -181,9 +181,9 @@ exports.detail = async (req, res, next) => {
 
     const dataContext = {
         menuPageActive: "active",
-        isLogin: global.isLogin,
+        isLogin: req.user ? true : false,
+        user: req.user,
         cart: global.cart,
-        user: global.user,
         isActive : global.isActive,
         dish: dish
     }

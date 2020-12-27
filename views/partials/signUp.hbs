@@ -12,26 +12,26 @@
                     <h2 class="title h2 ">Register</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
-                <form method="post" action="/register" enctype="multipart/form-data">
+                <form method="post" action="/auth/register" enctype="multipart/form-data" onsubmit="return(validationForm())">
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" placeholder="Username" name="username" required="" onchange="checkExistUsername(this.value)">
+                        <input type="text" class="input-field" id="username" placeholder="Username" name="username" required="" onchange="checkExistUsername(this.value)">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div id="check-exists-username-result"><h5 id="check-exists-username-content" class="validation-content"></h5></div>
-
+                    <div id="empty"></div>
                     <div class="input-field-wrap">
                         <input type="email" class="input-field" placeholder="Your email" name="email" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" placeholder="Enter password" name="password" required="">
+                        <input type="password" class="input-field" id="password" placeholder="Enter password" name="password" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" placeholder="Repeat password" name="rep_password" required="">
+                        <input type="password" class="input-field" id="retype" placeholder="Repeat password" name="rep_password" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
