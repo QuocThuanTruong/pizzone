@@ -22,7 +22,7 @@ const app = express();
 
 //declare global variable
 global.cart = {
-  dishes : [],
+  itemInCart : [],
   totalCostInCart : 0,
   totalDishInCart : 0
 }

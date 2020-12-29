@@ -6,13 +6,18 @@ exports.index = async (req, res, next) => {
     const sides = await dishModel.sideList()
 
     const dataContext = {
-        cart: global.cart,
+        cart: req.user ? req.user.cart : global.cart,
         isLogin: req.user ? true : false,
         user : req.user,
         homePageActive: "active",
         pizza: pizza,
         drinks: drinks,
         sides: sides
+    }
+
+    if  (req.user) {
+        console.log(req.user.cart)
+
     }
 
     res.render('../components/home/views/index', dataContext);

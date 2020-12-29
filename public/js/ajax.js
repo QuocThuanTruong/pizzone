@@ -230,7 +230,7 @@ function gotoPage(categoryId, page) {
 }
 
 function changeCart(dish_id, type) {
-    const url='cart/change/' + dish_id + '?type= ' + type;
+    const url='cart/change/' + dish_id + '?type=' + type;
     console.log(url)
     $.ajax({
         url: url,
@@ -238,7 +238,7 @@ function changeCart(dish_id, type) {
         success: function (data) {
             console.log(data)
             let cartItem = {
-                itemInCart: data.dishes,
+                itemInCart: data.itemInCart,
                 totalCostInCart: data.totalCostInCart,
                 totalDishInCart: data.totalDishInCart
             }

@@ -12,4 +12,5 @@ router.post('/login',
         failureFlash: true })
 );
 
+router.get('/logout', controller.logout)
 module.exports = router;

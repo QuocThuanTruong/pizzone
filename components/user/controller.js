@@ -15,7 +15,7 @@ const userModel = require('./model')
 
 exports.index = (req, res, next) => {
     const dataContext = {
-        cart: global.cart,
+        cart: req.user ? req.user.cart : global.cart,
         isLogin: req.user ? true : false,
         user: req.user
     }
@@ -25,7 +25,7 @@ exports.index = (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
     const dataContext = {
-        cart: global.cart,
+        cart: req.user ? req.user.cart : global.cart,
         isLogin: req.user ? true : false,
         user: req.user
     }
@@ -79,12 +79,10 @@ exports.editInfo = async (req, res, next) => {
             }
 
             const dataContext = {
-                cart: global.cart,
+                cart: req.user ? req.user.cart : global.cart,
                 isLogin: req.user ? true : false,
                 user: req.user
             }
-
-            console.log(dataContext)
 
             res.render('../components/user/views/editProfile', dataContext);
         })
@@ -93,15 +91,21 @@ exports.editInfo = async (req, res, next) => {
 
 exports.chagePassword = (req, res, next) => {
     const dataContext = {
-        isLogin: true,
-        userFullName: "Nguyen Van A",
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user
     }
 
     res.render('../components/user/views/changePassword', dataContext);
 }
 
 exports.orders = (req, res, next) => {
+    const dataContext = {
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user
+    }
 
-    res.render('../components/user/views/orders', {});
+    res.render('../components/user/views/orders', dataContext);
 }
 

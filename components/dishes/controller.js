@@ -55,7 +55,7 @@ exports.index = async (req, res, next) => {
             menuPageActive: "active",
             isLogin: req.user ? true : false,
             user: req.user,
-            cart: global.cart,
+            cart: req.user ? req.user.cart : global.cart,
             result: result,
             isActive: global.isActive,
             dishes: dishes,
@@ -183,7 +183,7 @@ exports.detail = async (req, res, next) => {
         menuPageActive: "active",
         isLogin: req.user ? true : false,
         user: req.user,
-        cart: global.cart,
+        cart: req.user ? req.user.cart : global.cart,
         isActive : global.isActive,
         dish: dish
     }

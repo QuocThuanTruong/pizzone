@@ -43,7 +43,6 @@
                     <div class="tab-container-item min-h-430">
                         <div class="row row-4-columns row-3-columns row-2-columns">
                             <div id="dishes">
-
                                 {{#each dishes}}
                                     <div class="col-sm-4">
                                         <div class="product-shortcode style-7">
@@ -75,7 +74,7 @@
                                             <div class="price">
                                                 <div class="row ">
                                                     <div class="h4  new-price col-md-6">
-                                                        <b>230.000đ</b>
+                                                        <b>{{standardPrice 1 price}}</b>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -128,13 +127,13 @@
                                             <div class="price">
                                                 <div class="row ">
                                                     <div class="h4  new-price col-md-6">
-                                                        <b>230.000đ</b>
+                                                        <b>\{{standardPrice 1 price}}</b>
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                                            <span class="h4 line-through simple-text old-price ">
-                                                                                230.000đ
-                                                                            </span>
+                                                        <span class="h4 line-through simple-text old-price ">
+                                                            230.000đ
+                                                        </span>
                                                     </div>
 
                                                 </div>

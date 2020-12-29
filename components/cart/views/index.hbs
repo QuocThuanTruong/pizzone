@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Email*" name="email" required="">
+                                <input type="text" class="input-field" placeholder="Email*" name="email" required="" value="{{user.email}}">
                                 <div class="icon">
                                     <i class="fa fa-envelope"></i>
                                 </div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Số điện thoại*" name="email" required="">
+                                <input type="text" class="input-field" placeholder="Số điện thoại*" name="phone" required="" value="{{user.phone}}">
                                 <div class="icon">
                                     <i class="fa fa-phone"></i>
                                 </div>
@@ -144,7 +144,7 @@
 
                     <div class="empty-sm-50 empty-xs-50"></div>
                     <div class="fr button-full-width">
-                        <a class="button size-2 style-3" onclick="return isUserLogin({{isLogin}})">
+                        <a href="/user/my-orders" class="button size-2 style-3" onclick="return isUserLogin({{isLogin}})">
                             <span class="button-wrapper">
                                 <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                 <span class="text">Đặt món</span>
