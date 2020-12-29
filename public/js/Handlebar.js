@@ -47,8 +47,6 @@ Handlebars.registerHelper('standardPrice', function(quantity, price) {
 
     let priceStr = price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1.').toString()
 
-    console.log(priceStr)
-
     return priceStr.substr(0, priceStr.length - 3) + 'đ'
 })
 

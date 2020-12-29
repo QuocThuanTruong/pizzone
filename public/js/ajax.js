@@ -371,3 +371,22 @@ function checkUser() {
 
     return result;
 }
+
+function cancelOrder(order_id, ordinal_number, dish_id) {
+    const url = '/order/cancel?order_id='+order_id+'&ordinal_number='+ordinal_number+'&dish='+dish_id;
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            console.log(data)
+
+            let currentOrderTemplate = Handlebars.compile($('#current-order-template').html());
+            let currentOrder = currentOrderTemplate({currentOrders: data})
+            $('#current-order').html(currentOrder)
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+}

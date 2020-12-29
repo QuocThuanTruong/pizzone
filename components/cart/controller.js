@@ -108,7 +108,7 @@ exports.add = async (req, res, next) => {
                     req.user.cart.totalCostInCart -= (deleteDish.price * deleteDish.quantity);
                     req.user.cart.totalDishInCart -= deleteDish.quantity;
 
-                    req.user.cart.itemInCart[index].quantity = 0;
+                    /*req.user.cart.itemInCart[index].quantity = 0;*/
                     req.user.cart.itemInCart[index].is_active = 0;
 
                     await cartModel.updateCartItem(req.user.cart.itemInCart[index], req.user.user_id)

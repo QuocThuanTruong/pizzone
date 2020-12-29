@@ -12,6 +12,7 @@ cloudinary.config({
 });
 
 const userModel = require('./model')
+const orderModel = require('../order/model')
 
 exports.index = (req, res, next) => {
     const dataContext = {
@@ -99,12 +100,19 @@ exports.chagePassword = (req, res, next) => {
     res.render('../components/user/views/changePassword', dataContext);
 }
 
-exports.orders = (req, res, next) => {
+exports.orders = async (req, res, next) => {
+    let currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);
+    let ordereds = await orderModel.getOrderedByUserId(req.user.user_id);
+
     const dataContext = {
         cart: req.user ? req.user.cart : global.cart,
         isLogin: req.user ? true : false,
-        user: req.user
+        user: req.user,
+        currentOrders: currentOrders,
+        ordereds: ordereds
     }
+
+    console.log(currentOrders)
 
     res.render('../components/user/views/orders', dataContext);
 }

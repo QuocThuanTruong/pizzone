@@ -55,6 +55,8 @@ exports.getCartByUserId = async (id) => {
     for (let i = 0; i < cartTemp.length; ++i) {
         let dish = await dishModel.getDishById(cartTemp[i].dish);
 
+        console.log(cartTemp[i])
+
         dish.quantity =  cartTemp[i].quantity;
         dish.cartId = cartTemp[i].cart;
         dish.is_active = cartTemp[i].is_active;
