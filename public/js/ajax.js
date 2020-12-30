@@ -388,5 +388,37 @@ function cancelOrder(order_id, ordinal_number, dish_id) {
             console.log(err)
         }
     })
+}
 
+function validReview(dish_id) {
+    let commentName = document.getElementById('comment-name').value;
+    let commentEmail = document.getElementById('comment-email').value;
+    let commentMessage = document.getElementById('comment-message').value;
+
+    if (commentName.length === 0 || commentEmail.length === 0 || commentMessage.length === 0) {
+        return false;
+    }
+
+    const url = '/review?dish_id='+dish_id+'&name='+commentName+'&email='+commentEmail+'&message='+commentMessage;
+
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            console.log(data)
+
+            let reviewTemplate = Handlebars.compile($('#review-template').html());
+            let review = reviewTemplate({review: data})
+            $('#review').html(review)
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+    document.getElementById('comment-name').value = '';
+    document.getElementById('comment-email').value = '';
+    document.getElementById('comment-message').value = '';
+    return true;
 }

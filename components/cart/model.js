@@ -1,4 +1,5 @@
 const {db} = require('../../dal/db')
+const dishModel = require('../dishes/model')
 
 function execQuery(queryString) {
     return new Promise(data => {
@@ -62,6 +63,39 @@ exports.insertCardItem = async (carts, user_id) => {
             await execQuery('UPDATE cart_items SET quantity='+ cart.quantity +', is_active = 1 WHERE cart = '+user_id+' and ordinal_number = '+cart.ordinal_number+' and dish = '+cart.dish_id)
         }
     }
+}
+
+exports.getCartByUserId = async (id) => {
+    let itemInCart = [];
+    let totalCostInCart = 0;
+    let totalDishInCart = 0;
+
+    let cartTemp = await execQuery('SELECT * FROM cart_items WHERE cart = ' + id + ' and is_active = 1')
+
+    for (let i = 0; i < cartTemp.length; ++i) {
+        console.log(cartTemp[i])
+        let dish = await dishModel.getDishById(cartTemp[i].dish);
+
+        console.log(cartTemp[i])
+
+        dish.quantity =  cartTemp[i].quantity;
+        dish.cartId = cartTemp[i].cart;
+        dish.is_active = cartTemp[i].is_active;
+        dish.ordinal_number = cartTemp[i].ordinal_number;
+        totalCostInCart += dish.quantity * dish.price;
+        totalDishInCart += dish.quantity;
+
+        itemInCart.push(dish)
+    }
+
+    let carts = {
+        cartId: id,
+        itemInCart: itemInCart,
+        totalDishInCart: totalDishInCart,
+        totalCostInCart: totalCostInCart,
+    }
+
+    return carts
 }
 
 exports.updateCartItem = async (cart, user_id) => {

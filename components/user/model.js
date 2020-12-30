@@ -1,6 +1,7 @@
 const {db} = require('../../dal/db')
 const bcrypt = require('bcrypt')
 const dishModel = require('../dishes/model')
+const cartModel = require('../cart/model')
 
 function execQuery(queryString) {
     return new Promise(data => {
@@ -28,7 +29,7 @@ exports.getUserByUsernameAndPassword = async (username, password) => {
         let equal = await bcrypt.compareSync(password.toString(), user[0].password.toString());
 
         if (equal) {
-            user[0].cart = await this.getCartByUserId(user[0].user_id)
+            user[0].cart = await cartModel.getCartByUserId(user[0].user_id)
             return user[0]
         }
     }
@@ -40,41 +41,9 @@ exports.getUserById = async (id) => {
     const users =  await execQuery('SELECT * FROM user WHERE user_id = '+ id + ' and is_active = 1')
     let user = users[0];
 
-    user.cart = await this.getCartByUserId(id)
+    user.cart = await cartModel.getCartByUserId(id)
 
     return user;
-}
-
-exports.getCartByUserId = async (id) => {
-    let itemInCart = [];
-    let totalCostInCart = 0;
-    let totalDishInCart = 0;
-
-    let cartTemp = await execQuery('SELECT * FROM cart_items WHERE cart = ' + id + ' and is_active = 1')
-
-    for (let i = 0; i < cartTemp.length; ++i) {
-        let dish = await dishModel.getDishById(cartTemp[i].dish);
-
-        console.log(cartTemp[i])
-
-        dish.quantity =  cartTemp[i].quantity;
-        dish.cartId = cartTemp[i].cart;
-        dish.is_active = cartTemp[i].is_active;
-        dish.ordinal_number = cartTemp[i].ordinal_number;
-        totalCostInCart += dish.quantity * dish.price;
-        totalDishInCart += dish.quantity;
-
-        itemInCart.push(dish)
-    }
-
-    let carts = {
-        cartId: id,
-        itemInCart: itemInCart,
-        totalDishInCart: totalDishInCart,
-        totalCostInCart: totalCostInCart,
-    }
-
-    return carts
 }
 
 exports.modify = (fields, id) => {

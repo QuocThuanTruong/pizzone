@@ -3024,7 +3024,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  ContentStatement: function ContentStatement() /* content */{},
-	  CommentStatement: function CommentStatement() /* comment */{},
+	  CommentStatement: function CommentStatement() /* review */{},
 
 	  SubExpression: visitSubExpression,
 
