@@ -1,7 +1,20 @@
 const userModel = require('./model')
+const bcrypt = require('bcrypt')
 
-exports.isExists = async (req, res, next) => {
-    let isExists = await userModel.isExistsUser(req.params.username)
+exports.addNewUser = async (username, email, password) => {
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const hash = bcrypt.hashSync(password, salt)
 
-    res.send({isExists: isExists})
+    const _ = await userModel.addNewUser(username, email, hash);
+}
+
+exports.getUserByUsernameAndPassword = async (username, password) => {
+    let user = await userModel.getUserByUsernameAndPassword(username, password)
+
+    return user;
+}
+
+exports.getUserById = async (id) => {
+    return await userModel.getUserById(id)
 }

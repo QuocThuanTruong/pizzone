@@ -1,5 +1,6 @@
 const dishModel = require('./model')
 const userModel = require('../user/model')
+const reviewModel = require('../review/model')
 
 exports.index = async (req, res, next) => {
     if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category !== undefined)) {
@@ -53,9 +54,9 @@ exports.index = async (req, res, next) => {
 
         const dataContext = {
             menuPageActive: "active",
-            cart: global.cart,
-            isLogin: global.isLogin,
-            user: global.user,
+            isLogin: req.user ? true : false,
+            user: req.user,
+            cart: req.user ? req.user.cart : global.cart,
             result: result,
             isActive: global.isActive,
             dishes: dishes,
@@ -179,13 +180,16 @@ exports.detail = async (req, res, next) => {
             break;
     }
 
+    let review = await reviewModel.getListReviewByDishId(id)
+
     const dataContext = {
         menuPageActive: "active",
-        isLogin: global.isLogin,
-        cart: global.cart,
-        user: global.user,
+        isLogin: req.user ? true : false,
+        user: req.user,
+        cart: req.user ? req.user.cart : global.cart,
         isActive : global.isActive,
-        dish: dish
+        dish: dish,
+        review: review
     }
 
     res.render('../components/dishes/views/detail', dataContext);

@@ -63,6 +63,14 @@ function helper(hbs) {
         return priceStr.substr(0, priceStr.length - 3) + 'đ'
 
     })
+
+    hbs.registerHelper('linkAvatar', function(avatar) {
+        if (!avatar) {
+            avatar = '/img/user_avatar.jpg'
+        }
+
+        return avatar
+    })
 }
 
 module.exports = helper;

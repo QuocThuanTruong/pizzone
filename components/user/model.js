@@ -1,4 +1,7 @@
 const {db} = require('../../dal/db')
+const bcrypt = require('bcrypt')
+const dishModel = require('../dishes/model')
+const cartModel = require('../cart/model')
 
 function execQuery(queryString) {
     return new Promise(data => {
@@ -20,15 +23,27 @@ function execQuery(queryString) {
 }
 
 exports.getUserByUsernameAndPassword = async (username, password) => {
-    const user = await execQuery('SELECT * FROM user WHERE username = \''+username+'\' AND password = \''+password+'\'')
+    const user = await execQuery('SELECT * FROM user WHERE username = \''+username+'\' and is_active = 1')
 
-    return user[0]
+    if (user[0]) {
+        let equal = await bcrypt.compareSync(password.toString(), user[0].password.toString());
+
+        if (equal) {
+            user[0].cart = await cartModel.getCartByUserId(user[0].user_id)
+            return user[0]
+        }
+    }
+
+   return false
 }
 
 exports.getUserById = async (id) => {
-    const user =  await execQuery('SELECT * FROM user WHERE user_id = '+id)
+    const users =  await execQuery('SELECT * FROM user WHERE user_id = '+ id + ' and is_active = 1')
+    let user = users[0];
 
-    return user[0]
+    user.cart = await cartModel.getCartByUserId(id)
+
+    return user;
 }
 
 exports.modify = (fields, id) => {
@@ -56,4 +71,20 @@ exports.isExistsUser = async (username) => {
     let result = await execQuery('SELECT EXISTS(SELECT * FROM user WHERE username = \''+username+'\' and is_active = 1) as e')
 
     return result[0].e;
+}
+
+exports.getMaxUserId = async () => {
+    const result = await execQuery('SELECT MAX(user_id) as max from user')
+
+    return result[0].max
+}
+
+exports.addNewUser = async (username, email, password) => {
+    const id = await this.getMaxUserId() + 1
+
+    const _ = await execQuery('INSERT INTO user(user_id, name, avatar, email, phone, username, password, address, role, is_active) values('+ id +', \'\', \'\', \''+ email +'\', \'\', \''+ username +'\', \''+ password +'\', \'\', 0, 1)');
+}
+
+exports.getCartById = async (id) => {
+    return await execQuery('select * from cart where user = ' + id)
 }

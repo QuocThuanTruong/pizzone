@@ -188,7 +188,7 @@
                                     </script>
 
                                     <div class="fr">
-                                        <a class="page-button button-style-1 type-2" href="/cart">
+                                        <a class="page-button button-style-1 type-2" href="/cart" onclick="return(isUserLogin({{isLogin}}))">
                                             <span class="txt">Đặt món</span>
                                         </a>
                                     </div>
@@ -201,19 +201,19 @@
                         <div class="login-item">
                             <ul class="header-menu">
                                 <li>
-                                    <a href="/user-profile" class="menu-arr user-profile">Hi {{userFullName}}</a>
+                                    <a href="/user" class="menu-arr user-profile">Hi {{user.name}}</a>
 
                                     <div class="login-item user-profile-img">
-                                        <a href="/user-profile">
-                                            <img width="40px" height="40px" src="{{userAvatar}}">
+                                        <a href="/user">
+                                            <img width="40px" height="40px" src="{{linkAvatar user.avatar}}">
                                         </a>
                                     </div>
 
                                     <ul>
-                                        <li><a href="/user/edit/{{userID}}">Tài khoản của tôi</a></li>
-                                        <li><a href="/user/change-password/{{userID}}">Đổi mật khẩu</a></li>
+                                        <li><a href="/user/edit">Tài khoản của tôi</a></li>
+                                        <li><a href="/user/change-password">Đổi mật khẩu</a></li>
                                         <li><a href="/user/my-orders">Đơn mua</a></li>
-                                        <li><a href="/user/logout">Đăng xuất</a></li>
+                                        <li><a href="/auth/logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>

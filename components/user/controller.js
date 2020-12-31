@@ -12,29 +12,23 @@ cloudinary.config({
 });
 
 const userModel = require('./model')
+const orderModel = require('../order/model')
 
 exports.index = (req, res, next) => {
     const dataContext = {
-        isLogin: true,
-        userFullName: "Nguyen Van A",
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user
     }
 
     res.render('../components/user/views/editProfile', dataContext);
 }
 
 exports.edit = async (req, res, next) => {
-    const id = req.params.id
-
-    const user = await userModel.getUserById(id)
-
     const dataContext = {
-        isLogin: true,
-        userID: user.user_id,
-        userFullName: user.name,
-        userAvatar: user.avatar,
-        email: user.email,
-        phone: user.phone,
-        address: user.address
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user
     }
 
     res.render('../components/user/views/editProfile', dataContext);
@@ -44,7 +38,7 @@ exports.editInfo = async (req, res, next) => {
     fs.mkdirSync(path.join(__dirname, '..', 'tempImages'), { recursive: true })
     const form = formidable({multiples: true, keepExtensions: true, uploadDir : path.join(__dirname, '..', 'tempImages')})
 
-    let oldUser = await userModel.getUserById(req.params.id)
+    let oldUser = req.user
 
     await form.parse(req, async (err, fields, files) => {
         if (err) {
@@ -52,8 +46,7 @@ exports.editInfo = async (req, res, next) => {
         }
 
         let newUser = userModel.modify(fields, req.params.id)
-
-        console.log("user : ", newUser)
+        newUser.user_id = oldUser.user_id;
 
         const avatarPicker = files.avatarPicker
         if (avatarPicker) {
@@ -76,35 +69,51 @@ exports.editInfo = async (req, res, next) => {
 
         rimraf.sync(path.join(__dirname, '..', 'tempImages'))
 
+        console.log(newUser)
+
         const _ = await userModel.update(newUser)
+        const user = await userModel.getUserById(newUser.user_id)
 
-        const dataContext = {
-            isLogin: true,
-            userID: newUser.user_id,
-            userFullName: newUser.name,
-            userAvatar: newUser.avatar,
-            email: newUser.email,
-            phone: newUser.phone,
-            address: newUser.address
-        }
+        req.login(user, {}, function(err) {
+            if (err) {
+                console.log(err)
+            }
 
-        console.log(dataContext)
+            const dataContext = {
+                cart: req.user ? req.user.cart : global.cart,
+                isLogin: req.user ? true : false,
+                user: req.user
+            }
 
-        res.render('../components/user/views/editProfile', dataContext);
+            res.render('../components/user/views/editProfile', dataContext);
+        })
     })
 }
 
 exports.chagePassword = (req, res, next) => {
     const dataContext = {
-        isLogin: true,
-        userFullName: "Nguyen Van A",
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user
     }
 
     res.render('../components/user/views/changePassword', dataContext);
 }
 
-exports.orders = (req, res, next) => {
+exports.orders = async (req, res, next) => {
+    let currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);
+    let ordereds = await orderModel.getOrderedByUserId(req.user.user_id);
 
-    res.render('../components/user/views/orders', {});
+    const dataContext = {
+        cart: req.user ? req.user.cart : global.cart,
+        isLogin: req.user ? true : false,
+        user: req.user,
+        currentOrders: currentOrders,
+        ordereds: ordereds
+    }
+
+    console.log(currentOrders)
+
+    res.render('../components/user/views/orders', dataContext);
 }
 

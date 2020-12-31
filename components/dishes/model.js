@@ -70,7 +70,7 @@ exports.totalDishByCategoryAndFilter = async (category, subcategory, size, toppi
 }
 
 exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, size, topping, dough, sortBy) => {
-    let query = 'SELECT DISTINCT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
+    let query = 'SELECT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
 
     if (size !== '') {
         query += ', dishes_sizes as ds';
@@ -141,8 +141,6 @@ exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subca
 
 
 exports.dishlist = async (page, totalDishPerPage, sortBy) => {
-    console.log(sortBy)
-
     let sort = '';
 
     switch (sortBy) {
