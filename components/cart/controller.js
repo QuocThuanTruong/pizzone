@@ -7,7 +7,7 @@ exports.index = async (req, res, next) => {
         cart: req.user ? req.user.cart : global.cart,
     }
 
-    res.render('../components/cart/views/index', dataContext);
+    res.render('../components/cart/views/checkout', dataContext);
 }
 
 exports.add = async (req, res, next) => {

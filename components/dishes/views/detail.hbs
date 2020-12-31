@@ -108,24 +108,24 @@
                 <div class="empty-sm-25 empty-xs-20"></div>
                 <aside>
                     <!-- dough -->
-                    {{#if isActive.isPizzaCatActive}}
-                    <aside class="product-size">
-                        <h5 class="h5 sm color-2 inline-box">Đế bánh</h5>
-                        {{#each dish.doughs}}
-                            <div class="checkbox-entry-wrap">
-                                <label class="checkbox-entry">
-                                    <input type="radio" name="2" checked="">
-                                    <span>
-                                  <i></i>
-                                  <p>{{name}} </p>
-                                </span>
-                                </label>
-                            </div>
-                        {{/each}}
+<!--                    {{#if isActive.isPizzaCatActive}}-->
+<!--                    <aside class="product-size">-->
+<!--                        <h5 class="h5 sm color-2 inline-box">Đế bánh</h5>-->
+<!--                        {{#each dish.doughs}}-->
+<!--                            <div class="checkbox-entry-wrap">-->
+<!--                                <label class="checkbox-entry">-->
+<!--                                    <input type="radio" name="2" checked="">-->
+<!--                                    <span>-->
+<!--                                  <i></i>-->
+<!--                                  <p>{{name}} </p>-->
+<!--                                </span>-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                        {{/each}}-->
 
-                    </aside>
-                    <div class="empty-sm-25 empty-xs-20"></div>
-                    {{/if}}
+<!--                    </aside>-->
+<!--                    <div class="empty-sm-25 empty-xs-20"></div>-->
+<!--                    {{/if}}-->
 
 
                     <aside>
@@ -149,101 +149,101 @@
 
                     <div class="empty-sm-30 empty-xs-20"></div>
 
-                    {{#if isActive.isPizzaCatActive}}
+<!--                    {{#if isActive.isPizzaCatActive}}-->
+<!--                    <aside>-->
+<!--                        <h5 class="tt h5 sm color-2">Chọn Toping:</h5>-->
+<!--                        <div class="empty-sm-25 empty-xs-15"></div>-->
+<!--                        <div class="arrow-closest item-padd-30">-->
+<!--                            <div class="swiper-container checkbox-wrapp" data-mode="horizontal" data-effect="slide" data-add-slides="4" data-slides-per-view="responsive" data-lg-slides="4" data-md-slides="4" data-xs-slides="2" data-sm-slides="4" data-loop="0" data-speed="800" data-space="13">-->
+<!--                                <div class="swiper-wrapper">-->
+<!--                                    {{#each dish.toppings}}-->
+<!--                                        <div class="swiper-slide" >-->
+<!--                                            <div class="checkbox-entry-wrap type-1">-->
+<!--                                                <label class="checkbox-entry">-->
+<!--                                                    <input type="checkbox">-->
+<!--                                                    <div class="content-check">-->
+<!--                                                        <img src="{{img_url}}" alt="" class="full-img">-->
+<!--                                                        <div class="empty-sm-10 empty-xs-10"></div>-->
+<!--                                                        <div class="simple-text">-->
+<!--                                                            <p><b>{{name}}</b></p>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    {{/each}}-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="swiper-arrow-left swiper-arrow type-3 style-3">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">-->
+<!--                                    <g>-->
+<!--                                        <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" fill="#FFFFFF"/>-->
+<!--                                    </g>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                            <div class="swiper-arrow-right swiper-arrow type-3 style-3">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">-->
+<!--                                    <g>-->
+<!--                                        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#FFFFFF"/>-->
+<!--                                    </g>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </aside>-->
+<!--                    <div class="empty-sm-40 empty-xs-25"></div>-->
+<!--                    {{/if}}-->
+
                     <aside>
-                        <h5 class="tt h5 sm color-2">Chọn Toping:</h5>
-                        <div class="empty-sm-25 empty-xs-15"></div>
-                        <div class="arrow-closest item-padd-30">
-                            <div class="swiper-container checkbox-wrapp" data-mode="horizontal" data-effect="slide" data-add-slides="4" data-slides-per-view="responsive" data-lg-slides="4" data-md-slides="4" data-xs-slides="2" data-sm-slides="4" data-loop="0" data-speed="800" data-space="13">
-                                <div class="swiper-wrapper">
-                                    {{#each dish.toppings}}
-                                        <div class="swiper-slide" >
-                                            <div class="checkbox-entry-wrap type-1">
-                                                <label class="checkbox-entry">
-                                                    <input type="checkbox">
-                                                    <div class="content-check">
-                                                        <img src="{{img_url}}" alt="" class="full-img">
-                                                        <div class="empty-sm-10 empty-xs-10"></div>
-                                                        <div class="simple-text">
-                                                            <p><b>{{name}}</b></p>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    {{/each}}
+                        <div class="buy-bar type-2">
+                            <div class="fl">
+                                <h5 class="h5 sm follow-title quntity">Quantity:</h5>
+                                <div class="custom-input-number type-2">
+                                    <button type="button" class="cin-btn cin-decrement">
+                                        <img src="/img/left_arr.png" alt="">
+                                    </button>
+                                    <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                                    <button type="button" class="cin-btn cin-increment">
+                                        <img src="/img/right_arr.png" alt="">
+                                    </button>
                                 </div>
+                                <div class="empty-sm-0 empty-xs-15"></div>
                             </div>
-                            <div class="swiper-arrow-left swiper-arrow type-3 style-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
-                                    <g>
-                                        <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" fill="#FFFFFF"/>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="swiper-arrow-right swiper-arrow type-3 style-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
-                                    <g>
-                                        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#FFFFFF"/>
-                                    </g>
-                                </svg>
-                            </div>
+
                         </div>
-                    </aside>
-                    <div class="empty-sm-40 empty-xs-25"></div>
-                    {{/if}}
 
+
+                    </aside>
+
+                    <div class="empty-sm-30 empty-xs-20"></div>
                     <aside>
-
-                    </aside>
-                </aside>
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class="col-lg-3"></div>
-
-            <div class="col-lg-8">
-                <div class="fl">
-                    <h5 class="h5 sm follow-title quntity">Quantity:</h5>
-                    <div class="custom-input-number type-2">
-                        <button type="button" class="cin-btn cin-decrement">
-                            <img src="/img/left_arr.png" alt="">
-                        </button>
-                        <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                        <button type="button" class="cin-btn cin-increment">
-                            <img src="/img/right_arr.png" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-md-offset-2"/>
-
-                <div class="row">
-                    <div class="button-wrap col-md-4    " data-swiper-parallax="-500"
-                         data-swiper-parallax-duration="1000">
-                        <a href="#" class="button size-2 style-3">
+                        <div class="row">
+                            <div class="button-wrap col-md-5    " data-swiper-parallax="-500"
+                                 data-swiper-parallax-duration="1000">
+                                <a href="#" class="button size-2 style-3">
                        <span class="button-wrapper">
                                <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
                                <span class="text">Thêm vào giỏ</span>
                        </span>
-                        </a>
-                    </div>
+                                </a>
+                            </div>
 
-                    <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
-                         data-swiper-parallax-duration="1000">
-                        <a class="button size-2 style-2" href="#">
+                            <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
+                                 data-swiper-parallax-duration="1000">
+                                <a class="button size-2 style-2" href="#">
                                                                     <span class="button-wrapper">
                                                                         <span class="icon"><i class="fa fa-heart-o"></i></span>
                                                                         <span class="text">Yêu thích</span>
                                                                      </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
 
-            <div class="col-lg-1"></div>
+                </aside>
+            </div>
         </div>
+
+
 
     </div>
 </section>
@@ -273,7 +273,7 @@
                         </div>
                         {{/if}}
                         <div class="row">
-                            {{#each images}}
+                            {{#each dish.images}}
                                 <div class="col-sm-4 col-xs-12">
                                     <div class="empty-sm-45 empty-xs-20"></div>
                                     <img src="{{image_url}}" alt="" class="full-img">
