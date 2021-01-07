@@ -278,3 +278,27 @@ function validReview(dish_id) {
     document.getElementById('comment-message').value = '';
     return true;
 }
+
+function checkVoucher() {
+    const code = document.getElementById('voucher-code').value;
+
+    const url = '/voucher/api/v1/isExistsVoucher/' + code;
+
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (!data.voucher) {
+                alert('voucher does not exists')
+            } else {
+                let totalCartTemplate = Handlebars.compile($('#cart-total-template').html());
+                let totalCart = totalCartTemplate(data)
+                $('#cart-total').html(totalCart)
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}

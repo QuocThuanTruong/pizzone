@@ -74,15 +74,17 @@ exports.getOrderedByUserId = async (user_id) => {
     return ordereds;
 }
 
-exports.insertOrder = async (cart, user_id) => {
+exports.insertOrder = async (cart, totalCost, user_id) => {
     const order_id = (await this.getMaxOrderId()) + 1;
 
-    await execQuery('INSERT INTO orders(order_id, user, total_price, status, is_active) values('+order_id+', '+user_id+', '+cart.totalCostInCart+', 0, 1)')
+    await execQuery('INSERT INTO orders(order_id, user, total_price, status, is_active) values('+order_id+', '+user_id+', '+totalCost+', 0, 1)')
 
     for (let i = 0; i < cart.itemInCart.length; i++) {
         let dish = cart.itemInCart[i];
         dish.order_id = order_id;
         dish.ordinal_number = i + 1;
+
+        console.log(dish)
 
         await this.insertOrderDetail(dish)
     }

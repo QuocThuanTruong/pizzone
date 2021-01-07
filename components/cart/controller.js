@@ -8,6 +8,11 @@ exports.index = async (req, res, next) => {
         cart: req.user ? req.user.cart : global.cart,
     }
 
+    let shippingFee = await cartModel.getShippingFee(dataContext.cart.totalCostInCart)
+    dataContext.shippingFee = shippingFee;
+    dataContext.totalCost = dataContext.shippingFee + dataContext.cart.totalCostInCart;
+    global.totalCost = dataContext.totalCost;
+
     res.render('../components/cart/views/index', dataContext);
 }
 

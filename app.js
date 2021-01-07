@@ -19,6 +19,7 @@ const cartRouter = require('./components/cart/router');
 const authRouter = require('./components/auth/router');
 const orderRouter = require('./components/order/router');
 const reviewRouter = require('./components/review/router');
+const voucherRouter = require('./components/voucher/router')
 
 const app = express();
 
@@ -35,6 +36,7 @@ global.isActive = {
   isSideCatActive : false
 };
 
+global.totalCost = 0;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -59,6 +61,7 @@ app.use('/cart', cartRouter);
 app.use('/auth', authRouter);
 app.use('/order', orderRouter);
 app.use('/review', reviewRouter);
+app.use('/voucher', voucherRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

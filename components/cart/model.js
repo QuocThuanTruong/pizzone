@@ -108,3 +108,9 @@ exports.checkExistsCartItem = async (cart, user_id) => {
 
     return result[0].e;
 }
+
+exports.getShippingFee = async (cost) => {
+    let shippingFee = await execQuery('SELECT * from shipping_fee where min_price <= ' + cost + ' and max_price >= ' + cost)
+
+    return shippingFee[0].fee
+}

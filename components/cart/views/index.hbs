@@ -58,12 +58,12 @@
                 <div class="row">
                     <div class="col-sm-7 col-xs-12">
                         <div class="input-field-icon">
-                            <input type="text" class="input-field" placeholder="Mã giảm giá" name="voucher" required="">
+                            <input type="text" class="input-field" placeholder="Mã giảm giá" id="voucher-code">
                         </div>
 
                     </div>
                     <div class="col-sm-5 col-xs-12">
-                        <a class="button size-2 style-3" href="#">
+                        <a class="button size-2 style-3" onclick="checkVoucher()">
                             <span class="button-wrapper">
                                 <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                 <span class="text">Kiểm tra</span>
@@ -73,14 +73,23 @@
                 </div>
 
                 <div class="empty-sm-30 empty-xs-15"></div>
-                <div class="cart-total">
+                <div class="cart-total" id="cart-total">
                     <ul>
                         <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span></h5></li>
-                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">0đ</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">{{standardPrice 1 shippingFee}}</b></span></h5></li>
                         <div class="empty-sm-15 empty-xs-15"></div>
-                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span></h4></li>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 totalCost}}</b></span></h4></li>
                     </ul>
                 </div>
+                <script type="text/x-handlebars-template" id="cart-total-template">
+                     <ul>
+                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">\{{standardPrice 1 totalCostInCart}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">\{{standardPrice 1 shippingFee}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Giảm giá<span><b class="main-col">\{{standardPrice 1 voucherCost}}</b></span></h5></li>
+                        <div class="empty-sm-15 empty-xs-15"></div>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">\{{standardPrice 1 totalCost}}</b></span></h4></li>
+                    </ul>
+                </script>
             </div>
             <div class="col-md-7 col-xs-12">
                 <div class="empty-sm-60 empty-xs-30"></div>
@@ -144,7 +153,7 @@
 
                     <div class="empty-sm-50 empty-xs-50"></div>
                     <div class="fr button-full-width">
-                        <a href="/order" class="button size-2 style-3" onclick="return isUserLogin({{isLogin}})">
+                        <a href="/order" class="button size-2 style-3">
                             <span class="button-wrapper">
                                 <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                 <span class="text">Đặt món</span>
