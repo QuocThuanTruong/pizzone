@@ -57,207 +57,22 @@
         </form>
     </aside>
 
-    {{#if isActive.isPizzaCatActive}}
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">Loại pizza</h5>
+    <aside>
+        <div class="empty-sm-65 empty-xs-30"></div>
+        <h5 class="tt h5 color-2">Loại</h5>
+        {{#each subcategories}}
             <div class="empty-sm-20 empty-xs-10"></div>
             <div class="checkbox-entry-wrap type-1">
                 <label class="checkbox-entry">
-                    <input type="checkbox" name="traditional" id="traditional" onchange="gotoPage({{category}}, 1)">
+                    <input type="checkbox" name="subcategories-filter" id="{{category}}-{{subcategory_id}}" onchange="gotoPage({{category}}, 1)">
                     <span>
-                        <i></i>
-                        <p>Truyền thống</p>
-                      </span>
+                    <i></i>
+                    <p>{{name}}</p>
+                  </span>
                 </label>
             </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox" name="mixed" id="mixed" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Thập cẩm</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="seaFood" id="seaFood" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Hải sản</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-        </aside>
-
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">Toppings</h5>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="bellPepper" id="bellPepper" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Ớt chuông</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="mushroom" id="mushroom" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Nấm</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="salad" id="salad" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Cải xà lách</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="smokedPork" id="smokedPork" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>Thịt xông khói</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-
-        </aside>
-
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">Kích cỡ</h5>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="pizzaSize1" id="pizzaSize1" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>25cm (250g)</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="pizzaSize2" id="pizzaSize2" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>30cm (450g)</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="pizzaSize3" id="pizzaSize3" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>40cm (550g)</p>
-                      </span>
-                </label>
-            </div>
-        </aside>
-
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">LOẠI đế</h5>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="dough1" id="dough1" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>Mỏng</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="dough2" id="dough2" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>Dày</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-40 empty-xs-40"></div>
-            <div class="empty-sm-40 empty-xs-40"></div>
-            <div class="empty-sm-40 empty-xs-40"></div>
-
-        </aside>
-    {{/if}}
-
-    {{#if isActive.isDrinkCatActive}}
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">Kích cỡ</h5>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="drinkSize1" id="drinkSize1" onchange="gotoPage({{category}}, 1)" >
-                    <span>
-                        <i></i>
-                        <p>L</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="drinkSize2" id="drinkSize2" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>M</p>
-                      </span>
-                </label>
-            </div>
-        </aside>
-    {{/if}}
-
-    {{#if isActive.isSideCatActive}}
-        <aside>
-            <div class="empty-sm-65 empty-xs-30"></div>
-            <h5 class="tt h5 color-2">Khẩu phần</h5>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="sideSize1" id="sideSize1" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>1 Người ăn</p>
-                      </span>
-                </label>
-            </div>
-            <div class="empty-sm-20 empty-xs-10"></div>
-            <div class="checkbox-entry-wrap type-1">
-                <label class="checkbox-entry">
-                    <input type="checkbox"  name="sideSize2" id="sideSize2" onchange="gotoPage({{category}}, 1)">
-                    <span>
-                        <i></i>
-                        <p>2 Người ăn</p>
-                      </span>
-                </label>
-            </div>
-        </aside>
-    {{/if}}
+        {{/each}}
+        <div class="empty-sm-20 empty-xs-10"></div>
+    </aside>
 </div>
 <div class="empty-md-0 empty-sm-30 empty-xs-30"></div>

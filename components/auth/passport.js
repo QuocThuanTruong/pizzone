@@ -14,7 +14,7 @@ passport.use(new LocalStrategy(
                     for (let i = 0; i < global.cart.itemInCart.length; i++) {
                         let dish = global.cart.itemInCart[i];
 
-                        let index =  user.cart.itemInCart.findIndex(d => d.dish_id == dish.dish_id);
+                        let index = user.cart.itemInCart.findIndex(d => d.dish_id == dish.dish_id);
 
                         if (index !== -1) {
                             global.cart.itemInCart[i].ordinal_number = user.cart.itemInCart[index].ordinal_number;

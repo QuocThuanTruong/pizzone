@@ -12,6 +12,8 @@ exports.index = async (req, res, next) => {
 
         let totalDishPerPage = 1
 
+        let subcategories = await dishModel.getListSubcategory(categoryId)
+
         let result = {
             totalResult : await dishModel.totalDish(),
             totalPizza : await dishModel.totalPizza(),
@@ -62,7 +64,8 @@ exports.index = async (req, res, next) => {
             dishes: dishes,
             totalPage: totalPage,
             page: 1,
-            category: categoryId
+            category: categoryId,
+            subcategories: subcategories
         }
 
         res.render('../components/dishes/views/index', dataContext);
@@ -78,34 +81,10 @@ exports.pagination = async (req, res, next) => {
     let currentPage = req.query.page;
     let totalDishPerPage = req.query.total_dish_per_page;
     let subcategory = req.query.subcategory;
-    let size = req.query.size;
-    let topping = req.query.topping;
-    let dough = req.query.dough;
     let sortBy = req.query.sortBy;
 
     if (subcategory === undefined) {
         subcategory = ''
-    }
-
-    if (size === undefined) {
-        size = ''
-    } else {
-        size = size.split('%20').join(' ');
-        size = size.split('%27').join('\'')
-    }
-
-    if (topping === undefined) {
-        topping = ''
-    } else {
-        topping = topping.split('%20').join(' ');
-        topping = topping.split('%27').join('\'')
-    }
-
-    if (dough === undefined) {
-        dough = ''
-    } else {
-        dough = dough.split('%20').join(' ');
-        dough = dough.split('%27').join('\'')
     }
 
     if (categoryId === undefined || categoryId === "")
@@ -125,8 +104,8 @@ exports.pagination = async (req, res, next) => {
         dishes = await dishModel.searchByKeyName(key_name)
     } else {
         if (categoryId !== 0) {
-            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, size, topping, dough, sortBy);
-            totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, subcategory, size, topping, dough);
+            dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, sortBy);
+            totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, subcategory);
 
             totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
         } else {
@@ -141,9 +120,6 @@ exports.pagination = async (req, res, next) => {
         totalResult: totalResult,
         dishes: dishes,
         subcategory: subcategory,
-        size: size,
-        topping: topping,
-        dough: dough
     }
 
     res.send(data)
@@ -153,12 +129,10 @@ exports.detail = async (req, res, next) => {
     const id = req.params.id
 
     const dish = await dishModel.getDishById(id)
-    dish.doughs = await  dishModel.getListDoughById(id)
-    dish.toppings = await dishModel.getListToppingById(id)
     dish.sizes = await dishModel.getListSizeById(id)
     dish.images = await dishModel.getListImageById(id)
-    const subCategory = await dishModel.getSubCategory(dish.subcategory)
-    dish.subCategoryName = subCategory.name
+    const subcategoryName = await dishModel.getSubCategory(dish.category, dish.subcategory)
+    dish.subcategoryName = subcategoryName.name
 
     switch (dish.category) {
         case 1:
@@ -191,6 +165,8 @@ exports.detail = async (req, res, next) => {
         dish: dish,
         review: review
     }
+
+    await dishModel.updateView(dish);
 
     res.render('../components/dishes/views/detail', dataContext);
 }

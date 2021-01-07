@@ -18,41 +18,11 @@ function execQuery(queryString) {
         })
     })
 }
-exports.totalDishByCategoryAndFilter = async (category, subcategory, size, topping, dough) => {
+exports.totalDishByCategoryAndFilter = async (category, subcategory) => {
     let query = 'SELECT COUNT(DISTINCT(d.dish_id)) as total FROM dishes as d';
-
-    if (size !== '') {
-        query += ', dishes_sizes as ds';
-    }
-
-    if (topping !== '') {
-        query += ', dishes_toppings as dt';
-    }
-
-    if (dough !== '') {
-        query += ', dishes_doughs as dd';
-    }
 
     query += ' WHERE';
     query += ' d.category = ' + category + ' AND d.is_active = 1';
-
-    if (size !== '') {
-        query += ' AND d.dish_id = ds.dish';
-        query += ' AND ';
-        query += size;
-    }
-
-    if (topping !== '') {
-        query += ' AND d.dish_id = dt.dish';
-        query += ' AND ';
-        query += topping;
-    }
-
-    if (dough !== '') {
-        query += ' AND d.dish_id = dd.dish';
-        query += ' AND ';
-        query += dough;
-    }
 
     if (subcategory !== '') {
         query += ' AND ';
@@ -64,46 +34,14 @@ exports.totalDishByCategoryAndFilter = async (category, subcategory, size, toppi
 
     let result = await execQuery(query);
 
-    console.log(result);
-
     return result[0].total
 }
 
-exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, size, topping, dough, sortBy) => {
+exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, sortBy) => {
     let query = 'SELECT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
-
-    if (size !== '') {
-        query += ', dishes_sizes as ds';
-    }
-
-    if (topping !== '') {
-        query += ', dishes_toppings as dt';
-    }
-
-    if (dough !== '') {
-        query += ', dishes_doughs as dd';
-    }
 
     query += ' WHERE';
     query += ' d.category = ' + category + ' AND d.is_active = 1';
-
-    if (size !== '') {
-        query += ' AND d.dish_id = ds.dish';
-        query += ' AND ';
-        query += size;
-    }
-
-    if (topping !== '') {
-        query += ' AND d.dish_id = dt.dish';
-        query += ' AND ';
-        query += topping;
-    }
-
-    if (dough !== '') {
-        query += ' AND d.dish_id = dd.dish';
-        query += ' AND ';
-        query += dough;
-    }
 
     if (subcategory !== '') {
         query += ' AND ';
@@ -127,16 +65,28 @@ exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subca
             break;
     }
 
-
     query += ' ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET ' + ((page - 1) * totalDishPerPage);
 
     query = query.split('%20').join(' ');
     query = query.split('%27').join('\'');
 
-    console.log(query);
+    let dishes = await execQuery(query);
 
-    return await execQuery(query);
-    // as d, dishes_sizes as ds WHERE d.dish_id = ds.dish and ds.name = N\'25cm (250g)\' or ds.name = N\'30cm (450g)\' or ds.name = N\'40cm (550g)\'';
+    for (let i = 0; i < dishes.length; i++) {
+        let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
+
+        if (hotDeal.length > 0) {
+            dishes[i].hasHotDeal = true
+            dishes[i].hotDeal = hotDeal[0];
+            dishes[i].hotDeal.hotDealPrice = Math.floor(dishes[i].price / 100 * (100 - dishes[i].hotDeal.discount) / 1000) * 1000;
+        } else {
+            dishes[i].hasHotDeal = false;
+        }
+
+        dishes[i].sizes = await this.getListSizeById(dishes[i].dish_id)
+    }
+
+    return dishes
 }
 
 
@@ -158,7 +108,23 @@ exports.dishlist = async (page, totalDishPerPage, sortBy) => {
             break;
     }
 
-    return await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+    let dishes = await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+
+    for (let i = 0; i < dishes.length; i++) {
+        let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
+
+        if (hotDeal.length > 0) {
+            dishes[i].hasHotDeal = true
+            dishes[i].hotDeal = hotDeal[0];
+            dishes[i].hotDeal.hotDealPrice = Math.floor(dishes[i].price / 100 * (100 - dishes[i].hotDeal.discount) / 1000) * 1000;
+        } else {
+            dishes[i].hasHotDeal = false;
+        }
+
+        dishes[i].sizes = await this.getListSizeById(dishes[i].dish_id)
+    }
+
+    return dishes;
 }
 
 exports.pizzaList = async () => {
@@ -191,21 +157,39 @@ exports.listByCategory = async (categoryId, page, totalDishPerPage, sortBy) => {
             break;
     }
 
-    return await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+    let dishes = await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+
+    for (let i = 0; i < dishes.length; i++) {
+        let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
+
+        if (hotDeal.length > 0) {
+            dishes[i].hasHotDeal = true
+            dishes[i].hotDeal = hotDeal[0];
+            dishes[i].hotDeal.hotDealPrice = Math.floor(dishes[i].price / 100 * (100 - dishes[i].hotDeal.discount) / 1000) * 1000;
+        } else {
+            dishes[i].hasHotDeal = false;
+        }
+
+        dishes[i].sizes = await this.getListSizeById(dishes[i].dish_id)
+    }
+
+    return dishes
 }
 
 exports.getDishById = async (id) => {
     const dishes = await execQuery('SELECT * FROM dishes WHERE dish_id = ' +id)
 
+    let hotDeal = await this.getHotDealByDishId(id)
+
+    if (hotDeal.length > 0) {
+        dishes[0].hasHotDeal = true
+        dishes[0].hotDeal = hotDeal[0];
+        dishes[0].hotDeal.hotDealPrice = Math.floor(dishes[0].price / 100 * (100 - dishes[0].hotDeal.discount) / 1000) * 1000;
+    } else {
+        dishes[0].hasHotDeal = false;
+    }
+
     return dishes[0]
-}
-
-exports.getListDoughById = async (id) => {
-    return await execQuery('SELECT * FROM dishes_doughs where dish = ' +id)
-}
-
-exports.getListToppingById = async (id) => {
-    return await execQuery('SELECT * FROM dishes_toppings where dish = ' +id)
 }
 
 exports.getListSizeById = async (id) => {
@@ -216,8 +200,8 @@ exports.getListImageById = async (id) => {
     return await execQuery('SELECT * FROM dishes_images where dish = ' +id)
 }
 
-exports.getSubCategory = async (id) => {
-    const subCategory = await execQuery('SELECT * FROM dishes_subcategory WHERE subcategory_id = ' +id)
+exports.getSubCategory = async (categoryId, subcategoryId) => {
+    const subCategory = await execQuery('SELECT * FROM dishes_subcategory WHERE subcategory_id = ' +subcategoryId+ ' AND category = ' + categoryId)
 
     return subCategory[0]
 }
@@ -253,11 +237,44 @@ exports.totalDishByCategory = async (categoryId) => {
 }
 
 exports.searchByKeyName = async (keyName) => {
-    return await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\' AND is_active = 1')
+    let dishes = await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\' AND is_active = 1')
+
+    for (let i = 0; i < dishes.length; i++) {
+        let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
+
+        if (hotDeal.length > 0) {
+            dishes[i].hasHotDeal = true
+            dishes[i].hotDeal = hotDeal[0];
+            dishes[i].hotDeal.hotDealPrice = Math.floor(dishes[i].price / 100 * (100 - dishes[i].hotDeal.discount) / 1000) * 1000;
+        } else {
+            dishes[i].hasHotDeal = false;
+        }
+
+        dishes[i].sizes = await this.getListSizeById(dishes[i].dish_id)
+    }
+
+    return dishes
 }
 
+exports.getListSubcategory = async (id) => {
+    return await execQuery('SELECT * FROM dishes_subcategory where category = ' + id + ' and is_active = 1');
+}
 
+exports.getHotDealByDishId = async (dish_id) => {
+    let today = new Date().toISOString().slice(0, 19).replace('T', ' ')
 
+    return await execQuery('SELECT * FROM hot_deal where dish = '+dish_id+' and start_time <= \'' +today+ '\' and end_time >= \''+today+'\' order by deal_id limit 1')
+}
+
+exports.updateView = async (dish) => {
+    await execQuery('UPDATE dishes set total_reviews = ' + (dish.total_reviews + 1) + ' where dish_id = ' + dish.dish_id)
+}
+
+exports.getSizeByDishIdAndSizeId = async (dish_id, size_id) => {
+    let sizeInfo = await  execQuery('SELECT * FROM dishes_sizes where size_id = ' + size_id + ' and dish = ' + dish_id + ' and is_active = 1')
+
+    return sizeInfo[0];
+}
 /*
 exports.test = async () => {
    await execQuery('UPDATE user SET avatar = \'https://res.cloudinary.com/hcmus-web/image/upload/v1607362757/WebFinalProject/Images/user/1/73083634_2453241641624544_6378836173334249472_o_z20x96.jpg\' where user_id = 1')

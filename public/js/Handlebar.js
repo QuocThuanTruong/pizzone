@@ -50,3 +50,84 @@ Handlebars.registerHelper('standardPrice', function(quantity, price) {
     return priceStr.substr(0, priceStr.length - 3) + 'đ'
 })
 
+Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" data-rel="" id="quick-view">
+    <div class="popup-wrap type-2">
+        <div class="empty-sm-0 empty-xs-15"></div>
+        <div class="container quick-wrapp">
+            <div class="close-popup type-2" onclick="closePopup()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                     viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
+                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                          fill="#484848"/>
+                </svg>
+            </div>
+            <div class="row left-right-item">
+                <div class="col-md-6 col-xs-12">
+                    <img src="\{{avatar}}" alt="" class="full-img">
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="quick-content">
+                        <div class="empty-sm-0 empty-xs-30"></div>
+                        <aside>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                            <h4 class="h3 sm tt color-2">\{{name}}</h4>
+                            <div class="empty-sm-20 empty-xs-20"></div>
+                            \{{#if hasHotDeal}}
+                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 hotDeal.hotDealPrice}}</b></span><span class="h5 line-through simple-text">{{standardPrice 1 price}}</span></h5>
+                            \{{else}}
+                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 price}}</b></span></h5>
+                            \{{/if}}
+                        </aside>
+                        <div class="empty-sm-20 empty-xs-20"></div>
+                        <aside class="product-size">
+                            <h5 class="h5 sm color-2 inline-box">Size:</h5>
+                            \{{#each sizes}}
+                                <div class="checkbox-entry-wrap">
+                                    <label class="checkbox-entry">
+                                        <input type="radio" name="sizes">
+                                        <span>
+                                    <i></i>
+                                    <p>\{{name}}</span></p>
+                                        </span>
+                                    </label>
+                                </div>
+                            \{{/each}}
+                        </aside>
+
+
+                        <div class="empty-sm-25 empty-xs-20"></div>
+                        <aside>
+                            <div class="simple-text">
+                                <p>\{{detail_description}}</p>
+                            </div>
+                        </aside>
+                        <div class="empty-sm-25 empty-xs-20"></div>
+                        <div class="empty-sm-40 empty-xs-25"></div>
+                        <aside>
+                            <div class="buy-bar type-2">
+                                <div class="fl">
+                                    <h5 class="h5 sm follow-title quntity">Quantity:</h5>
+                                    <div class="custom-input-number type-2">
+                                        <button type="button" class="cin-btn cin-decrement">
+                                            <img src="/img/left_arr.png" alt="">
+                                        </button>
+                                        <input type="number" class="cin-input input-field" step="1" value="1" min="1" max="1000" id="quantity">
+                                        <button type="button" class="cin-btn cin-increment">
+                                            <img src="/img/right_arr.png" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="empty-sm-0 empty-xs-15"></div>
+                                </div>
+                                <div class="fr">
+                                    <a class="page-button button-style-1 type-2" onclick="changeCart(\{{dish_id}}, 1)"><span class="txt">Add to cart</span></a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="empty-sm-0 empty-xs-15"></div>
+    </div>
+</div>`)
+

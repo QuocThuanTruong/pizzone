@@ -15,10 +15,5 @@ exports.index = async (req, res, next) => {
         sides: sides
     }
 
-    if  (req.user) {
-        console.log(req.user.cart)
-
-    }
-
     res.render('../components/home/views/index', dataContext);
 };

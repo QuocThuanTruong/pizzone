@@ -112,8 +112,6 @@ exports.orders = async (req, res, next) => {
         ordereds: ordereds
     }
 
-    console.log(currentOrders)
-
     res.render('../components/user/views/orders', dataContext);
 }
 
