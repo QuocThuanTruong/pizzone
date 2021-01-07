@@ -13,6 +13,7 @@ cloudinary.config({
 
 const userModel = require('./model')
 const orderModel = require('../order/model')
+const userService = require('./service')
 
 exports.index = (req, res, next) => {
     const dataContext = {
@@ -92,13 +93,22 @@ exports.editInfo = async (req, res, next) => {
 
 exports.chagePassword = (req, res, next) => {
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
-        isLogin: req.user ? true : false,
+        cart: req.user.cart,
+        isLogin: true,
         user: req.user
     }
 
     res.render('../components/user/views/changePassword', dataContext);
 }
+
+exports.changePasswordConfirm = async (req, res, next) => {
+    let newPassword = req.body.newPassword
+
+    await userService.changePassword(req.user.user_id, newPassword);
+
+    res.redirect('/user/edit')
+}
+
 
 exports.orders = async (req, res, next) => {
     let currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);

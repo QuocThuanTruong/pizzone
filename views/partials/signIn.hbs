@@ -12,7 +12,7 @@
                     <h2 class="title h2">Log in</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
-                <form method="post" action="/auth/login" onsubmit="return(checkUser())">
+                <form method="post" action="/auth/login" id="login-form">
                     <div class="input-field-wrap">
                         <input type="text" class="input-field" placeholder="Your username" name="username" id="username-sign-in" required="">
                         <div class="focus"></div>
@@ -32,7 +32,7 @@
                     <div class="empty-sm-30 empty-xs-20"></div>
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">
-                            <input type="submit">
+                            <input onclick="checkUser()">
                             <span class="txt">Sign In</span><i></i>
                         </div>
                     </div>

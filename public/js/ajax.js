@@ -137,7 +137,7 @@ function isUserLogin(isLogin) {
 }
 
 function checkExistUsername(username) {
-    const url='user/api/is-exist/' + username;
+    const url='/user/api/is-exist/' + username;
     console.log(url)
     $.ajax({
         url: url,
@@ -163,7 +163,7 @@ function checkExistUsername(username) {
 function validationForm(element, name) {
     let username = document.getElementById('username').value;
 
-    const url='user/api/is-exist/' + username;
+    const url='/user/api/is-exist/' + username;
     console.log(url)
     $.ajax({
         url: url,
@@ -207,7 +207,7 @@ function checkUser() {
     let password = document.getElementById('password-sign-in').value;
     let result = true;
 
-    const url='user/api/check-user?username=' + username + '&password=' + password;
+    const url='/user/api/check-user?username=' + username + '&password=' + password;
     console.log(url)
     $.ajax({
         url: url,
@@ -216,16 +216,16 @@ function checkUser() {
             console.log(data)
 
             if (!data) {
-                result = false;
                 alert('username or password is incorrect')
+                return false;
+            } else {
+                $('#login-form').submit();
             }
         },
         error: function (err) {
             console.log(err)
         }
     })
-
-    return result;
 }
 
 function cancelOrder(order_id, ordinal_number, dish_id) {
@@ -295,6 +295,40 @@ function checkVoucher() {
                 let totalCartTemplate = Handlebars.compile($('#cart-total-template').html());
                 let totalCart = totalCartTemplate(data)
                 $('#cart-total').html(totalCart)
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function checkPassWord(username) {
+    const oldPassword = document.getElementById('old-password').value;
+    const newPassword = document.getElementById('new-password').value;
+    const retype = document.getElementById('retype-newPassword').value;
+
+    const url='/user/api/check-user?username=' + username + '&password=' + oldPassword;
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (!data) {
+                alert('password is incorrect')
+                return false;
+            } else {
+                if (newPassword !== retype) {
+                    alert('new password and retype must be same')
+                    return false;
+                } else {
+                    if (oldPassword === newPassword) {
+                        alert('can not use old password')
+                        return false;
+                    } else {
+                        $('#change-password-form').submit()
+                    }
+                }
             }
         },
         error: function (err) {

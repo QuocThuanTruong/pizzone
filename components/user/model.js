@@ -88,3 +88,7 @@ exports.addNewUser = async (username, email, password) => {
 exports.getCartById = async (id) => {
     return await execQuery('select * from cart where user = ' + id)
 }
+
+exports.changePassword = async (user_id, newPassword) => {
+    const _ = await execQuery('UPDATE user SET password = \'' + newPassword + '\' WHERE user_id = ' + user_id)
+}
