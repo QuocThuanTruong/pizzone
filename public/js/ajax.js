@@ -68,7 +68,15 @@ function gotoPage(categoryId, page) {
 }
 
 function changeCart(dish_id, type, sizeDish) {
+    console.log(dish_id)
+    console.log(type)
+    console.log(sizeDish)
     let sizes = document.getElementsByName('sizes');
+    console.log(sizes.length)
+
+    if (sizes.length === 0) {
+        sizes = document.getElementsByName('sizes-' + dish_id)
+    }
 
     let size = 0;
 
@@ -76,6 +84,7 @@ function changeCart(dish_id, type, sizeDish) {
         size = sizeDish
     } else {
         for (let i = 0; i < sizes.length; i++) {
+            console.log(sizes[i])
             if (sizes[i].checked) {
                 size = i + 1;
 

@@ -29,7 +29,7 @@ exports.index = async (req, res, next) => {
     dataContext.totalCost = dataContext.shippingFee + dataContext.cart.totalCostInCart;
     req.session.totalCost = dataContext.totalCost;
 
-    res.render('../components/cart/views/index', dataContext);
+    res.render('../components/cart/views/checkout', dataContext);
 }
 
 exports.add = async (req, res, next) => {

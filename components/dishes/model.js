@@ -187,7 +187,6 @@ exports.getDishById = async (id) => {
         dishes[0].hotDeal = hotDeal[0];
         dishes[0].hotDeal.hotDealPrice = Math.floor(dishes[0].price / 100 * (100 - dishes[0].hotDeal.discount) / 1000) * 1000;
 
-
         let today = new Date();
         let end_date = hotDeal[0].end_time;
         let diff = new DDiff(end_date, today);
@@ -199,6 +198,8 @@ exports.getDishById = async (id) => {
     if (dishes[0].category === 1) {
         dishes[0].isPizza = true;
     }
+
+    dishes[0].sizes = await this.getListSizeById(dishes[0].dish_id)
 
     return dishes[0]
 }
@@ -305,6 +306,8 @@ exports.updateView = async (dish) => {
 exports.getSizeByDishIdAndSizeId = async (dish_id, size_id) => {
     let sizeInfo = await  execQuery('SELECT * FROM dishes_sizes where size_id = ' + size_id + ' and dish = ' + dish_id + ' and is_active = 1')
 
+    sizeInfo[0].dish_id = dish_id;
+
     return sizeInfo[0];
 }
 
@@ -329,6 +332,7 @@ exports.getDishesHasHotDeal = async () => {
 
     for (let i = 0; i < hotDeals.length; i++) {
         let dish = await this.getDishById(hotDeals[i].dish)
+
         dihes.push(dish);
     }
 
