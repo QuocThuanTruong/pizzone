@@ -505,7 +505,9 @@
                                 <div class="txt">
                                     <!-- binding -->
                                     <div class="product-shortcode style-7 sale-label-container">
-                                        <div class="product-label red sale-content">Giảm giá 20%</div>
+                                        {{#if hasHotDeal}}
+                                            <div class="product-label red sale-content">Giảm giá {{hotDeal.discount}}%</div>
+                                        {{/if}}
                                     </div>
 
                                     <div class="flex-wrap">
@@ -514,7 +516,11 @@
                                          <div class="empty-sm-5 empty-xs-5"></div>
                                      </h4>
                                      </span><i></i>
-                                        <b class="h4 main-col menu-price">{{standardPrice 1 price}}</b>
+                                        {{#if hasHotDeal}}
+                                            <b class="h4 main-col menu-price"><strong>{{standardPrice 1 hotDeal.hotDealPrice}}</strong></b>
+                                        {{else}}
+                                            <b class="h4 main-col menu-price"><strong>{{standardPrice 1 price}}</strong></b>
+                                        {{/if}}
                                     </div>
                                     <div class="simple-text">
                                         <p>{{detail_description}}</p>
@@ -560,7 +566,9 @@
                                 <div class="txt">
                                     <!-- binding -->
                                     <div class="product-shortcode style-7 sale-label-container">
-                                        <div class="product-label red sale-content">Giảm giá 20%</div>
+                                        {{#if hasHotDeal}}
+                                            <div class="product-label red sale-content">Giảm giá {{hotDeal.discount}}%</div>
+                                        {{/if}}
                                     </div>
 
                                     <div class="flex-wrap">
@@ -569,7 +577,11 @@
                                          <div class="empty-sm-5 empty-xs-5"></div>
                                      </h4>
                                      </span><i></i>
-                                        <b class="h4 main-col menu-price">{{standardPrice 1 price}}</b>
+                                        {{#if hasHotDeal}}
+                                            <b class="h4 main-col menu-price"><strong>{{standardPrice 1 hotDeal.hotDealPrice}}</strong></b>
+                                        {{else}}
+                                            <b class="h4 main-col menu-price"><strong>{{standardPrice 1 price}}</strong></b>
+                                        {{/if}}
                                     </div>
                                     <div class="simple-text">
                                         <p>{{detail_description}}</p>

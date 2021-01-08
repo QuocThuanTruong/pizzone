@@ -6,9 +6,13 @@ exports.index = async (req, res, next) => {
     if ((Object.keys(req.query).length === 0 && req.query.constructor === Object) || (Object.keys(req.query).length === 1 && req.query.category !== undefined)) {
         let categoryId = req.query.category
         let sortBy = '1'
+        let byCategory = false;
 
-        if (categoryId === undefined)
+        if (categoryId === undefined) {
             categoryId = 0
+        } else {
+            byCategory = true;
+        }
 
         let totalDishPerPage = 1
 
@@ -86,7 +90,8 @@ exports.index = async (req, res, next) => {
             totalPage: totalPage,
             page: 1,
             category: categoryId,
-            subcategories: subcategories
+            subcategories: subcategories,
+            byCategory: byCategory
         }
 
         req.session.oldURL = req.originalUrl;

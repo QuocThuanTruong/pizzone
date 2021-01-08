@@ -6,22 +6,6 @@ function closePopup() {
     $('#quick-view').removeClass('active')
 }
 
-function decrementQuantity() {
-    let quantity = parseInt($('#quantity').value)
-
-    if (quantity > 1) {
-        quantity--
-    }
-
-    $('#quantity').value = quantity.toString()
-}
-
-function incrementQuantity() {
-    let quantity = parseInt($('#quantity').value)
-
-    if (quantity < 1000) {
-        quantity++
-    }
-
-    $('#quantity').value = quantity.toString()
+function getPriceFilter() {
+    console.log(document.getElementById('min-price').value)
 }
