@@ -34,7 +34,13 @@ function gotoPage(categoryId, page) {
     const sortByArr = [1, 2, 3, 4]
     const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
 
-    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter +  '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
+    let url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter +  '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
+
+    let keyName = document.getElementById('key-name').value;
+    if (keyName.length > 0) {
+        url += '&key_name=' + keyName;
+    }
+
     console.log(url)
     $.ajax({
         url: url,
@@ -83,7 +89,6 @@ function changeCart(dish_id, type, sizeDish) {
     }
 
     let quantity = document.getElementById('quantity').value;
-
 
     const url='/cart/change/' + dish_id + '?type=' + type + '&size=' + size + '&quantity=' + quantity;
     console.log(url)

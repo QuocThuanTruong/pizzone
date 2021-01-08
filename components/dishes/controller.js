@@ -24,6 +24,11 @@ exports.index = async (req, res, next) => {
         let totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
 
         let dishes;
+        let isActive = {
+            isPizzaCatActive : false,
+            isDrinkCatActive : false,
+            isSideCatActive : false,
+        }
 
         if (categoryId !== 0) {
             dishes = await dishModel.listByCategory(categoryId, 1, totalDishPerPage, sortBy)
@@ -33,34 +38,50 @@ exports.index = async (req, res, next) => {
 
             switch (categoryId) {
                 case '1':
-                    global.isActive.isPizzaCatActive = true;
-                    global.isActive.isDrinkCatActive = false;
-                    global.isActive.isSideCatActive = false;
+                    isActive.isPizzaCatActive = true;
+                    isActive.isDrinkCatActive = false;
+                    isActive.isSideCatActive = false;
                     break;
 
                 case '2':
-                    global.isActive.isPizzaCatActive = false;
-                    global.isActive.isDrinkCatActive = true;
-                    global.isActive.isSideCatActive = false;
+                    isActive.isPizzaCatActive = false;
+                    isActive.isDrinkCatActive = true;
+                    isActive.isSideCatActive = false;
                     break;
 
                 case '3':
-                    global.isActive.isPizzaCatActive = false;
-                    global.isActive.isDrinkCatActive = false;
-                    global.isActive.isSideCatActive = true;
+                    isActive.isPizzaCatActive = false;
+                    isActive.isDrinkCatActive = false;
+                    isActive.isSideCatActive = true;
                     break;
             }
         } else {
             dishes = await dishModel.dishlist(1, totalDishPerPage, sortBy)
         }
 
+        let cart = {}
+
+        if (req.user) {
+            cart = req.user.cart
+        } else {
+            if (req.session.cart) {
+                cart = req.session.cart
+            } else {
+                cart = {
+                    itemInCart : [],
+                    totalCostInCart : 0,
+                    totalDishInCart : 0
+                }
+            }
+        }
+
         const dataContext = {
             menuPageActive: "active",
             isLogin: req.user ? true : false,
             user: req.user,
-            cart: req.user ? req.user.cart : global.cart,
+            cart: cart,
             result: result,
-            isActive: global.isActive,
+            isActive: isActive,
             dishes: dishes,
             totalPage: totalPage,
             page: 1,
@@ -68,6 +89,7 @@ exports.index = async (req, res, next) => {
             subcategories: subcategories
         }
 
+        req.session.oldURL = req.originalUrl;
         res.render('../components/dishes/views/index', dataContext);
     } else {
         this.pagination(req, res, next)
@@ -75,8 +97,7 @@ exports.index = async (req, res, next) => {
 }
 
 exports.pagination = async (req, res, next) => {
-    const key_name = req.query.key_name
-
+    let keyName = req.query.key_name;
     let categoryId = req.query.category;
     let currentPage = req.query.page;
     let totalDishPerPage = req.query.total_dish_per_page;
@@ -100,8 +121,10 @@ exports.pagination = async (req, res, next) => {
     let totalResult = await dishModel.totalDish();
     let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
-    if (key_name !== undefined) {
-        dishes = await dishModel.searchByKeyName(key_name)
+    if (keyName !== undefined) {
+        dishes = await dishModel.searchByKeyName(keyName, currentPage, totalDishPerPage, sortBy)
+        totalResult = await dishModel.totalDishByKeyName(keyName);
+
     } else {
         if (categoryId !== 0) {
             dishes = await dishModel.listByCategoryAndFilter(categoryId, currentPage, totalDishPerPage, subcategory, sortBy);
@@ -134,39 +157,63 @@ exports.detail = async (req, res, next) => {
     const subcategoryName = await dishModel.getSubCategory(dish.category, dish.subcategory)
     dish.subcategoryName = subcategoryName.name
 
+    let isActive = {
+        isPizzaCatActive : false,
+        isDrinkCatActive : false,
+        isSideCatActive : false,
+    }
+
     switch (dish.category) {
         case 1:
-            global.isActive.isPizzaCatActive = true;
-            global.isActive.isDrinkCatActive = false;
-            global.isActive.isSideCatActive = false;
+            isActive.isPizzaCatActive = true;
+            isActive.isDrinkCatActive = false;
+            isActive.isSideCatActive = false;
             break;
 
         case 2:
-            global.isActive.isPizzaCatActive = false;
-            global.isActive.isDrinkCatActive = true;
-            global.isActive.isSideCatActive = false;
+            isActive.isPizzaCatActive = false;
+            isActive.isDrinkCatActive = true;
+            isActive.isSideCatActive = false;
             break;
 
         case 3:
-            global.isActive.isPizzaCatActive = false;
-            global.isActive.isDrinkCatActive = false;
-            global.isActive.isSideCatActive = true;
+            isActive.isPizzaCatActive = false;
+            isActive.isDrinkCatActive = false;
+            isActive.isSideCatActive = true;
             break;
     }
 
     let review = await reviewModel.getListReviewByDishId(id)
 
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
     const dataContext = {
         menuPageActive: "active",
         isLogin: req.user ? true : false,
         user: req.user,
-        cart: req.user ? req.user.cart : global.cart,
-        isActive : global.isActive,
+        cart: cart,
+        isActive : isActive,
         dish: dish,
         review: review
     }
 
     await dishModel.updateView(dish);
+
+    req.session.oldURL = req.originalUrl;
 
     res.render('../components/dishes/views/detail', dataContext);
 }

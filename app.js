@@ -23,20 +23,6 @@ const voucherRouter = require('./components/voucher/router')
 
 const app = express();
 
-//declare global variable
-global.cart = {
-  itemInCart : [],
-  totalCostInCart : 0,
-  totalDishInCart : 0
-}
-
-global.isActive = {
-  isPizzaCatActive: false,
-  isDrinkCatActive : false,
-  isSideCatActive : false
-};
-
-global.totalCost = 0;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -45,11 +31,11 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(session({ secret: process.env.SESSION_SECRET }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

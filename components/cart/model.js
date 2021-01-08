@@ -76,11 +76,15 @@ exports.getCartByUserId = async (id) => {
         dish.cartId = cartTemp[i].cart;
         dish.is_active = cartTemp[i].is_active;
         dish.ordinal_number = cartTemp[i].ordinal_number;
+
         if (dish.hasHotDeal) {
             dish.price = dish.hotDeal.hotDealPrice;
         }
+
         dish.size = cartTemp[i].size;
+
         let sizeInfo = await dishModel.getSizeByDishIdAndSizeId(dish.dish_id, dish.size)
+
         dish.price += sizeInfo.extra_price;
         dish.sizeName = sizeInfo.name;
         totalCostInCart += dish.quantity * dish.price;

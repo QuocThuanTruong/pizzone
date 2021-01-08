@@ -4,7 +4,6 @@ const dishModel = require('../dishes/model')
 function execQuery(queryString) {
     return new Promise(data => {
         /*        console.log(queryString)*/
-
         db.query(queryString, (err, results, fields) => {
             if (err) {
                 console.log(err)
@@ -42,6 +41,7 @@ exports.getCurrentOrderByUserId = async (user_id) => {
             dish.order_id = order.order_id
             dish.quantity = order.quantity
             dish.ordinal_number = order.ordinal_number;
+            dish.orderPrice  = order.price;
 
             currentOrders.push(dish);
         }
@@ -66,6 +66,7 @@ exports.getOrderedByUserId = async (user_id) => {
             dish.order_id = order.order_id
             dish.quantity = order.quantity
             dish.ordinal_number = order.ordinal_number;
+            dish.orderPirce  = order.price;
 
             ordereds.push(dish);
         }
@@ -83,8 +84,6 @@ exports.insertOrder = async (cart, totalCost, user_id) => {
         let dish = cart.itemInCart[i];
         dish.order_id = order_id;
         dish.ordinal_number = i + 1;
-
-        console.log(dish)
 
         await this.insertOrderDetail(dish)
     }

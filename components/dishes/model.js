@@ -1,8 +1,9 @@
 const {db} = require('../../dal/db')
+const DDiff = require('date-diff')
 
 function execQuery(queryString) {
     return new Promise(data => {
-/*        console.log(queryString)*/
+     /*  console.log(queryString)*/
 
         db.query(queryString, (err, results, fields) => {
             if (err) {
@@ -185,8 +186,18 @@ exports.getDishById = async (id) => {
         dishes[0].hasHotDeal = true
         dishes[0].hotDeal = hotDeal[0];
         dishes[0].hotDeal.hotDealPrice = Math.floor(dishes[0].price / 100 * (100 - dishes[0].hotDeal.discount) / 1000) * 1000;
+
+
+        let today = new Date();
+        let end_date = hotDeal[0].end_time;
+        let diff = new DDiff(end_date, today);
+        dishes[0].hotDeal.countDownTime = diff.seconds()
     } else {
         dishes[0].hasHotDeal = false;
+    }
+
+    if (dishes[0].category === 1) {
+        dishes[0].isPizza = true;
     }
 
     return dishes[0]
@@ -236,8 +247,29 @@ exports.totalDishByCategory = async (categoryId) => {
     return queryResult[0].total
 }
 
-exports.searchByKeyName = async (keyName) => {
-    let dishes = await execQuery('SELECT * FROM dishes WHERE name LIKE \'%'+keyName+'%\' AND is_active = 1')
+exports.searchByKeyName = async (keyName, page, totalDishPerPage, sortBy) => {
+    let sort = '';
+
+    switch (sortBy) {
+        case '1':
+            sort = 'created_date';
+            break;
+        case '2':
+            sort = 'name';
+            break;
+        case '3':
+            sort = 'price DESC';
+            break;
+        case '4':
+            sort = 'price ASC';
+            break;
+    }
+
+    let query = 'SELECT * FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage)
+    query = query.split('%20').join(' ');
+    query = query.split('%27').join('\'');
+
+    let dishes = await execQuery(query)
 
     for (let i = 0; i < dishes.length; i++) {
         let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
@@ -274,6 +306,33 @@ exports.getSizeByDishIdAndSizeId = async (dish_id, size_id) => {
     let sizeInfo = await  execQuery('SELECT * FROM dishes_sizes where size_id = ' + size_id + ' and dish = ' + dish_id + ' and is_active = 1')
 
     return sizeInfo[0];
+}
+
+exports.totalDishByKeyName = async (keyName) => {
+    let query = 'SELECT COUNT(dish_id) as total FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 ';
+
+    query = query.split('%20').join(' ');
+    query = query.split('%27').join('\'');
+
+    let result = await execQuery(query);
+
+    return result[0].total
+}
+
+exports.getDishesHasHotDeal = async () => {
+    let today = new Date().toISOString().slice(0, 19).replace('T', ' ')
+
+    let query = 'SELECT DISTINCT(dish) FROM hot_deal where start_time <= \'' + today + '\' and end_time >= \'' + today + '\'';
+    let hotDeals = await execQuery(query);
+
+    let dihes = []
+
+    for (let i = 0; i < hotDeals.length; i++) {
+        let dish = await this.getDishById(hotDeals[i].dish)
+        dihes.push(dish);
+    }
+
+    return dihes;
 }
 /*
 exports.test = async () => {

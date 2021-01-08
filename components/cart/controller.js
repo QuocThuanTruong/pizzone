@@ -2,21 +2,53 @@ const dishModel = require('../dishes/model')
 const cartModel = require('./model')
 
 exports.index = async (req, res, next) => {
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
     const dataContext = {
         isLogin: req.user ? true : false,
         user: req.user,
-        cart: req.user ? req.user.cart : global.cart,
+        cart: cart
     }
 
     let shippingFee = await cartModel.getShippingFee(dataContext.cart.totalCostInCart)
     dataContext.shippingFee = shippingFee;
     dataContext.totalCost = dataContext.shippingFee + dataContext.cart.totalCostInCart;
-    global.totalCost = dataContext.totalCost;
+    req.session.totalCost = dataContext.totalCost;
 
     res.render('../components/cart/views/index', dataContext);
 }
 
 exports.add = async (req, res, next) => {
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
     const id = req.params.id;
     const type = parseInt(req.query.type)
     const size = parseInt(req.query.size)
@@ -40,7 +72,7 @@ exports.add = async (req, res, next) => {
     dish.sizeName = sizeInfo.name;
 
     if (!req.user) {
-        let index = global.cart.itemInCart.findIndex(d => d.dish_id == id && d.size == size)
+        let index = cart.itemInCart.findIndex(d => d.dish_id == id && d.size == size)
 
         console.log(index)
 
@@ -49,14 +81,17 @@ exports.add = async (req, res, next) => {
                 if (index === -1) {
                     dish.quantity = quantity
                     dish.size = size
-                    global.cart.itemInCart.push(dish);
+                    cart.itemInCart.push(dish);
+
                 } else {
-                    global.cart.itemInCart[index].quantity += quantity;
-                    dish.quantity = global.cart.itemInCart[index].quantity
+                    cart.totalCostInCart -= (cart.itemInCart[index].price * cart.itemInCart[index].quantity);
+
+                    cart.itemInCart[index].quantity += quantity;
+                    dish.quantity = cart.itemInCart[index].quantity
                 }
 
-                global.cart.totalCostInCart += (dish.price * dish.quantity);
-                global.cart.totalDishInCart += quantity;
+                cart.totalCostInCart += (dish.price * dish.quantity);
+                cart.totalDishInCart += quantity;
                 break;
             case 2: //Descrease
                 if (index === -1) {
@@ -64,10 +99,10 @@ exports.add = async (req, res, next) => {
                     //Do Nothing
 
                 } else {
-                    if (global.cart.itemInCart[index].quantity > 1) {
-                        global.cart.itemInCart[index].quantity--;
-                        global.cart.totalCostInCart -= dish.price;
-                        global.cart.totalDishInCart--;
+                    if (cart.itemInCart[index].quantity > 1) {
+                        cart.itemInCart[index].quantity--;
+                        cart.totalCostInCart -= dish.price;
+                        cart.totalDishInCart--;
                     }
                 }
                 break;
@@ -77,16 +112,18 @@ exports.add = async (req, res, next) => {
                     //Do Nothing
 
                 } else {
-                    let deleteDish = global.cart.itemInCart[index]
+                    let deleteDish = cart.itemInCart[index]
 
-                    global.cart.totalCostInCart -= (deleteDish.price * deleteDish.quantity);
-                    global.cart.totalDishInCart -= deleteDish.quantity;
+                    cart.totalCostInCart -= (deleteDish.price * deleteDish.quantity);
+                    cart.totalDishInCart -= deleteDish.quantity;
 
-                    global.cart.itemInCart.splice(index, 1)
+                    cart.itemInCart.splice(index, 1)
                 }
         }
 
-        res.send(global.cart)
+        req.session.cart = cart;
+
+        res.send(cart)
     } else {
         let index = req.user.cart.itemInCart.findIndex(d => d.dish_id == id && d.size == size)
 
@@ -99,6 +136,8 @@ exports.add = async (req, res, next) => {
 
                     await cartModel.insertCardItem([dish], req.user.user_id)
                 } else {
+                    req.user.cart.totalCostInCart -= (req.user.cart.itemInCart[index].price * req.user.cart.itemInCart[index].quantity);
+
                     req.user.cart.itemInCart[index].quantity += quantity;
                     req.user.cart.itemInCart[index].is_active = 1
 
