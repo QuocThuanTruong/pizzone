@@ -129,6 +129,6 @@ exports.isLogin = async (req, res, next) => {
         next();
     } else {
         //render ra trang thông báo hay gì đó là cần dăng nhập để tiếp tục nè
-        res.render('../components/dish/views/index', {});
+        res.redirect('/');
     }
 }
