@@ -17,9 +17,14 @@
                         <input type="text" class="input-field" id="username" placeholder="Username" name="username" required="" onchange="checkExistUsername(this.value)">
                         <div class="focus"></div>
                     </div>
-                    <div class="empty-sm-15 empty-xs-15"></div>
+
+                    <div id="empty-user-error"></div>
                     <div id="check-exists-username-result"><h5 id="check-exists-username-content" class="validation-content"></h5></div>
-                    <div id="empty"></div>
+                    <div class="empty-sm-15 empty-xs-15"></div>
+
+
+
+
                     <div class="input-field-wrap">
                         <input type="email" class="input-field" placeholder="Your email" name="email" required="">
                         <div class="focus"></div>
@@ -44,6 +49,12 @@
                     </span>
                         </label>
                     </div>
+
+                    <div class="simple-text  text-center xs forgot" style="color: red;">
+                        <div id="empty-error"></div>
+                        <p id="register-error-text"></p>
+                    </div>
+
                     <div class="empty-sm-30 empty-xs-20"></div>
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">

@@ -216,7 +216,8 @@ function changeCartQuickView(dish_id, type, sizeDish) {
 
 function isUserLogin(isLogin) {
     if (!isLogin) {
-        alert('Cần đăng nhập để tiếp tục')
+        $('#login-alert-popup').addClass('active');
+
     } else {
 
     }
@@ -232,15 +233,17 @@ function checkExistUsername(username) {
         type: "GET",
         success: function (data) {
             if (data.isExists == 1) {
+                $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
                 $('#check-exists-username-content').html('Username is already exists')
 
             } else {
+                $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
                 $('#check-exists-username-content').html('Username is valid')
             }
 
-            $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
+
         },
         error: function (err) {
             console.log(err)
@@ -258,18 +261,18 @@ function validationForm(element, name) {
         type: "GET",
         success: function (data) {
             if (data.isExists == 1) {
+                $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
                 $('#check-exists-username-content').html('Username is already exists')
 
-                alert("failed username");
+
                 return false
             } else {
+                $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
                 $('#check-exists-username-content').html('Username is valid')
 
             }
-
-            $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
 
         },
         error: function (err) {
@@ -283,9 +286,12 @@ function validationForm(element, name) {
     console.log(password)
 
     if (password.length > 0 && password === retype) {
+        $('#register-error-text').html('');
+        $('#empty-error').html('<div class="empty-0"></div>')
         return true;
     } else {
-        alert("failed retype");
+        $('#register-error-text').html('Retyped-password is not correct');
+        $('#empty-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
         return false;
     }
 }
@@ -304,7 +310,20 @@ function checkUser() {
             console.log(data)
 
             if (!data) {
-                alert('username or password is incorrect')
+                if (username !== '' && password !== '') {
+                    document.getElementById('login-error-text').innerHTML = 'Username or password is not correct'
+
+                } else if (username === '') {
+                    if (password === '') {
+                        $('#login-error-text').html('Username and password must not be empty');
+                    } else {
+                        $('#login-error-text').html('Username must not be empty');
+                    }
+                } else if (password === '') {
+                    $('#login-error-text').html('Password must not be empty');
+                }
+                $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
+
                 return false;
             } else {
                 $('#login-form').submit();
@@ -315,6 +334,7 @@ function checkUser() {
         }
     })
 }
+
 
 function cancelOrder(order_id, ordinal_number, dish_id) {
     const url = '/order/cancel?order_id='+order_id+'&ordinal_number='+ordinal_number+'&dish='+dish_id;
@@ -378,8 +398,14 @@ function checkVoucher() {
         type: "GET",
         success: function (data) {
             if (!data.voucher) {
-                alert('voucher does not exists')
+                $('#check-voucher-result').addClass('error-username').removeClass('valid-username')
+                $('#check-voucher-content').html('Voucher does not exists')
+                $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
             } else {
+                $('#check-voucher-result').addClass('valid-username').removeClass('error-username')
+                $('#check-voucher-content').html('Voucher is valid')
+                $('#empty').html('<div class="empty-sm-15 empty-xs-15"></div>')
+
                 let totalCartTemplate = Handlebars.compile($('#cart-total-template').html());
                 let totalCart = totalCartTemplate(data)
                 $('#cart-total').html(totalCart)
@@ -403,15 +429,21 @@ function checkPassWord(username) {
         type: "GET",
         success: function (data) {
             if (!data) {
-                alert('password is incorrect')
+                $('#check-password-result').addClass('error-username').removeClass('valid-username')
+                $('#check-password-result').html('Current password is not correct')
+                $('#empty-password').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 return false;
             } else {
                 if (newPassword !== retype) {
-                    alert('new password and retype must be same')
+                    $('#check-password-result').addClass('error-username').removeClass('valid-username')
+                    $('#check-password-result').html('Retyped password is not correct')
+                    $('#empty-password').html('<div class="empty-sm-15 empty-xs-15"></div>')
                     return false;
                 } else {
                     if (oldPassword === newPassword) {
-                        alert('can not use old password')
+                        $('#check-password-result').addClass('error-username').removeClass('valid-username')
+                        $('#check-password-result').html('Your new password is duplicate your old one.')
+                        $('#empty-password').html('<div class="empty-sm-15 empty-xs-15"></div>')
                         return false;
                     } else {
                         $('#change-password-form').submit()

@@ -14,12 +14,12 @@
                 <div class="empty-sm-30 empty-xs-30"></div>
                 <form method="post" action="/auth/login" id="login-form">
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" placeholder="Your username" name="username" id="username-sign-in" required="">
+                        <input type="text" class="input-field" placeholder="Your username" name="username" id="username-sign-in" required>
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" placeholder="Enter password" name="password" id="password-sign-in" required="">
+                        <input type="password" class="input-field" placeholder="Enter password" name="password" id="password-sign-in" required>
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
@@ -27,8 +27,15 @@
                         <a href="/verify" ><p>Forgot password</p></a>
                     </div>
                     <div class="simple-text xs reg-now fr">
-                        <a href="#"><p>Register now</p></a>
+                        <a href="#" class="open-popup" data-open="popup-register" data-rel="4"><p>Register now</p></a>
                     </div>
+
+
+                    <div class="simple-text  text-center xs forgot" style="color: red;">
+                        <div id="empty"></div>
+                        <p id="login-error-text"></p>
+                    </div>
+
                     <div class="empty-sm-30 empty-xs-20"></div>
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">
