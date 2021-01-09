@@ -13,10 +13,11 @@ cloudinary.config({
 
 const userModel = require('./model')
 const orderModel = require('../order/model')
+const userService = require('./service')
 
 exports.index = (req, res, next) => {
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
+        cart: req.user.cart,
         isLogin: req.user ? true : false,
         user: req.user
     }
@@ -26,7 +27,7 @@ exports.index = (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
+        cart: req.user.cart,
         isLogin: req.user ? true : false,
         user: req.user
     }
@@ -80,7 +81,7 @@ exports.editInfo = async (req, res, next) => {
             }
 
             const dataContext = {
-                cart: req.user ? req.user.cart : global.cart,
+                cart: req.user.cart,
                 isLogin: req.user ? true : false,
                 user: req.user
             }
@@ -92,12 +93,20 @@ exports.editInfo = async (req, res, next) => {
 
 exports.chagePassword = (req, res, next) => {
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
-        isLogin: req.user ? true : false,
+        cart: req.user.cart,
+        isLogin: true,
         user: req.user
     }
 
     res.render('../components/user/views/changePassword', dataContext);
+}
+
+exports.changePasswordConfirm = async (req, res, next) => {
+    let newPassword = req.body.newPassword
+
+    await userService.changePassword(req.user.user_id, newPassword);
+
+    res.redirect('/user/edit')
 }
 
 exports.orders = async (req, res, next) => {
@@ -105,15 +114,21 @@ exports.orders = async (req, res, next) => {
     let ordereds = await orderModel.getOrderedByUserId(req.user.user_id);
 
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
+        cart: req.user.cart,
         isLogin: req.user ? true : false,
         user: req.user,
         currentOrders: currentOrders,
         ordereds: ordereds
     }
 
-    console.log(currentOrders)
-
     res.render('../components/user/views/orders', dataContext);
 }
 
+exports.isLogin = async (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        //render ra trang thông báo hay gì đó là cần dăng nhập để tiếp tục nè
+        res.redirect('/');
+    }
+}

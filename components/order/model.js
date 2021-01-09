@@ -4,7 +4,6 @@ const dishModel = require('../dishes/model')
 function execQuery(queryString) {
     return new Promise(data => {
         /*        console.log(queryString)*/
-
         db.query(queryString, (err, results, fields) => {
             if (err) {
                 console.log(err)
@@ -42,6 +41,7 @@ exports.getCurrentOrderByUserId = async (user_id) => {
             dish.order_id = order.order_id
             dish.quantity = order.quantity
             dish.ordinal_number = order.ordinal_number;
+            dish.orderPrice  = order.price;
 
             currentOrders.push(dish);
         }
@@ -66,6 +66,7 @@ exports.getOrderedByUserId = async (user_id) => {
             dish.order_id = order.order_id
             dish.quantity = order.quantity
             dish.ordinal_number = order.ordinal_number;
+            dish.orderPirce  = order.price;
 
             ordereds.push(dish);
         }
@@ -74,10 +75,10 @@ exports.getOrderedByUserId = async (user_id) => {
     return ordereds;
 }
 
-exports.insertOrder = async (cart, user_id) => {
+exports.insertOrder = async (cart, totalCost, user_id) => {
     const order_id = (await this.getMaxOrderId()) + 1;
 
-    await execQuery('INSERT INTO orders(order_id, user, total_price, status, is_active) values('+order_id+', '+user_id+', '+cart.totalCostInCart+', 0, 1)')
+    await execQuery('INSERT INTO orders(order_id, user, total_price, status, is_active) values('+order_id+', '+user_id+', '+totalCost+', 0, 1)')
 
     for (let i = 0; i < cart.itemInCart.length; i++) {
         let dish = cart.itemInCart[i];

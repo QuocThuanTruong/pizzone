@@ -4,9 +4,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-xs-12">
-                <div class="sale-badge">
-                    <h5 class="h5"><b>GIẢM GIÁ</br> 63%</b></h5>
-                </div>
+                {{#if dish.hasHotDeal}}
+                    <div class="sale-badge">
+                        <h5 class="h5"><b>GIẢM GIÁ</br> {{dish.hotDeal.discount}}%</b></h5>
+                    </div>
+                {{/if}}
+
                 <div class="swipers-wrapper">
                     <div class="sideBarTopSwiper">
                         <div class="swiperMainWrapper">
@@ -18,11 +21,11 @@
                                         </div>
                                     </div>
                                     {{#each dish.images}}
-                                    <div class="swiper-slide" >
-                                        <div class="content">
-                                            <img src="{{image_url}}" alt="" class="full-img">
+                                        <div class="swiper-slide" >
+                                            <div class="content">
+                                                <img src="{{image_url}}" alt="" class="full-img">
+                                            </div>
                                         </div>
-                                    </div>
                                     {{/each}}
                                 </div>
                             </div>
@@ -39,11 +42,11 @@
                                         </div>
                                     </div>
                                     {{#each dish.images}}
-                                    <div class="swiper-slide">
-                                        <div class="content controlTopSwiper">
-                                            <img src="{{image_url}}" alt="" class="full-img">
+                                        <div class="swiper-slide">
+                                            <div class="content controlTopSwiper">
+                                                <img src="{{image_url}}" alt="" class="full-img">
+                                            </div>
                                         </div>
-                                    </div>
                                     {{/each}}
                                 </div>
                             </div>
@@ -67,25 +70,24 @@
                             <div class="rate-wrapper align-inline">
                                 <span><i class="fa fa-eye"></i></span>
                             </div>
-                            <div class="simple-article size-2 align-inline">128 Lượt xem</div>
+                            <div class="simple-article size-2 align-inline">{{dish.total_reviews}} Lượt xem</div>
                         </div>
-<!--                        <div class="col-lg-5">-->
-<!--                                <input type="hidden" class="rating"/>-->
-<!--                            <div class="simple-article size-2 align-inline">128 Đánh giá</div>-->
-<!--                        </div>-->
+                        <!--                        <div class="col-lg-5">-->
+                        <!--                                <input type="hidden" class="rating"/>-->
+                        <!--                            <div class="simple-article size-2 align-inline">128 Đánh giá</div>-->
+                        <!--                        </div>-->
                     </div>
-
-
 
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <h5 class="h5 sm color-2">Giá:
-                        <span class="h4 main-col"><b>{{standardPrice 1 dish.price}}</b></span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span class="h5 line-through simple-text">
-                                                                                230.000đ
-                                                                            </span>
-
-
+                        {{#if dish.hasHotDeal}}
+                            <span class="h4 main-col"><b>{{standardPrice 1 dish.hotDeal.hotDealPrice}}</b></span>
+                            <span class="h5 line-through simple-text">
+                                {{standardPrice 1 dish.price}}
+                            </span>
+                        {{else}}
+                            <span class="h4 main-col"><b>{{standardPrice 1 dish.price}}</b></span>
+                        {{/if}}
                     </h5>
                 </aside>
                 <div class="empty-sm-20 empty-xs-20"></div>
@@ -93,157 +95,81 @@
                 <aside class="product-size">
                     <h5 class="h5 sm color-2 inline-box">Kích cỡ:</h5>
                     {{#each dish.sizes}}
-                    <div class="checkbox-entry-wrap">
-                        <label class="checkbox-entry">
-                            <input type="radio" name="1" checked="">
-                            <span>
+                        <div class="checkbox-entry-wrap">
+                            <label class="checkbox-entry">
+                                <input type="radio" name="sizes">
+                                <span>
                               <i></i>
                               <p>{{name}}</span></p>
-                            </span>
-                        </label>
-                    </div>
+                                </span>
+                            </label>
+                        </div>
                     {{/each}}
                 </aside>
 
                 <div class="empty-sm-25 empty-xs-20"></div>
                 <aside>
-                    <!-- dough -->
-<!--                    {{#if isActive.isPizzaCatActive}}-->
-<!--                    <aside class="product-size">-->
-<!--                        <h5 class="h5 sm color-2 inline-box">Đế bánh</h5>-->
-<!--                        {{#each dish.doughs}}-->
-<!--                            <div class="checkbox-entry-wrap">-->
-<!--                                <label class="checkbox-entry">-->
-<!--                                    <input type="radio" name="2" checked="">-->
-<!--                                    <span>-->
-<!--                                  <i></i>-->
-<!--                                  <p>{{name}} </p>-->
-<!--                                </span>-->
-<!--                                </label>-->
-<!--                            </div>-->
-<!--                        {{/each}}-->
-
-<!--                    </aside>-->
-<!--                    <div class="empty-sm-25 empty-xs-20"></div>-->
-<!--                    {{/if}}-->
-
-
-                    <aside>
-                        {{#if isActive.isPizzaCatActive}}
-                            <h5 class="h5 sm color-2 inline-box">Loại pizza: </h5>
+                    <h5 class="h5 sm color-2 inline-box">Loại: </h5>
+                    <div class="simple-text">
+                        <p>{{dish.subcategoryName}}</p>
+                    </div>
+                    <div class="empty-sm-25 empty-xs-20"></div>
+                    {{#if isActive.isPizzaCatActive}}
+                        <h5 class="h5 sm color-2 inline-box">Nguyên liệu: </h5>
                         <div class="simple-text">
-                            <p>Pizza {{dish.subCategoryName}}</p>
+                            <p>{{dish.igredients}}</p>
                         </div>
-                            <div class="empty-sm-25 empty-xs-20"></div>
-                            <h5 class="h5 sm color-2 inline-box">Nguyên liệu: </h5>
-                            <div class="simple-text">
-                                <p>{{dish.igredients}}</p>
-                            </div>
-                        {{else}}
-                            <h5 class="h5 sm color-2 inline-box">Mô tả: </h5>
-                        <div class="simple-text">
-                            <p>{{dish.detail_description}}</p>
-                        </div>
-                        {{/if}}
-                    </aside>
+                    {{/if}}
+                </aside>
 
-                    <div class="empty-sm-30 empty-xs-20"></div>
+                <div class="empty-sm-30 empty-xs-20"></div>
+            </div>
+        </div>
 
-<!--                    {{#if isActive.isPizzaCatActive}}-->
-<!--                    <aside>-->
-<!--                        <h5 class="tt h5 sm color-2">Chọn Toping:</h5>-->
-<!--                        <div class="empty-sm-25 empty-xs-15"></div>-->
-<!--                        <div class="arrow-closest item-padd-30">-->
-<!--                            <div class="swiper-container checkbox-wrapp" data-mode="horizontal" data-effect="slide" data-add-slides="4" data-slides-per-view="responsive" data-lg-slides="4" data-md-slides="4" data-xs-slides="2" data-sm-slides="4" data-loop="0" data-speed="800" data-space="13">-->
-<!--                                <div class="swiper-wrapper">-->
-<!--                                    {{#each dish.toppings}}-->
-<!--                                        <div class="swiper-slide" >-->
-<!--                                            <div class="checkbox-entry-wrap type-1">-->
-<!--                                                <label class="checkbox-entry">-->
-<!--                                                    <input type="checkbox">-->
-<!--                                                    <div class="content-check">-->
-<!--                                                        <img src="{{img_url}}" alt="" class="full-img">-->
-<!--                                                        <div class="empty-sm-10 empty-xs-10"></div>-->
-<!--                                                        <div class="simple-text">-->
-<!--                                                            <p><b>{{name}}</b></p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    {{/each}}-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="swiper-arrow-left swiper-arrow type-3 style-3">-->
-<!--                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">-->
-<!--                                    <g>-->
-<!--                                        <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" fill="#FFFFFF"/>-->
-<!--                                    </g>-->
-<!--                                </svg>-->
-<!--                            </div>-->
-<!--                            <div class="swiper-arrow-right swiper-arrow type-3 style-3">-->
-<!--                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">-->
-<!--                                    <g>-->
-<!--                                        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#FFFFFF"/>-->
-<!--                                    </g>-->
-<!--                                </svg>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </aside>-->
-<!--                    <div class="empty-sm-40 empty-xs-25"></div>-->
-<!--                    {{/if}}-->
+        <div class="row ">
+            <div class="col-lg-3"></div>
 
-                    <aside>
-                        <div class="buy-bar type-2">
-                            <div class="fl">
-                                <h5 class="h5 sm follow-title quntity">Quantity:</h5>
-                                <div class="custom-input-number type-2">
-                                    <button type="button" class="cin-btn cin-decrement">
-                                        <img src="/img/left_arr.png" alt="">
-                                    </button>
-                                    <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                    <button type="button" class="cin-btn cin-increment">
-                                        <img src="/img/right_arr.png" alt="">
-                                    </button>
-                                </div>
-                                <div class="empty-sm-0 empty-xs-15"></div>
-                            </div>
+            <div class="col-lg-8">
+                <div class="fl">
+                    <h5 class="h5 sm follow-title quntity">Quantity:</h5>
+                    <div class="custom-input-number type-2">
+                        <button type="button" class="cin-btn cin-decrement">
+                            <img src="/img/left_arr.png" alt="">
+                        </button>
+                        <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000" id="quantity">
+                        <button type="button" class="cin-btn cin-increment">
+                            <img src="/img/right_arr.png" alt="">
+                        </button>
+                    </div>
+                </div>
 
-                        </div>
+                <div class="col-md-offset-2"/>
 
-
-                    </aside>
-
-                    <div class="empty-sm-30 empty-xs-20"></div>
-                    <aside>
-                        <div class="row">
-                            <div class="button-wrap col-md-5    " data-swiper-parallax="-500"
-                                 data-swiper-parallax-duration="1000">
-                                <a href="#" class="button size-2 style-3">
+                <div class="row">
+                    <div class="button-wrap col-md-4" data-swiper-parallax="-500"
+                         data-swiper-parallax-duration="1000">
+                        <a class="button size-2 style-3" onclick="changeCart({{dish.dish_id}}, 1)">
                        <span class="button-wrapper">
                                <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
                                <span class="text">Thêm vào giỏ</span>
                        </span>
-                                </a>
-                            </div>
+                        </a>
+                    </div>
 
-                            <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
-                                 data-swiper-parallax-duration="1000">
-                                <a class="button size-2 style-2" href="#">
-                                                                    <span class="button-wrapper">
-                                                                        <span class="icon"><i class="fa fa-heart-o"></i></span>
-                                                                        <span class="text">Yêu thích</span>
-                                                                     </span>
-                                </a>
-                            </div>
-                        </div>
-                    </aside>
-
-                </aside>
+                    <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
+                         data-swiper-parallax-duration="1000">
+                        <a class="button size-2 style-2" href="#">
+                            <span class="button-wrapper">
+                                <span class="icon"><i class="fa fa-heart-o"></i></span>
+                                <span class="text">Yêu thích</span>
+                             </span>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-lg-1"></div>
         </div>
-
-
 
     </div>
 </section>
@@ -255,30 +181,15 @@
             <div class="col-md-12 col-xs-12">
                 <div class="text-center">
                     <ul class="item-tabs type-2">
-                        {{#if isActive.isPizzaCatActive}}
-                            <li class="active"><a href="#" class="link-hover-line type-2">Description</a></li>
-                        {{else}}
-                            <li class="active"><a href="#" class="link-hover-line type-2">Images</a></li>
-                        {{/if}}
-
+                        <li class="active"><a href="#" class="link-hover-line type-2">Description</a></li>
                         <li><a href="#" class="link-hover-line type-2">Reviews</a></li>
                     </ul>
                 </div>
                 <div class="tab-container-wraps">
                     <div class="tab-container-item min-h-430">
                         <div class="empty-sm-60 empty-xs-30"></div>
-                        {{#if isActive.isPizzaCatActive}}
                         <div class="simple-text">
                             <p>{{dish.detail_description}}</p>
-                        </div>
-                        {{/if}}
-                        <div class="row">
-                            {{#each dish.images}}
-                                <div class="col-sm-4 col-xs-12">
-                                    <div class="empty-sm-45 empty-xs-20"></div>
-                                    <img src="{{image_url}}" alt="" class="full-img">
-                                </div>
-                            {{/each}}
                         </div>
                     </div>
                     <div class="tab-container-item min-h-430">
@@ -340,24 +251,24 @@
                                     <h4 class="h4 tt color-type-1">leave Your comment</h4>
                                 </div>
                                 <div class="empty-sm-45 empty-xs-30"></div>
-                                    <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
-                                            <input type="text" class="input-field" placeholder="Name *" required="" value="{{user.name}}" id="comment-name">
-                                            <div class="empty-sm-20 empty-xs-20"></div>
-                                        </div>
-                                        <div class="col-sm-6 col-xs-12">
-                                            <input type="email" class="input-field" placeholder="Email *" required="" value="{{user.email}}" id="comment-email">
-                                            <div class="empty-sm-20 empty-xs-20"></div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <input type="text" class="input-field" placeholder="Name *" required="" value="{{user.name}}" id="comment-name">
+                                        <div class="empty-sm-20 empty-xs-20"></div>
                                     </div>
-                                    <textarea placeholder="Comment..." class="input-field" required="" id="comment-message"></textarea>
-                                    <div class="empty-sm-30 empty-xs-30"></div>
-                                    <div class="text-left">
-                                        <div class="page-button button-style-1 type-2">
-                                            <input type="submit" onclick="return(validReview({{dish.dish_id}}))">
-                                            <span class="txt">SUBMIT</span><i></i>
-                                        </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <input type="email" class="input-field" placeholder="Email *" required="" value="{{user.email}}" id="comment-email">
+                                        <div class="empty-sm-20 empty-xs-20"></div>
                                     </div>
+                                </div>
+                                <textarea placeholder="Comment..." class="input-field" required="" id="comment-message"></textarea>
+                                <div class="empty-sm-30 empty-xs-30"></div>
+                                <div class="text-left">
+                                    <div class="page-button button-style-1 type-2">
+                                        <input type="submit" onclick="return(validReview({{dish.dish_id}}))">
+                                        <span class="txt">SUBMIT</span><i></i>
+                                    </div>
+                                </div>
                             </article>
                         </div>
                     </div>
@@ -387,62 +298,60 @@
         </div>
         <div class="row">
             <div class="also-order-col-wrapper">
-                    <div id="dishes">
-                            <div class="col-sm-4">
-                                <div class="product-shortcode style-7">
-                                    <div class="product-label red">giảm giá 20%</div>
-                                    <div class="preview">
-                                        <img src="{{avatar}}" alt="" />
-                                        <div class="preview-buttons valign-middle ">
-                                            <div class="valign-middle-content">
-                                                <a class="button size-1 style-2" href="/dishes/{{dish_id}}">
+                <div id="dishes">
+                    <div class="col-sm-4">
+                        <div class="product-shortcode style-7">
+                            <div class="product-label red">giảm giá 20%</div>
+                            <div class="preview">
+                                <img src="{{avatar}}" alt="" />
+                                <div class="preview-buttons valign-middle ">
+                                    <div class="valign-middle-content">
+                                        <a class="button size-1 style-2" href="/dishes/{{dish_id}}">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
                                                         <span class="text">Xem chi tiết</span>
                                                     </span>
-                                                </a>
-                                                <a class="button size-1 style-3" href="#">
+                                        </a>
+                                        <a class="button size-1 style-3" href="#">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
                                                         <span class="text">Thêm vào giỏ</span>
                                                     </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dishes-title">
-                                        <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
-                                        <div class="h5 dish-name animate-to-green">{{name}}</div>
-                                    </div>
-
-                                    <div class="price">
-                                        <div class="row ">
-                                            <div class="h4  new-price col-md-6">
-                                                <b>230.000đ</b>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                                            <span class="h4 line-through simple-text old-price ">
-                                                                                230.000đ
-                                                                            </span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="icons">
-                                        <!-- quick view -->
-                                        <a class="entry open-popup" data-open="popup-gallery" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+                            <div class="dishes-title">
+                                <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
+                                <div class="h5 dish-name animate-to-green">{{name}}</div>
+                            </div>
+
+                            <div class="price">
+                                <div class="row ">
+                                    <div class="h4  new-price col-md-6">
+                                        <b>230.000đ</b>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                                <span class="h4 line-through simple-text old-price ">
+                                                    230.000đ
+                                                </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="icons">
+                                <!-- quick view -->
+                                <a class="entry open-popup" data-open="popup-gallery" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
 </section>
-
-
 </div>

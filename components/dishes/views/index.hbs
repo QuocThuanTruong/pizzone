@@ -46,7 +46,10 @@
                                 {{#each dishes}}
                                     <div class="col-sm-4">
                                         <div class="product-shortcode style-7">
-                                            <div class="product-label red">giảm giá 20%</div>
+                                            {{#if hasHotDeal}}
+                                                <div class="product-label red">giảm giá {{hotDeal.discount}}%</div>
+                                            {{/if}}
+
                                             <div class="preview">
                                                 <img src="{{avatar}}" alt="" />
                                                 <div class="preview-buttons valign-middle ">
@@ -57,7 +60,7 @@
                                                         <span class="text">Xem chi tiết</span>
                                                     </span>
                                                         </a>
-                                                        <a class="button size-1 style-3" onclick="changeCart({{dish_id}}, 1)">
+                                                        <a class="button size-1 style-3" onclick="changeCart({{dish_id}}, 1, 1)">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="img/icon-3.png" alt=""></span>
                                                         <span class="text">Thêm vào giỏ</span>
@@ -67,28 +70,33 @@
                                                 </div>
                                             </div>
                                             <div class="dishes-title">
-                                                <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
+                                                <div class="h5 size-1 color col-xs-b10">{{subcategoryName}}</div>
                                                 <div class="h5 dish-name animate-to-green">{{name}}</div>
                                             </div>
 
                                             <div class="price">
                                                 <div class="row ">
-                                                    <div class="h4  new-price col-md-6">
-                                                        <b>{{standardPrice 1 price}}</b>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                                            <span class="h4 line-through simple-text old-price ">
-                                                                                230.000đ
-                                                                            </span>
-                                                    </div>
-
+                                                    {{#if hasHotDeal}}
+                                                        <div class="h4  new-price col-md-6">
+                                                            <b>{{standardPrice 1 hotDeal.hotDealPrice}}</b>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span class="h4 line-through simple-text old-price ">
+                                                                {{standardPrice 1 price}}
+                                                            </span>
+                                                        </div>
+                                                    {{else}}
+                                                        <div class="h4  new-price col-md-6">
+                                                            <b>{{standardPrice 1 price}}</b>
+                                                        </div>
+                                                    {{/if}}
                                                 </div>
                                             </div>
 
                                             <div class="icons">
                                                 <!-- quick view -->
-                                                <a class="entry open-popup" data-open="popup-gallery" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a class="entry open-popup"><i class="fa fa-eye" aria-hidden="true" onclick="openPopup()"></i></a>
+                                                {{> quickView}}
                                                 <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
@@ -96,21 +104,24 @@
                                 {{/each}}
                             </div>
                             <script type="text/x-handlebars-template" id="dishes-template">
-                                \{{#each dishes}}
-                                   <div class="col-sm-4">
+                               \{{#each dishes}}
+                                    <div class="col-sm-4">
                                         <div class="product-shortcode style-7">
-                                            <div class="product-label red">giảm giá 20%</div>
+                                            \{{#if hasHotDeal}}
+                                                <div class="product-label red">giảm giá \{{hotDeal.discount}}%</div>
+                                            \{{/if}}
+
                                             <div class="preview">
-                                                <img src="\{{this.avatar}}" alt="" />
+                                                <img src="\{{avatar}}" alt="" />
                                                 <div class="preview-buttons valign-middle ">
                                                     <div class="valign-middle-content">
-                                                        <a class="button size-1 style-2" href="/dishes/\{{this.dish_id}}">
+                                                        <a class="button size-1 style-2" href="/dishes/\{{dish_id}}">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="img/icon-4.png" alt=""></span>
                                                         <span class="text">Xem chi tiết</span>
                                                     </span>
                                                         </a>
-                                                        <a class="button size-1 style-3" onclick="changeCart(\{{dish_id}}, 1)">
+                                                        <a class="button size-1 style-3" onclick="changeCart(\{{dish_id}}, 1, 1)">
                                                     <span class="button-wrapper">
                                                         <span class="icon"><img src="img/icon-3.png" alt=""></span>
                                                         <span class="text">Thêm vào giỏ</span>
@@ -120,27 +131,33 @@
                                                 </div>
                                             </div>
                                             <div class="dishes-title">
-                                                <div class="h5 size-1 color col-xs-b10">Pizza truyền thống</div>
-                                                <div class="h5 dish-name animate-to-green">\{{this.name}}</div>
+                                                <div class="h5 size-1 color col-xs-b10">\{{subcategoryName}}</div>
+                                                <div class="h5 dish-name animate-to-green">\{{name}}</div>
                                             </div>
 
                                             <div class="price">
                                                 <div class="row ">
-                                                    <div class="h4  new-price col-md-6">
-                                                        <b>\{{standardPrice 1 price}}</b>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <span class="h4 line-through simple-text old-price ">
-                                                            230.000đ
-                                                        </span>
-                                                    </div>
-
+                                                    \{{#if hasHotDeal}}
+                                                        <div class="h4  new-price col-md-6">
+                                                            <b>\{{standardPrice 1 hotDeal.hotDealPrice}}</b>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span class="h4 line-through simple-text old-price ">
+                                                                \{{standardPrice 1 price}}
+                                                            </span>
+                                                        </div>
+                                                    \{{else}}
+                                                        <div class="h4  new-price col-md-6">
+                                                            <b>\{{standardPrice 1 price}}</b>
+                                                        </div>
+                                                    \{{/if}}
                                                 </div>
                                             </div>
 
                                             <div class="icons">
-                                                <a class="entry open-popup" data-rel="1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <!-- quick view -->
+                                                <a class="entry open-popup"><i class="fa fa-eye" aria-hidden="true" onclick="openPopup()"></i></a>
+                                                \{{> quickView}}
                                                 <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             </div>
                                         </div>

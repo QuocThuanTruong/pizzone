@@ -1,24 +1,37 @@
 const dishModel = require('../dishes/model')
 
 exports.index = async (req, res, next) => {
-    const pizza = await dishModel.pizzaList()
-    const drinks = await dishModel.drinkList()
-    const sides = await dishModel.sideList()
+    const dishesHasHotDeal = await dishModel.getDishesHasHotDeal()
+    const pizza = await dishModel.listByCategory(1, 1, 3, '1')
+    const drinks = await dishModel.listByCategory(2, 1, 3, '1')
+    const sides = await dishModel.listByCategory(3, 1, 3, '1')
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
 
     const dataContext = {
-        cart: req.user ? req.user.cart : global.cart,
+        cart: cart,
         isLogin: req.user ? true : false,
         user : req.user,
         homePageActive: "active",
+        dishesHasHotDeal: dishesHasHotDeal,
         pizza: pizza,
         drinks: drinks,
         sides: sides
     }
 
-    if  (req.user) {
-        console.log(req.user.cart)
-
-    }
-
+    req.session.oldURL = req.originalUrl;
     res.render('../components/home/views/index', dataContext);
 };

@@ -5,15 +5,13 @@ exports.order = async (req, res, next) => {
     const cart = req.user.cart;
 
     for (let i = 0; i < cart.itemInCart.length; i++) {
-/*        cart.itemInCart[i].quantity = 0;*/
+        /*cart.itemInCart[i].quantity = 0;*/
         cart.itemInCart[i].is_active = 0;
-
-        console.log(cart.itemInCart[i])
 
         await cartModel.updateCartItem(cart.itemInCart[i], req.user.user_id)
     }
 
-    await orderModel.insertOrder(cart, req.user.user_id)
+    await orderModel.insertOrder(cart, req.session.totalCost, req.user.user_id)
 
     req.user.cart.itemInCart = [];
     req.user.cart.totalDishInCart = 0;

@@ -5,189 +5,27 @@ function gotoPage(categoryId, page) {
     let hasFilter = false;
 
     let subcategoryFilter = '';
-    let toppingFilter = '';
-    let sizeFilter = '';
-    let doughFilter = '';
 
-    if (categoryId === 1) {
-        //subcategory
-        if (document.getElementById("traditional").checked) {
-            hasFilter = true;
+    let subcategories = document.getElementsByName('subcategories-filter')
 
-            subcategoryFilter += '(d.subcategory = 1';
-        }
-
-        if (document.getElementById("seaFood").checked) {
-            hasFilter = true;
-
-            if (subcategoryFilter.length > 0) {
-                subcategoryFilter += ' or d.subcategory = 3';
-            } else {
-                subcategoryFilter += '(d.subcategory = 3'
-            }
-        }
-
-        if (document.getElementById("mixed").checked) {
-            hasFilter = true;
-
-            if (subcategoryFilter.length > 0) {
-                subcategoryFilter += ' or d.subcategory = 2';
-            } else {
-                subcategoryFilter += '(d.subcategory = 2'
-            }
-        }
-
-        if (hasFilter) {
-            subcategoryFilter += ')';
-
-            hasFilter = false;
-        }
-
-        //topping
-        if (document.getElementById("bellPepper").checked) {
-            hasFilter = true;
-
-            toppingFilter += '(dt.name LIKE \'%Ot chuong%\'';
-        }
-
-        if (document.getElementById("mushroom").checked) {
-            hasFilter = true;
-
-            if (toppingFilter.length > 0) {
-                toppingFilter += ' or dt.name LIKE \'%Nam%\'';
-            } else {
-                toppingFilter += '(dt.name LIKE \'%Nam%\''
-            }
-        }
-
-        if (document.getElementById("salad").checked) {
-            hasFilter = true;
-
-            if (toppingFilter.length > 0) {
-                toppingFilter += ' or dt.name LIKE \'%Cai xa lach%\'';
-            } else {
-                toppingFilter += '(dt.name LIKE \'%Cai xa lach%\'';
-            }
-        }
-
-        if (document.getElementById("smokedPork").checked) {
-            hasFilter = true;
-
-            if (toppingFilter.length > 0) {
-                toppingFilter += ' or dt.name LIKE \'%Thit xong khoi%\'';
-            } else {
-                toppingFilter += '(dt.name LIKE \'%Thit xong khoi%\'';
-            }
-        }
-
-        if (hasFilter) {
-            toppingFilter += ')';
-
-            hasFilter = false;
-        }
-
-        //Size
-        if (document.getElementById("pizzaSize1").checked) {
-            hasFilter = true;
-
-            sizeFilter += '(ds.name LIKE \'%25cm (250g)%\'';
-        }
-
-        if (document.getElementById("pizzaSize2").checked) {
-            hasFilter = true;
-
-            if (sizeFilter.length > 0) {
-                sizeFilter += ' or ds.name LIKE \'%30cm (450g)%\'';
-            } else {
-                sizeFilter += '(ds.name LIKE \'%30cm (450g)%\''
-            }
-        }
-
-        if (document.getElementById("pizzaSize3").checked) {
-            hasFilter = true;
-
-            if (sizeFilter.length > 0) {
-                sizeFilter += ' or ds.name LIKE \'%40cm (550g)%\'';
-            } else {
-                sizeFilter += '(ds.name LIKE \'%40cm (550g)%\'';
-            }
-        }
-
-        if (hasFilter) {
-            sizeFilter += ')';
-
-            hasFilter = false;
-        }
-
-        //Dough
-        if (document.getElementById("dough1").checked) {
-            hasFilter = true;
-
-            doughFilter += '(dd.name LIKE \'%Mong%\'';
-        }
-
-        if (document.getElementById("dough2").checked) {
-            hasFilter = true;
-
-            if (doughFilter.length > 0) {
-                doughFilter += ' or dd.name LIKE \'%Dày%\'';
-            } else {
-                doughFilter += '(dd.name LIKE \'%Day%\''
-            }
-        }
-
-        if (hasFilter) {
-            doughFilter += ')';
-
-            hasFilter = false;
-        }
-    } else if (categoryId === 2) {
-        //Size
-        if (document.getElementById("drinkSize1").checked) {
-            hasFilter = true;
-
-            sizeFilter += '(ds.name LIKE \'%L%\'';
-        }
-
-        if (document.getElementById("drinkSize2").checked) {
-            hasFilter = true;
-
-            if (sizeFilter.length > 0) {
-                sizeFilter += ' or ds.name LIKE \'%M%\'';
-            } else {
-                sizeFilter += '(ds.name LIKE \'%M%\''
-            }
-        }
-
-        if (hasFilter) {
-            sizeFilter += ')';
-
-            hasFilter = false;
+    for (let i = 0; i < subcategories.length; i++) {
+        if (subcategories[i].checked) {
+            subcategoryFilter += '(';
+            break;
         }
     }
-    else if (categoryId === 3) {
-        //Size
-        if (document.getElementById("sideSize1").checked) {
+
+    for (let i = 0; i < subcategories.length; i++) {
+        if (subcategories[i].checked) {
             hasFilter = true;
 
-            sizeFilter += '(ds.name LIKE \'%1 Nguoi An%\'';
+            subcategoryFilter += 'd.subcategory = ' + (i + 1) + ' OR ';
         }
+    }
 
-        if (document.getElementById("sideSize2").checked) {
-            hasFilter = true;
-
-            if (sizeFilter.length > 0) {
-                sizeFilter += ' or ds.name LIKE \'%2 Nguoi An%\'';
-            } else {
-                sizeFilter += '(ds.name LIKE \'%2 Nguoi An%\''
-            }
-        }
-
-        if (hasFilter) {
-            sizeFilter += ')';
-
-            hasFilter = false;
-        }
+    if (hasFilter) {
+        subcategoryFilter = subcategoryFilter.substr(0, subcategoryFilter.length - 4)
+        subcategoryFilter += ')';
     }
 
     const totalDishPerPageArr = [1, 2, 3, 4]
@@ -196,7 +34,13 @@ function gotoPage(categoryId, page) {
     const sortByArr = [1, 2, 3, 4]
     const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
 
-    const url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&size=' + sizeFilter + '&topping=' + toppingFilter + '&dough=' + doughFilter + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
+    let url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter +  '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
+
+    let keyName = document.getElementById('key-name').value;
+    if (keyName.length > 0) {
+        url += '&key_name=' + keyName;
+    }
+
     console.log(url)
     $.ajax({
         url: url,
@@ -221,17 +65,43 @@ function gotoPage(categoryId, page) {
             console.log(err)
         }
     })
-
-    /*      $.get(url, () => {
-
-          })*/
-
-    /*window.location.replace(url)*/
 }
 
-function changeCart(dish_id, type) {
-    const url='cart/change/' + dish_id + '?type=' + type;
+function changeCart(dish_id, type, sizeDish) {
+    console.log(dish_id)
+    console.log(type)
+    console.log(sizeDish)
+    let sizes = document.getElementsByName('sizes');
+    console.log(sizes.length)
+
+    if (sizes.length === 0) {
+        sizes = document.getElementsByName('sizes-' + dish_id)
+    }
+
+    let size = 0;
+
+    if (sizeDish !== undefined) {
+        size = sizeDish
+    } else {
+        for (let i = 0; i < sizes.length; i++) {
+            console.log(sizes[i])
+            if (sizes[i].checked) {
+                size = i + 1;
+
+                break;
+            }
+        }
+
+        if (size === 0) {
+            size = 1;
+        }
+    }
+
+    let quantity = document.getElementById('quantity').value;
+
+    const url='/cart/change/' + dish_id + '?type=' + type + '&size=' + size + '&quantity=' + quantity;
     console.log(url)
+
     $.ajax({
         url: url,
         type: "GET",
@@ -281,7 +151,7 @@ function isUserLogin(isLogin) {
 }
 
 function checkExistUsername(username) {
-    const url='user/api/is-exist/' + username;
+    const url='/user/api/is-exist/' + username;
     console.log(url)
     $.ajax({
         url: url,
@@ -307,7 +177,7 @@ function checkExistUsername(username) {
 function validationForm(element, name) {
     let username = document.getElementById('username').value;
 
-    const url='user/api/is-exist/' + username;
+    const url='/user/api/is-exist/' + username;
     console.log(url)
     $.ajax({
         url: url,
@@ -351,7 +221,7 @@ function checkUser() {
     let password = document.getElementById('password-sign-in').value;
     let result = true;
 
-    const url='user/api/check-user?username=' + username + '&password=' + password;
+    const url='/user/api/check-user?username=' + username + '&password=' + password;
     console.log(url)
     $.ajax({
         url: url,
@@ -360,16 +230,16 @@ function checkUser() {
             console.log(data)
 
             if (!data) {
-                result = false;
                 alert('username or password is incorrect')
+                return false;
+            } else {
+                $('#login-form').submit();
             }
         },
         error: function (err) {
             console.log(err)
         }
     })
-
-    return result;
 }
 
 function cancelOrder(order_id, ordinal_number, dish_id) {
@@ -421,4 +291,62 @@ function validReview(dish_id) {
     document.getElementById('comment-email').value = '';
     document.getElementById('comment-message').value = '';
     return true;
+}
+
+function checkVoucher() {
+    const code = document.getElementById('voucher-code').value;
+
+    const url = '/voucher/api/v1/isExistsVoucher/' + code;
+
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (!data.voucher) {
+                alert('voucher does not exists')
+            } else {
+                let totalCartTemplate = Handlebars.compile($('#cart-total-template').html());
+                let totalCart = totalCartTemplate(data)
+                $('#cart-total').html(totalCart)
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function checkPassWord(username) {
+    const oldPassword = document.getElementById('old-password').value;
+    const newPassword = document.getElementById('new-password').value;
+    const retype = document.getElementById('retype-newPassword').value;
+
+    const url='/user/api/check-user?username=' + username + '&password=' + oldPassword;
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            if (!data) {
+                alert('password is incorrect')
+                return false;
+            } else {
+                if (newPassword !== retype) {
+                    alert('new password and retype must be same')
+                    return false;
+                } else {
+                    if (oldPassword === newPassword) {
+                        alert('can not use old password')
+                        return false;
+                    } else {
+                        $('#change-password-form').submit()
+                    }
+                }
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 }
