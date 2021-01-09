@@ -1,11 +1,19 @@
-function openPopup() {
-    $('#quick-view').addClass('active')
+function openPopup(dish) {
+    let id = '#quick-view-' + dish;
+    $(id).addClass('active')
 }
 
-function closePopup() {
-    $('#quick-view').removeClass('active')
+function closePopup(dish) {
+    let id = '#quick-view-' + dish;
+    $(id).removeClass('active')
 }
 
 function getPriceFilter() {
-    console.log(document.getElementById('min-price').value)
+    console.log('cc')
+}
+
+function submitSearchFromHomepage() {
+    let inputSearch = document.getElementById('input-search').value;
+
+    window.location.replace('/dishes?name=' + inputSearch);
 }

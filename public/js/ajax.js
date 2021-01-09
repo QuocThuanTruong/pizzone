@@ -33,8 +33,10 @@ function gotoPage(categoryId, page) {
 
     const sortByArr = [1, 2, 3, 4]
     const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
+    let minPrice = parseInt(document.getElementById('min-price').value);
+    let maxPrice = parseInt(document.getElementById('max-price').value);
 
-    let url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter +  '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
+    let url='/dishes?category=' + categoryId + '&subcategory=' + subcategoryFilter + '&min=' + minPrice + '&max=' + maxPrice + '&page=' + page + '&total_dish_per_page=' + totalDishPerPage + '&sortBy=' +sortBy;
 
     let keyName = document.getElementById('key-name').value;
     if (keyName.length > 0) {
@@ -47,14 +49,18 @@ function gotoPage(categoryId, page) {
         type: "GET",
         success: function (data) {
             //render dishes
-            let dishesTemplate = Handlebars.compile($('#dishes-template').html());
-            let dishes = dishesTemplate({dishes: data.dishes})
-            $('#dishes').html(dishes)
+            let dishesTemplate = Handlebars.compile($('#dishes-template-grid').html());
+            let dishes = dishesTemplate({dishes: data.dishes});
+            $('#dishes-grid').html(dishes);
+
+            let dishesTemplate2 = Handlebars.compile($('#dishes-template-list').html());
+            let dishes2 = dishesTemplate2({dishes: data.dishes});
+            $('#dishes-list').html(dishes2);
 
             //render pagination-navigation
             let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
-            let pageNavigation = paginationTemplate({category: data.category, page : data.currentPage, totalPage: data.totalPage})
-            $('#page-navigation').html(pageNavigation)
+            let pageNavigation = paginationTemplate({category: data.category, page : data.currentPage, totalPage: data.totalPage});
+            $('#page-navigation').html(pageNavigation);
 
             //render total result
             let totalResultTemplate = Handlebars.compile($("#total-result-template").html());
@@ -72,11 +78,79 @@ function changeCart(dish_id, type, sizeDish) {
     console.log(type)
     console.log(sizeDish)
     let sizes = document.getElementsByName('sizes');
-    console.log(sizes.length)
 
     if (sizes.length === 0) {
         sizes = document.getElementsByName('sizes-' + dish_id)
     }
+
+    if (sizes.length === 0) {
+        sizes = document.getElementsByName('sizes-quick-view-' + dish_id)
+    }
+
+    let size = 0;
+
+    if (sizeDish !== undefined) {
+        size = sizeDish
+    } else {
+        for (let i = 0; i < sizes.length; i++) {
+            console.log(sizes[i])
+            if (sizes[i].checked) {
+                size = i + 1;
+
+                break;
+            }
+        }
+
+        if (size === 0) {
+            size = 1;
+        }
+    }
+
+    let quantity = document.getElementById('quantity').value;
+
+    const url='/cart/change/' + dish_id + '?type=' + type + '&size=' + size + '&quantity=' + quantity;
+    console.log(url)
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            console.log(data)
+            let cartItem = {
+                itemInCart: data.itemInCart,
+                totalCostInCart: data.totalCostInCart,
+                totalDishInCart: data.totalDishInCart
+            }
+
+            //render mini cart
+            let cartTemplate = Handlebars.compile($('#cart-item-template').html());
+            let cart = cartTemplate({cart: cartItem})
+            $('#cart-item').html(cart)
+
+            //render total dish in cart
+            let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
+            let totalDishInCart = totalDishInCartTemplate({cart: cartItem})
+            $('#total-dish-in-cart').html(totalDishInCart)
+
+            //render mini cost in cart
+            let totalCostInCartTemplate = Handlebars.compile($('#total-cost-in-cart-template').html());
+            let totalCostInCart = totalCostInCartTemplate({cart: cartItem})
+            $('#total-cost-in-cart').html(totalCostInCart)
+
+            //render mini cost in cart 2
+            let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
+            let totalCostInCart2 = totalCostInCart2Template({cart: cartItem})
+            $('#total-cost-in-cart-2').html(totalCostInCart2)
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function changeCartQuickView(dish_id, type, sizeDish) {
+    let sizes = document.getElementsByName('sizes-quick-view-' + dish_id);
 
     let size = 0;
 

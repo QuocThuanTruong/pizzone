@@ -70,11 +70,41 @@ Handlebars.registerHelper('standardPrice', function(quantity, price) {
     return priceStr.substr(0, priceStr.length - 3) + 'đ'
 })
 
-Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" data-rel="" id="quick-view">
+Handlebars.registerHelper('render_description', function(description) {
+    const MAX_LENGTH = 90;
+
+    if (description.length > MAX_LENGTH) {
+        description = description.substring(0, MAX_LENGTH-1)
+    }
+
+    description += "..."
+
+    return description;
+});
+
+Handlebars.registerHelper('render_igredients', function(igredients) {
+    const MAX_LENGTH = 80;
+
+    if (igredients.length > 0) {
+        const MAX_LENGTH = 90;
+
+        if (igredients.length > MAX_LENGTH) {
+            igredients = igredients.substring(0, MAX_LENGTH-1)
+        }
+
+        igredients += "..."
+    }
+
+    return igredients;
+
+    return igredients;
+});
+
+Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" data-rel="" id="quick-view-\{{dish_id}}">
     <div class="popup-wrap type-2">
         <div class="empty-sm-0 empty-xs-15"></div>
         <div class="container quick-wrapp">
-            <div class="close-popup type-2" onclick="closePopup()">
+            <div class="close-popup type-2" onclick="closePopup(\{{dish_id}})">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                      viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
                     <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
@@ -104,7 +134,7 @@ Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" 
                             \{{#each sizes}}
                                 <div class="checkbox-entry-wrap">
                                     <label class="checkbox-entry">
-                                        <input type="radio" name="sizes">
+                                        <input type="radio" name="sizes-quick-view-\{{dish}}" \{{set-default @index}}>
                                         <span>
                                     <i></i>
                                     <p>\{{name}}</span></p>
@@ -151,3 +181,10 @@ Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" 
     </div>
 </div>`)
 
+Handlebars.registerHelper('set-default', function(index) {
+    if (index === 0) {
+        return 'checked'
+    } else {
+        return ''
+    }
+})

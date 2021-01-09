@@ -64,13 +64,15 @@ function helper(hbs) {
     });
 
     hbs.registerHelper('render_igredients', function(igredients) {
-        const MAX_LENGTH = 90;
+        if (igredients.length > 0) {
+            const MAX_LENGTH = 90;
 
-        if (igredients.length > MAX_LENGTH) {
-            igredients = igredients.substring(0, MAX_LENGTH-1)
+            if (igredients.length > MAX_LENGTH) {
+                igredients = igredients.substring(0, MAX_LENGTH-1)
+            }
+
+            igredients += "..."
         }
-
-        igredients += "..."
 
         return igredients;
     });
@@ -90,6 +92,14 @@ function helper(hbs) {
         }
 
         return avatar
+    })
+
+    hbs.registerHelper('set-default', function(index) {
+        if (index === 0) {
+            return 'checked'
+        } else {
+            return ''
+        }
     })
 }
 

@@ -3,7 +3,7 @@ const DDiff = require('date-diff')
 
 function execQuery(queryString) {
     return new Promise(data => {
-     /*  console.log(queryString)*/
+/*       console.log(queryString)*/
 
         db.query(queryString, (err, results, fields) => {
             if (err) {
@@ -19,11 +19,11 @@ function execQuery(queryString) {
         })
     })
 }
-exports.totalDishByCategoryAndFilter = async (category, subcategory) => {
+exports.totalDishByCategoryAndFilter = async (category, minPrice, maxPrice, subcategory) => {
     let query = 'SELECT COUNT(DISTINCT(d.dish_id)) as total FROM dishes as d';
 
     query += ' WHERE';
-    query += ' d.category = ' + category + ' AND d.is_active = 1';
+    query += ' d.category = ' + category + ' AND d.is_active = 1 AND price >= ' + minPrice + ' AND price <= ' + maxPrice;
 
     if (subcategory !== '') {
         query += ' AND ';
@@ -38,11 +38,11 @@ exports.totalDishByCategoryAndFilter = async (category, subcategory) => {
     return result[0].total
 }
 
-exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subcategory, sortBy) => {
+exports.listByCategoryAndFilter = async (category, minPrice, maxPrice, page, totalDishPerPage, subcategory, sortBy) => {
     let query = 'SELECT d.dish_id, d.name, d.category, d.subcategory, d.avatar, d.igredients, d.detail_description, d.price, d.discount, d.rate, d.total_reviews, d.status FROM dishes as d';
 
     query += ' WHERE';
-    query += ' d.category = ' + category + ' AND d.is_active = 1';
+    query += ' d.category = ' + category + ' AND d.is_active = 1 AND price >= ' + minPrice + ' AND price <= ' + maxPrice;
 
     if (subcategory !== '') {
         query += ' AND ';
@@ -91,7 +91,7 @@ exports.listByCategoryAndFilter = async (category, page, totalDishPerPage, subca
 }
 
 
-exports.dishlist = async (page, totalDishPerPage, sortBy) => {
+exports.dishlist = async (page, minPrice, maxPrice, totalDishPerPage, sortBy) => {
     let sort = '';
 
     switch (sortBy) {
@@ -109,7 +109,7 @@ exports.dishlist = async (page, totalDishPerPage, sortBy) => {
             break;
     }
 
-    let dishes = await execQuery('SELECT * FROM dishes WHERE is_active = 1 ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+    let dishes = await execQuery('SELECT * FROM dishes WHERE is_active = 1 and price >= ' + minPrice + ' AND price <= ' + maxPrice + ' ORDER BY ' + sort + ' LIMIT ' + totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
 
     for (let i = 0; i < dishes.length; i++) {
         let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
@@ -140,7 +140,7 @@ exports.sideList = async () => {
     return await execQuery('SELECT * FROM dishes WHERE category = 3 AND is_active = 1')
 }
 
-exports.listByCategory = async (categoryId, page, totalDishPerPage, sortBy) => {
+exports.listByCategory = async (categoryId, minPrice, maxPrice, page, totalDishPerPage, sortBy) => {
     let sort = '';
 
     switch (sortBy) {
@@ -158,7 +158,7 @@ exports.listByCategory = async (categoryId, page, totalDishPerPage, sortBy) => {
             break;
     }
 
-    let dishes = await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
+    let dishes = await execQuery('SELECT * FROM dishes WHERE category = ' +categoryId + ' AND is_active = 1 and price >= ' + minPrice + ' and price <= ' + maxPrice + ' ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage))
 
     for (let i = 0; i < dishes.length; i++) {
         let hotDeal = await this.getHotDealByDishId(dishes[i].dish_id)
@@ -218,8 +218,8 @@ exports.getSubCategory = async (categoryId, subcategoryId) => {
     return subCategory[0]
 }
 
-exports.totalDish = async () => {
-    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes WHERE is_active = 1')
+exports.totalDish = async (minPrice, maxPrice) => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes WHERE is_active = 1 AND price >= ' + minPrice + ' AND price <= ' + maxPrice)
 
     return queryResult[0].total
 }
@@ -242,13 +242,13 @@ exports.totalSide = async () => {
     return queryResult[0].total
 }
 
-exports.totalDishByCategory = async (categoryId) => {
-    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes where category = '+categoryId+' AND is_active = 1')
+exports.totalDishByCategory = async (categoryId, minPrice, maxPrice) => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes where category = '+categoryId+' AND is_active = 1 and price >= ' + minPrice + ' AND price <= ' + maxPrice)
 
     return queryResult[0].total
 }
 
-exports.searchByKeyName = async (keyName, page, totalDishPerPage, sortBy) => {
+exports.searchByKeyName = async (keyName, minPrice, maxPrice, page, totalDishPerPage, sortBy) => {
     let sort = '';
 
     switch (sortBy) {
@@ -266,7 +266,7 @@ exports.searchByKeyName = async (keyName, page, totalDishPerPage, sortBy) => {
             break;
     }
 
-    let query = 'SELECT * FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage)
+    let query = 'SELECT * FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 and price >= ' + minPrice + ' AND price <= ' + maxPrice + ' ORDER BY ' + sort + ' LIMIT ' +totalDishPerPage + ' OFFSET '+((page - 1) * totalDishPerPage)
     query = query.split('%20').join(' ');
     query = query.split('%27').join('\'');
 
@@ -311,8 +311,8 @@ exports.getSizeByDishIdAndSizeId = async (dish_id, size_id) => {
     return sizeInfo[0];
 }
 
-exports.totalDishByKeyName = async (keyName) => {
-    let query = 'SELECT COUNT(dish_id) as total FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 ';
+exports.totalDishByKeyName = async (keyName, minPrice, maxPrice) => {
+    let query = 'SELECT COUNT(dish_id) as total FROM dishes WHERE MATCH(name) AGAINST(\''+keyName+'\') AND is_active = 1 and price >= ' + minPrice + ' AND price <= ' + maxPrice;
 
     query = query.split('%20').join(' ');
     query = query.split('%27').join('\'');
