@@ -35,3 +35,11 @@ exports.index = async (req, res, next) => {
     req.session.oldURL = req.originalUrl;
     res.render('../components/home/views/index', dataContext);
 };
+
+exports.verifyEmail = (req, res, next) => {
+    res.render('../components/home/views/verify');
+}
+
+exports.recoverPassword = (req, res, next) => {
+    res.render('../components/home/views/recoverPassword');
+}
