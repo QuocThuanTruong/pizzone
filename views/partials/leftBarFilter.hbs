@@ -43,18 +43,21 @@
         <h5 class="tt h5 color-2">Giá tiền</h5>
         <div class="empty-sm-20 empty-xs-10"></div>
         <form action="/" class="input-range">
-            <div class="slider-range" data-counter="$" data-position="start" data-from="0" data-to="1000000" data-min="0" data-max="1000000" onchange="getPriceFilter()">
+            <div class="slider-range" data-counter="đ" data-position="" data-from="0" data-to="1000000" data-min="0" data-max="1000000" >
                 <div class="range"></div>
                 <div class="range-val flex-align">
                     <div class="range-title">
                         Giá:
                     </div>
-                    <span class="amount-start" id="min-price"></span>
+                    <span class="amount-start" value="0">0đ</span>
+                    <input type="hidden" id="min-price" value="0">
                     <span>-</span>
-                    <span class="amount-end" value="1000000" id="max-price"></span>
+                    <span class="amount-end">1.000.000đ</span>
+                    <input type="hidden" id="max-price" value="1000000">
                 </div>
             </div>
         </form>
+        <button type="button" style="width: 100px; height: 100px; background-color: red" onclick="gotoPage({{category}}, 1)">
     </aside>
 
     <aside>

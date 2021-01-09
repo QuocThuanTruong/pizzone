@@ -15,22 +15,22 @@
                 </div>
             </div>
             <select class="input-field type-2 main-col" id="total_dish_per_page" onchange="gotoPage({{category}}, 1)">
-                {{#if totalDishPerPageOption1Selected}}
+                {{#if totalDishPerPageOption.option1}}
                     <option selected>1</option>
                 {{else}}
                     <option>1</option>
                 {{/if}}
-                {{#if totalDishPerPageOption2Selected}}
+                {{#if totalDishPerPageOption.option2}}
                     <option selected>2</option>
                 {{else}}
                     <option>2</option>
                 {{/if}}
-                {{#if totalDishPerPageOption3Selected}}
+                {{#if totalDishPerPageOption.option3}}
                     <option selected>3</option>
                 {{else}}
                     <option>3</option>
                 {{/if}}
-                {{#if totalDishPerPageOption4Selected}}
+                {{#if totalDishPerPageOption.option4}}
                     <option selected>4</option>
                 {{else}}
                     <option>4</option>

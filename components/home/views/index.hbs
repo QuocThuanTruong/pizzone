@@ -72,7 +72,7 @@
                                                                     {{#each sizes}}
                                                                         <div class="checkbox-entry-wrap">
                                                                             <label class="checkbox-entry">
-                                                                                <input type="radio" name="sizes-{{dish}}" value="{{size_id}}">
+                                                                                <input type="radio" name="sizes-{{dish}}" value="{{size_id}}" {{set-default @index}}>
                                                                                 <span>
                                                                                     <i></i>
                                                                                     <p>{{name}}</span></p>
