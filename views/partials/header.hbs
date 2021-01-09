@@ -92,8 +92,9 @@
                   </svg>
                     </a>
 
-                    <div class="shop-card-item">
-                        <div class="shop-icon">
+
+                    <div class="shop-card-item" >
+                        <div class="shop-icon" >
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129" width="16px" height="16px">
                                 <g>
                                     <g>
@@ -106,9 +107,11 @@
                                 \{{cart.totalDishInCart}}
                             </script>
                         </div>
-                        <span class="shop-card-price" id="total-cost-in-cart">Total: <b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span>
+                        <a href="/cart">
+                        <span class="shop-card-price" id="total-cost-in-cart">Tổng: <b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span>
+                        </a>
                         <script type="text/x-handlebars-template" id="total-cost-in-cart-template">
-                                Total: <b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b>
+                                Tổng: <b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b>
                         </script>
                         <div class="shop-card-list">
                             <div class="shop-card-align-mobile">
@@ -188,7 +191,7 @@
                                     </script>
 
                                     <div class="fr">
-                                        <a class="page-button button-style-1 type-2" href="/cart" onclick="return(isUserLogin({{isLogin}}))">
+                                        <a class="page-button button-style-1 type-2" href="/cart/checkout" onclick="return(isUserLogin({{isLogin}}))">
                                             <span class="txt">Đặt món</span>
                                         </a>
                                     </div>
@@ -196,6 +199,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     {{#if isLogin}}
                         <div class="login-item">

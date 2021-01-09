@@ -2,6 +2,10 @@ const dishModel = require('../dishes/model')
 const cartModel = require('./model')
 
 exports.index = async (req, res, next) => {
+    res.render('../components/cart/views/index');
+}
+
+exports.checkout = async (req, res, next) => {
     let cart = {}
 
     if (req.user) {

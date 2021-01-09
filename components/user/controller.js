@@ -15,6 +15,14 @@ const userModel = require('./model')
 const orderModel = require('../order/model')
 const userService = require('./service')
 
+exports.dummy = (req, res, next) => {
+    res.render('../components/user/views/dummyOrder');
+}
+
+exports.dummyDetail = (req, res, next) => {
+    res.render('../components/user/views/dummyDetail');
+}
+
 exports.index = (req, res, next) => {
     const dataContext = {
         cart: req.user.cart,

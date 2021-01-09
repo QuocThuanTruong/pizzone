@@ -1,0 +1,248 @@
+<section class="section">
+    <div class="empty-lg-100 empty-md-80 empty-sm-60 empty-xs-50"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="text-center">
+                    <ul class="item-tabs type-2">
+                        <li class="active"><a href="/user/my-orders" class="link-hover-line type-2">Đơn hiện tại</a></li>
+                        <li class=""><a href="/user/my-orders" class="link-hover-line type-2">Đơn đã đặt</a></li>
+                        <li class=""><a href="/user/my-orders" class="link-hover-line type-2">Đơn đã hủy</a></li>
+                    </ul>
+                </div>
+                <div class="tab-container-wraps">
+                    <!-- current -->
+                    <div class="tab-container-item min-h-430 active" style="display: block;">
+                        <div id="current-order">
+                                <div class="empty-sm-50 empty-xs-30"></div>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="menu-item menu-item-7">
+
+
+                                        <div class="text">
+                                            <div class="product-shortcode style-7 sale-label-container">
+                                                <div class="product-label yellow sale-content">Đang giao hàng</div>
+                                            </div>
+
+                                            <!-- list detail -->
+                                            <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">1. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>Size xxxl</p>
+                                            </div>
+
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="align-inline">
+                                                <!-- price per 1 item -->
+                                                <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                                <span>&nbsp;&nbsp;&nbsp;</span>
+                                                <h5 class="h4 caption align-inline">x 3</h5>
+                                            </div>
+                                            <div class="empty-sm-25 empty-xs-25"></div>
+                                            <!-- end list -->
+
+                                            <!-- list detail -->
+                                            <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">2. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>Size xxxl</p>
+                                            </div>
+
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="align-inline">
+                                                <!-- price per 1 item -->
+                                                <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                                <span>&nbsp;&nbsp;&nbsp;</span>
+                                                <h5 class="h4 caption align-inline">x 3</h5>
+                                            </div>
+                                            <div class="empty-sm-25 empty-xs-25"></div>
+                                            <!-- end list -->
+
+                                        </div>
+                                        <div class="menu-button ">
+                                            <a class="button size-1 style-2 margin-bot-10" href="/dummyDetail">
+                                                <span class="button-wrapper">
+                                                    <span class="icon"><img src="./Pizzone_files/icon-4.png" alt=""></span>
+                                                    <span class="text">Xem chi tiết</span>
+                                                </span>
+                                            </a>
+
+                                            <a class="button size-1 style-3" onclick="cancelOrder({{order_id}}, {{ordinal_number}}, {{dish_id}})">
+                                                <span class="button-wrapper">
+                                                    <span class="icon"><img src="./Pizzone_files/icon-3.png" alt=""></span>
+                                                    <span class="text">Hủy đơn</span>
+                                                </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-price style-2">
+                                            <div class="row">
+                                                <span class="h4 simple-text old-price ">
+                                                    Tổng tiền
+                                                </span>
+                                            </div>
+
+                                            <div class="custome-padd-top-10">
+                                                <div class="h4  new-price row">
+                                                    <b>{{standardPrice quantity orderPrice}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-container-item min-h-430" style="display: none;">
+                        <div id="dishes">
+
+                                <div class="empty-sm-50 empty-xs-30"></div>
+                            <div class="menu-item menu-item-7">
+
+                                        <div class="text">
+                                            <div class="product-shortcode style-7 sale-label-container">
+                                                <div class="product-label green sale-content">Giao hàng thành công</div>
+                                            </div>
+
+                                            <!-- list detail -->
+                                            <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">1. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>Size xxxl</p>
+                                            </div>
+
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="align-inline">
+                                                <!-- price per 1 item -->
+                                                <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                                <span>&nbsp;&nbsp;&nbsp;</span>
+                                                <h5 class="h4 caption align-inline">x 3</h5>
+                                            </div>
+                                            <div class="empty-sm-25 empty-xs-25"></div>
+                                            <!-- end list -->
+
+                                            <!-- list detail -->
+                                            <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">2. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>Size xxxl</p>
+                                            </div>
+
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="align-inline">
+                                                <!-- price per 1 item -->
+                                                <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                                <span>&nbsp;&nbsp;&nbsp;</span>
+                                                <h5 class="h4 caption align-inline">x 3</h5>
+                                            </div>
+                                            <div class="empty-sm-25 empty-xs-25"></div>
+                                            <!-- end list -->
+                                        </div>
+                                        <div class="menu-button">
+                                            <a class="button size-1 style-3 button-order" href="/dishes/{{dish_id}}">
+                                            <span class="button-wrapper">
+                                                <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
+                                                <span class="text">Xem chi tiết</span>
+                                            </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="menu-price style-2">
+                                            <div class="row">
+                                            <span class="h4 simple-text old-price ">
+                                                Tổng tiền
+                                            </span>
+                                            </div>
+
+                                            <div class="custome-padd-top-10">
+                                                <div class="h4  new-price row">
+                                                    <b>{{standardPrice quantity orderPrice}}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-container-item min-h-430" style="display: none;">
+                        <div id="dishes">
+
+                            <div class="empty-sm-50 empty-xs-30"></div>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="menu-item menu-item-7">
+
+
+                                    <div class="text">
+                                        <div class="product-shortcode style-7 sale-label-container">
+                                            <div class="product-label red sale-content">Đã hủy</div>
+                                        </div>
+
+                                        <!-- list detail -->
+                                        <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">1. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="simple-text">
+                                            <p>Size xxxl</p>
+                                        </div>
+
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="align-inline">
+                                            <!-- price per 1 item -->
+                                            <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                            <h5 class="h4 caption align-inline">x 3</h5>
+                                        </div>
+                                        <div class="empty-sm-25 empty-xs-25"></div>
+                                        <!-- end list -->
+
+                                        <!-- list detail -->
+                                        <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">2. PIZZA HẢI SẢN PESTO XANH</a></h5>
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="simple-text">
+                                            <p>Size xxxl</p>
+                                        </div>
+
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="align-inline">
+                                            <!-- price per 1 item -->
+                                            <h5 class="h4 caption color-1 align-inline">50.00 đ</h5>
+                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                            <h5 class="h4 caption align-inline">x 3</h5>
+                                        </div>
+                                        <div class="empty-sm-25 empty-xs-25"></div>
+                                        <!-- end list -->
+                                    </div>
+                                    <div class="menu-button">
+                                        <a class="button size-1 style-3 button-order" href="/dishes/{{dish_id}}">
+                                            <span class="button-wrapper">
+                                                <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
+                                                <span class="text">Xem chi tiết</span>
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="menu-price style-2">
+                                        <div class="row">
+                                            <span class="h4 simple-text old-price ">
+                                                Tổng tiền
+                                            </span>
+                                        </div>
+
+                                        <div class="custome-padd-top-10">
+                                            <div class="h4  new-price row">
+                                                <b>{{standardPrice quantity orderPrice}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
