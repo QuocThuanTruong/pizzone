@@ -15,11 +15,11 @@ exports.index = async (req, res, next) => {
             byCategory = true;
         }
 
-/*        if (req.session.totalDishPerPage === undefined) {
+        if (req.session.totalDishPerPage === undefined) {
             req.session.totalDishPerPage = 1
-        }*/
+        }
 
-        let totalDishPerPage = 1/*parseInt(req.session.totalDishPerPage)*/
+        let totalDishPerPage = parseInt(req.session.totalDishPerPage)
 
         let totalDishPerPageOption = {
             option1: false,
@@ -164,7 +164,7 @@ exports.pagination = async (req, res, next) => {
         currentPage = 1;
 
     if (totalDishPerPage === undefined)
-        totalDishPerPage = 1/*parseInt(req.session.totalDishPerPage);*/
+        totalDishPerPage = parseInt(req.session.totalDishPerPage);
     else {
         req.session.totalDishPerPage = parseInt(totalDishPerPage);
     }
