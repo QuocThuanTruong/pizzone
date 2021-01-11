@@ -204,6 +204,9 @@ exports.pagination = async (req, res, next) => {
     res.send(data)
 }
 
+
+
+
 exports.detail = async (req, res, next) => {
     const id = req.params.id
 
@@ -254,6 +257,8 @@ exports.detail = async (req, res, next) => {
     let otherDishResult = [];
 
     for (let i = 0; i < otherDishType1.length; i++) {
+        console.log(otherDishType1[i].category)
+        console.log( otherDishType1[i].subcategory)
         subcategoryName = await dishModel.getSubCategory(otherDishType1[i].category, otherDishType1[i].subcategory)
         otherDishType1[i].subcategoryName = subcategoryName.name
         otherDishResult.push(otherDishType1[i])
@@ -265,7 +270,7 @@ exports.detail = async (req, res, next) => {
         otherDishResult.push(otherDishType2[i])
     }
 
-    let review = await reviewModel.getListReviewByDishId(id)
+    let review = await reviewModel.getListReviewByDishId(1, id)
 
     let cart = {}
 
@@ -283,13 +288,24 @@ exports.detail = async (req, res, next) => {
         }
     }
 
+    let totalReviews = await reviewModel.getTotalReviewById(id)
+
+
+    let totalPage = Math.ceil(totalReviews / (5 * 1.0))
+
+
+
+
     const dataContext = {
+        id: id,
         menuPageActive: "active",
         isLogin: req.user ? true : false,
         user: req.user,
         cart: cart,
         isActive : isActive,
         dish: dish,
+        totalPage: totalPage,
+        page: 1,
         otherDish: otherDishResult,
         review: review
     }

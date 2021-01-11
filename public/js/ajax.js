@@ -48,6 +48,9 @@ function gotoPage(categoryId, page) {
         url: url,
         type: "GET",
         success: function (data) {
+
+            console.log(data)
+
             //render dishes
             let dishesTemplate = Handlebars.compile($('#dishes-template-grid').html());
             let dishes = dishesTemplate({dishes: data.dishes});
@@ -72,6 +75,41 @@ function gotoPage(categoryId, page) {
         }
     })
 }
+
+
+function gotoReview(dish, page) {
+    if (dish === 0) {
+        dish = ""
+    }
+
+    let url='/review/paging/' + dish + '?page=' + page;
+
+    console.log(url)
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+
+            //render review
+            let reviewsTemplate = Handlebars.compile($('#review-template').html());
+            let reviews = reviewsTemplate({review: data.review});
+            $('#review').html(reviews);
+
+
+            //render pagination-navigation
+            let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
+            let pageNavigation = paginationTemplate({id: data.review[0].dish, page: data.currentPage, totalPage: data.totalPage});
+            $('#page-navigation').html(pageNavigation);
+
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
 
 function changeCart(dish_id, type, sizeDish) {
     console.log(dish_id)

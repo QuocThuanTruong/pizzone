@@ -19,21 +19,27 @@ function execQuery(queryString) {
     })
 }
 
-exports.getListReviewByDishId = async (dish_id) => {
-    let reviews = await execQuery('SELECT * FROM dishes_review where dish = ' + dish_id)
+exports.getListReviewByDishId = async (page, dish_id) => {
+    let reviews = await execQuery('SELECT * FROM dishes_review where dish = ' + dish_id + ' ORDER BY posted_date DESC' + ' LIMIT ' + 5 + ' OFFSET '+((page - 1) * 1))
 
     for (let i = 0; i < reviews.length; i++) {
         let avatar = await execQuery('SELECT avatar as a FROM user where user_id = ' + reviews[i].user)
 
         if (avatar.length > 0) {
-            reviews[i].avatar = avatar[0].a
+            reviews[i].avatar = avatar[0].avatar
         } else {
-            reviews[i].avatar = '/img/user_avatar.jpg'
+            reviews[i].avatar = '/img/user_avatar.png'
         }
 
     }
 
     return reviews;
+}
+
+exports.getTotalReviewById = async (dish_id) => {
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes_review WHERE is_active = 1')
+
+    return queryResult[0].total
 }
 
 exports.insertReview = async (dish_id, user_id, name, email, message) => {

@@ -7,7 +7,7 @@
                     <div class="col-lg-6 col-lg-offset-3 col-sm-12 col-sm-offset-0">
                         <div class="simple-item color-type-1 text-center">
                             <div class="main-title">
-                                <h2 class="h2 title">Our menu</h2>
+                                <h2 class="h2 title">Menu của chúng tôi</h2>
                                 <div class="empty-sm-30"></div>
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="simple-text md">
@@ -36,7 +36,9 @@
                     <!-- grid view -->
                     <div class="tab-container-item min-h-430">
                         <div class="row row-4-columns row-3-columns row-2-columns">
-                            <div id="dishes-grid">{{#each dishes}}
+                            <div id="dishes-grid">
+
+                                {{#each dishes}}
                                 <div class="col-sm-4">
                                     <div class="product-shortcode style-7">{{#if hasHotDeal}}
                                         <div class="product-label red">giảm giá {{hotDeal.discount}}%</div>{{/if}}
@@ -69,14 +71,17 @@
                                                     {{standardPrice 1 price}}
                                                 </span>
                                                 </div>{{else}}
-                                                <div class="h4  new-price col-md-6"> <b>{{standardPrice 1 price}}</b>
+                                                <div class="h4  new-price col-md-12"> <b>{{standardPrice 1 price}}</b>
                                                 </div>{{/if}}</div>
                                         </div>
                                         <div class="icons">
                                             <!-- quick view --><a class="entry open-popup"><i class="fa fa-eye" aria-hidden="true" onclick="openPopup({{dish_id}})"></i></a> {{> quickView}} <a class="entry"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
-                                </div>{{/each}}</div>
+                                </div>
+                                {{/each}}
+                            </div>
+
                             <script type="text/x-handlebars-template" id="dishes-template-grid">
                                 \{{#each dishes}}
                                 <div class="col-sm-4">
@@ -121,7 +126,7 @@
 								                                                            </span>
                                                 </div>
                                                 \{{else}}
-                                                <div class="h4  new-price col-md-6">
+                                                <div class="h4  new-price col-md-12">
                                                     <b>\{{standardPrice 1 price}}</b>
                                                 </div>
                                                 \{{/if}}
@@ -142,7 +147,10 @@
                     <!-- list view -->
                     <div class="tab-container-item min-h-430">
                         <div class="row">
-                            <div id="dishes-list">{{#each dishes}}
+                            <div id="dishes-list">
+
+                                {{#each dishes}}
+
                                 <div class="empty-sm-50 empty-xs-30"></div>
                             <div class="col-md-12 col-xs-12">
                                 <div class="menu-item menu-item-7">
@@ -211,7 +219,9 @@
                                         </div>{{/if}}
                                         <div class="custome-padd-top-10"></div>
                                     </div>
-                                </div>{{/each}}</div>
+                                </div>
+                                {{/each}}
+                            </div>
                             </div>
                             <script type="text/x-handlebars-template" id="dishes-template-list">
                             \{{#each dishes}}
