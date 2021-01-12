@@ -67,7 +67,7 @@
         var picker_preview_image = $('<img src="'+src+'" class="img-responsive img-rounded" />');
         
         // The remove image button
-        var picker_preview_remove = $('<button class="btn page-button button-style-1 type-2 btn-remove-img-upload"><small>Remove</small></button>');
+        var picker_preview_remove = $('<button class="btn page-button button-style-1 type-2 btn-remove-img-upload"><span class="txt">Remove</span></button>');
 
         if (picker_input) {
             picker_input[0].hidden = true

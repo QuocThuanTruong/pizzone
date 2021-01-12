@@ -119,18 +119,11 @@
                         <div class="simple-text">
                             <p>{{dish.igredients}}</p>
                         </div>
+                        <div class="empty-sm-25 empty-xs-20"></div>
                     {{/if}}
                 </aside>
 
-                <div class="empty-sm-30 empty-xs-20"></div>
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class="col-lg-3"></div>
-
-            <div class="col-lg-8">
-                <div class="fl">
+                <aside>
                     <h5 class="h5 sm follow-title quntity">Quantity:</h5>
                     <div class="custom-input-number type-2">
                         <button type="button" class="cin-btn cin-decrement">
@@ -141,35 +134,40 @@
                             <img src="/img/right_arr.png" alt="">
                         </button>
                     </div>
-                </div>
 
-                <div class="col-md-offset-2"/>
+                    <div class="empty-sm-25 empty-xs-20"></div>
+                </aside>
 
-                <div class="row">
-                    <div class="button-wrap col-md-4" data-swiper-parallax="-500"
-                         data-swiper-parallax-duration="1000">
-                        <a class="button size-2 style-3" onclick="changeCart({{dish.dish_id}}, 1)">
+                <aside>
+                    <div class="empty-sm-15 empty-xs-10"></div>
+                        <div class="row">
+                            <div class="button-wrap col-md-5" data-swiper-parallax="-500"
+                                 data-swiper-parallax-duration="1000">
+                                <a class="button size-2 style-3" onclick="changeCart({{dish.dish_id}}, 1)">
                        <span class="button-wrapper">
                                <span class="icon"><img src="../../img/icon-3.png" alt=""></span>
                                <span class="text">Thêm vào giỏ</span>
                        </span>
-                        </a>
-                    </div>
+                                </a>
+                            </div>
 
-                    <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
-                         data-swiper-parallax-duration="1000">
-                        <a class="button size-2 style-2" href="#">
+                            <div class="button-wrap col-md-4 " data-swiper-parallax="-500"
+                                 data-swiper-parallax-duration="1000">
+                                <a class="button size-2 style-2" href="#">
                             <span class="button-wrapper">
                                 <span class="icon"><i class="fa fa-heart-o"></i></span>
                                 <span class="text">Yêu thích</span>
                              </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                                </a>
+                            </div>
+                        </div>
 
-            <div class="col-lg-1"></div>
+                </aside>
+
+            </div>
         </div>
+
+
 
     </div>
 </section>
@@ -181,25 +179,48 @@
             <div class="col-md-12 col-xs-12">
                 <div class="text-center">
                     <ul class="item-tabs type-2">
-                        <li class="active"><a href="#" class="link-hover-line type-2">Description</a></li>
-                        <li><a href="#" class="link-hover-line type-2">Reviews</a></li>
+
+                        {{#if isActive.isPizzaCatActive}}
+                        <li class="active"><a href="#" class="link-hover-line type-2">Mô tả</a></li>
+                        {{else}}
+                            <li class="active"><a href="#" class="link-hover-line type-2">Hình ảnh</a></li>
+                        {{/if}}
+
+                        <li><a href="#" class="link-hover-line type-2">Bình luận</a></li>
+
                     </ul>
                 </div>
                 <div class="tab-container-wraps">
                     <div class="tab-container-item min-h-430">
+
+
+                    {{#if isActive.isPizzaCatActive}}
                         <div class="empty-sm-60 empty-xs-30"></div>
                         <div class="simple-text">
                             <p>{{dish.detail_description}}</p>
                         </div>
+                    {{/if}}
+
+                        <div class="row">
+                            {{#each dish.images}}
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="empty-sm-45 empty-xs-20"></div>
+                                <img src="{{image_url}}" alt="" class="full-img">
+                            </div>
+                            {{/each}}
+                        </div>
+
                     </div>
                     <div class="tab-container-item min-h-430">
                         <div class="empty-sm-60 empty-xs-30"></div>
                         <div class="col-md-10 col-md-offset-1 col-xs-12">
                             <article>
+
                                 <div class="comment-wrap" id="review">
-                                    <ul>
+
                                         {{#each review}}
-                                            <li>
+
+                                                <div class="empty-sm-25 empty-xs-25"></div>
                                                 <div class="testimonials-item testi-type-4 style-2">
                                                     <div class="img">
                                                         <img src="{{avatar}}" alt="">
@@ -216,14 +237,16 @@
                                                         <span class="separator"></span>
                                                     </div>
                                                 </div>
-                                            </li>
+
                                         {{/each}}
-                                    </ul>
                                 </div>
+
+
                                 <script type="text/x-handlebars-template" id="review-template">
-                                    <ul>
+
                                         \{{#each review}}
-                                            <li>
+
+                                             <div class="empty-sm-25 empty-xs-25"></div>
                                                 <div class="testimonials-item testi-type-4 style-2">
                                                     <div class="img">
                                                         <img src="\{{avatar}}" alt="">
@@ -240,20 +263,34 @@
                                                         <span class="separator"></span>
                                                     </div>
                                                 </div>
-                                            </li>
+
                                         \{{/each}}
-                                    </ul>
+
                                 </script>
-                                <div class="empty-sm-50 empty-xs-30"></div>
+
+                                <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1 col-xs-12">
+                                        <div class="page-navigation" id="page-navigation">{{{render_review_pagination id page totalPage}}}</div>
+
+                                        <script type="text/x-handlebars-template" id="page-navigation-template">
+                                             \{{{render_review_pagination id page totalPage}}}
+                                        </script>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="empty-sm-50 empty-xs-40"></div>
                             </article>
                             <article>
                                 <div class="text-left color-type-2">
-                                    <h4 class="h4 tt color-type-1">leave Your comment</h4>
+                                    <h4 class="h4 tt color-type-1">Để lại bình luận</h4>
                                 </div>
                                 <div class="empty-sm-45 empty-xs-30"></div>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
-                                        <input type="text" class="input-field" placeholder="Name *" required="" value="{{user.name}}" id="comment-name">
+                                        <input type="text" class="input-field" placeholder="Tên của bạn *" required="" value="{{user.name}}" id="comment-name">
                                         <div class="empty-sm-20 empty-xs-20"></div>
                                     </div>
                                     <div class="col-sm-6 col-xs-12">
@@ -261,12 +298,12 @@
                                         <div class="empty-sm-20 empty-xs-20"></div>
                                     </div>
                                 </div>
-                                <textarea placeholder="Comment..." class="input-field" required="" id="comment-message"></textarea>
+                                <textarea placeholder="Bình luận..." class="input-field" required="" id="comment-message"></textarea>
                                 <div class="empty-sm-30 empty-xs-30"></div>
                                 <div class="text-left">
                                     <div class="page-button button-style-1 type-2">
                                         <input type="submit" onclick="return(validReview({{dish.dish_id}}))">
-                                        <span class="txt">SUBMIT</span><i></i>
+                                        <span class="txt">ĐĂNG</span><i></i>
                                     </div>
                                 </div>
                             </article>
@@ -341,7 +378,7 @@
                                                             </span>
                                             </div>
                                         {{else}}
-                                            <div class="h4  new-price col-md-6">
+                                            <div class="h4 text-center new-price col-md-12">
                                                 <b>{{standardPrice 1 price}}</b>
                                             </div>
                                         {{/if}}

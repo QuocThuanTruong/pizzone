@@ -37,11 +37,32 @@ exports.getUserByUsernameAndPassword = async (username, password) => {
    return false
 }
 
+exports.getUserIDByEmail = async (email) => {
+    const users =  await execQuery('SELECT * FROM user WHERE email = \''+ email + '\' and is_active = 1')
+    let user = users[0];
+
+    return user.user_id;
+}
+
+exports.getUserIDPassiveByEmail = async (email) => {
+    const users =  await execQuery('SELECT * FROM user WHERE email = \''+ email + '\' and is_active = 0')
+    let user = users[0];
+
+    return user.user_id;
+}
+
 exports.getUserById = async (id) => {
     const users =  await execQuery('SELECT * FROM user WHERE user_id = '+ id + ' and is_active = 1')
     let user = users[0];
 
     user.cart = await cartModel.getCartByUserId(id)
+
+    return user;
+}
+
+exports.getUserToLogin = async (id) => {
+    const users =  await execQuery('SELECT * FROM user WHERE user_id = '+ id + ' and is_active = 1')
+    let user = users[0];
 
     return user;
 }
@@ -79,10 +100,14 @@ exports.getMaxUserId = async () => {
     return result[0].max
 }
 
-exports.addNewUser = async (username, email, password) => {
+exports.addNewUser = async (username, email, password, is_active) => {
     const id = await this.getMaxUserId() + 1
 
-    const _ = await execQuery('INSERT INTO user(user_id, name, avatar, email, phone, username, password, address, role, is_active) values('+ id +', \'\', \'\', \''+ email +'\', \'\', \''+ username +'\', \''+ password +'\', \'\', 0, 1)');
+    const _ = await execQuery('INSERT INTO user(user_id, name, avatar, email, phone, username, password, address, role, is_active) values('+ id +', \'\', \'\', \''+ email +'\', \'\', \''+ username +'\', \''+ password +'\', \'\', 0,' + is_active + ')');
+}
+
+exports.activeUser = async (user_id, is_active) => {
+    const _ = await execQuery('UPDATE user SET is_active = ' + is_active + ' WHERE user_id = ' + user_id)
 }
 
 exports.getCartById = async (id) => {

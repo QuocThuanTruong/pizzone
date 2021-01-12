@@ -1,0 +1,59 @@
+
+<section class="section">
+    <div class="empty-lg-115 empty-md-100 empty-sm-60 empty-xs-60"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-xs-12">
+                <div class="main-caption text-center color-type-2">
+                    <h2 class="h2 title">Verify email</h2>
+                    <div class="empty-sm-30"></div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="simple-text md">
+                            <p>Vui lòng nhập email để nhận link xác thực</p>
+                        </div>
+
+                        <!-- thông báo lỗi -->
+                        <div class="simple-text md">
+                            <p id="verify-fail" style="color: red;"></p>
+                        </div>
+
+                    </div>
+                    <div class="empty-sm-55 empty-xs-25"></div>
+
+                    <form action="/auth/send" method="post" id="verify-form">
+                        <div class="col-md-12">
+                            <div class="input-field-icon">
+                                {{#if isNew}}
+                                    <input type="text" class="input-field" value="Người dùng mới" name="isNewUser" id="new-user" readonly>
+                                {{/if}}
+
+                                <input type="email" class="input-field" placeholder="Email*" value="{{email}}" name="verifyEmail" id="verify-email" required="">
+                                <div class="icon">
+                                    <i class="fa fa-bars"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20  empty-xs-20"></div>
+                        </div>
+
+                        <div class="empty-sm-30  empty-xs-20"></div>
+
+                        <div class="row">
+<!--                            <div class="page-button button-style-1 type-3" style="margin-right: 40px;">-->
+<!--                                <input type="submit">-->
+<!--                                <span class="txt">Resend</span><i></i>-->
+<!--                            </div>-->
+
+
+                            <div class="page-button button-style-1 type-2">
+                                <input type="submit">
+                                <span class="txt">Send</span><i></i>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="empty-lg-100 empty-md-100 empty-sm-60 empty-xs-60"></div>
+    </div>
+</section>
+</div>

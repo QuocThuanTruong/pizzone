@@ -1,17 +1,17 @@
 <div class="shop-filter">
     <div class="found-items">
         <div class="simple-text" id="total-result">
-            <p>Found <span class="main-col"><b>{{result.totalResult}}</b></span> items</p>
+            <p>Tìm thấy <span class="main-col"><b>{{result.totalResult}}</b></span> món ăn</p>
         </div>
         <script type="text/x-handlebars-template" id="total-result-template">
-            <p>Found <span class="main-col"><b>\{{totalResult}}</b></span> items</p>
+            <p>Tìm thấy <span class="main-col"><b>\{{totalResult}}</b></span> món ăn</p>
         </script>
     </div>
     <div class="shop-select">
         <div class="show-item">
             <div class="title-select">
                 <div class="simple-text">
-                    <p>Shown items per page</p>
+                    <p>Hiện thị số món ăn/trang</p>
                 </div>
             </div>
             <select class="input-field type-2 main-col" id="total_dish_per_page" onchange="gotoPage({{category}}, 1)">
@@ -40,29 +40,29 @@
         <div class="sort-by">
             <div class="title-select">
                 <div class="simple-text">
-                    <p>Sort by</p>
+                    <p>Sắp xếp</p>
                 </div>
             </div>
             <select class="input-field type-2 main-col" id="sort-by" onchange="gotoPage({{category}}, 1)">
                 {{#if sortOption1Selected}}
-                    <option value="val1" selected>Date</option>
+                    <option value="val1" selected>Ngày</option>
                 {{else}}
-                    <option value="val1">Date</option>
+                    <option value="val1">Ngày</option>
                 {{/if}}
                 {{#if sortOption2Selected}}
-                    <option value="val1" selected>Name</option>
+                    <option value="val1" selected>Tên</option>
                 {{else}}
-                    <option value="val1">Name</option>
+                    <option value="val1">Tên</option>
                 {{/if}}
                 {{#if sortOption3Selected}}
-                    <option value="val1" selected>High Price</option>
+                    <option value="val1" selected>Giá cao</option>
                 {{else}}
-                    <option value="val1">High Price</option>
+                    <option value="val1">Giá cao</option>
                 {{/if}}
                 {{#if sortOption4Selected}}
-                    <option value="val1" selected>Low Price</option>
+                    <option value="val1" selected>Giá thấp</option>
                 {{else}}
-                    <option value="val1">Low Price</option>
+                    <option value="val1">Giá thấp</option>
                 {{/if}}
             </select>
         </div>

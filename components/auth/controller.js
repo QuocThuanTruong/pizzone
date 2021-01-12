@@ -1,6 +1,7 @@
 const formidable = require('formidable');
 const userService = require('../user/service')
 
+
 exports.register = async (req, res, next) => {
     const form = formidable({multiples: true})
 
@@ -13,13 +14,10 @@ exports.register = async (req, res, next) => {
         let email = fields.email;
         let password = fields.password;
 
-        const _ = await userService.addNewUser(username, email, password)
+        const _ = await userService.addNewUser(username, email, password, 0)
 
-        let user = await userService.getUserByUsernameAndPassword(username, password)
+        res.redirect('/verify?is_new=1&email=' + email);
 
-        req.login(user, {}, function(err) {
-            res.redirect('/user/edit/')
-        })
     })
 }
 
@@ -28,3 +26,4 @@ exports.logout = (req, res, next) => {
 
     res.redirect('/');
 }
+

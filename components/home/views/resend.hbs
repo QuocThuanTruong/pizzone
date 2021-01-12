@@ -1,0 +1,55 @@
+
+<section class="section">
+    <div class="empty-lg-115 empty-md-100 empty-sm-60 empty-xs-60"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-xs-12">
+                <div class="main-caption text-center color-type-2">
+                    <h2 class="h2 title">Verify email</h2>
+                    <div class="empty-sm-30"></div>
+                    <div class="col-md-10 col-md-offset-1">
+
+                        <!-- thông báo lỗi -->
+                        <div class="simple-text md" >
+                            <p  style='color: red;'>{{notification}}</p>
+                        </div>
+
+                        <div class="simple-text md">
+                            <p>Nếu bạn chưa nhận được link xác thực, bạn có thể gửi lại</p>
+                        </div>
+
+
+
+                    </div>
+                    <div class="empty-sm-55 empty-xs-25"></div>
+
+                    <form action="/auth/send" method="post" id="resend-form">
+                        <div class="col-md-12">
+                            <div class="input-field-icon">
+                                <input type="email" class="input-field" placeholder="Email*" name="verifyEmail" id="verify-email" required="" value="{{email}}">
+                                <div class="icon">
+                                    <i class="fa fa-bars"></i>
+                                </div>
+                            </div>
+                            <div class="empty-sm-20  empty-xs-20"></div>
+                        </div>
+
+                        <div class="empty-sm-30  empty-xs-20"></div>
+
+                        <div class="row">
+                                                        <div class="page-button button-style-1 type-3">
+                                                            <input type="submit">
+                                                            <span class="txt">Resend</span><i></i>
+                                                        </div>
+
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="empty-lg-100 empty-md-100 empty-sm-60 empty-xs-60"></div>
+    </div>
+</section>
+</div>

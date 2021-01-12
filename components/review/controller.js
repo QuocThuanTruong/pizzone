@@ -8,7 +8,34 @@ exports.postedReview = async (req, res, next) => {
 
     await reviewModel.insertReview(dish_id, req.user ? req.user.user_id : 0, commentName, commentEmail, commentMessage);
 
-    let review = await reviewModel.getListReviewByDishId(dish_id)
+    let review = await reviewModel.getListReviewByDishId(1, dish_id)
 
     res.send(review);
+}
+
+exports.reviewPagination = async (req, res, next) => {
+    let currentPage = req.query.page;
+
+    console.log(currentPage)
+
+    if (currentPage === undefined)
+        currentPage = 1;
+
+    console.log('id ' + req.params.id)
+
+    let review;
+    let totalReviews = await reviewModel.getTotalReviewById(req.params.id)
+    let totalPage = Math.ceil(totalReviews / (5 * 1.0))
+
+
+    review = await reviewModel.getListReviewByDishId(currentPage, req.params.id)
+
+
+    const data = {
+        currentPage: currentPage,
+        totalPage: totalPage,
+        review: review
+    }
+
+    res.send(data)
 }

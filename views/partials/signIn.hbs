@@ -1,4 +1,4 @@
-<div class="popup index-popup-login" data-rel="3">
+<div class="popup index-popup-login {{activeLogin}}" data-rel="3">
     <div class="popup-wrap popup-layer">
         <div class="empty-sm-0 empty-xs-15"></div>
         <div class="container size-1">
@@ -9,38 +9,45 @@
                     </svg>
                 </div>
                 <div class="main-caption text-center color-type-2">
-                    <h2 class="title h2">Log in</h2>
+                    <h2 class="title h2">Đăng nhập</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
                 <form method="post" action="/auth/login" id="login-form">
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" placeholder="Your username" name="username" id="username-sign-in" required="">
+                        <input type="text" class="input-field" placeholder="Tên tài khoản" name="username" id="username-sign-in" required>
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" placeholder="Enter password" name="password" id="password-sign-in" required="">
+                        <input type="password" class="input-field" placeholder="Mật khẩu" name="password" id="password-sign-in" required>
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <div class="simple-text xs forgot fl color-3">
-                        <a href="#"><p>Forgot password</p></a>
+                        <a href="/verify" ><p>Quên mật khẩu</p></a>
                     </div>
                     <div class="simple-text xs reg-now fr">
-                        <a href="#"><p>Register now</p></a>
+                        <a href="#" class="open-popup" data-open="popup-register" data-rel="4"><p>Đăng kí</p></a>
                     </div>
+
+
+                    <div class="simple-text  text-center xs forgot" style="color: red;">
+                        <div id="empty"></div>
+                        <p id="login-error-text"></p>
+                    </div>
+
                     <div class="empty-sm-30 empty-xs-20"></div>
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">
                             <input onclick="checkUser()">
-                            <span class="txt">Sign In</span><i></i>
+                            <span class="txt">Đăng nhập</span><i></i>
                         </div>
                     </div>
                 </form>
                 <div class="empty-sm-30 empty-xs-30"></div>
                 <div class="text-center sign-as">
                     <div class="simple-text color-3">
-                        <p>Sign in us</p>
+                        <p>Đăng nhập bằng</p>
                     </div>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>

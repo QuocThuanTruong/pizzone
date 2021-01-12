@@ -1,4 +1,4 @@
-<div class="popup index-popup-register" data-rel="4">
+<div class="popup index-popup-register {{activeRegister}}" data-rel="4">
     <div class="popup-wrap popup-layer">
         <div class="empty-sm-0 empty-xs-15"></div>
         <div class="container size-1">
@@ -9,29 +9,34 @@
                     </svg>
                 </div>
                 <div class="main-caption text-center color-type-2">
-                    <h2 class="title h2 ">Register</h2>
+                    <h2 class="title h2 ">Đăng kí</h2>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>
                 <form method="post" action="/auth/register" enctype="multipart/form-data" onsubmit="return(validationForm())">
                     <div class="input-field-wrap">
-                        <input type="text" class="input-field" id="username" placeholder="Username" name="username" required="" onchange="checkExistUsername(this.value)">
+                        <input type="text" class="input-field" id="username" placeholder="Tên tài khoản" name="username" required="" onchange="checkExistUsername(this.value)">
                         <div class="focus"></div>
                     </div>
-                    <div class="empty-sm-15 empty-xs-15"></div>
+
+                    <div id="empty-user-error"></div>
                     <div id="check-exists-username-result"><h5 id="check-exists-username-content" class="validation-content"></h5></div>
-                    <div id="empty"></div>
+                    <div class="empty-sm-15 empty-xs-15"></div>
+
+
+
+
                     <div class="input-field-wrap">
                         <input type="email" class="input-field" placeholder="Your email" name="email" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" id="password" placeholder="Enter password" name="password" required="">
+                        <input type="password" class="input-field" id="password" placeholder="Mật khẩu" name="password" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-15 empty-xs-15"></div>
                     <div class="input-field-wrap">
-                        <input type="password" class="input-field" id="retype" placeholder="Repeat password" name="rep_password" required="">
+                        <input type="password" class="input-field" id="retype" placeholder="Nhập lại mật khẩu" name="rep_password" required="">
                         <div class="focus"></div>
                     </div>
                     <div class="empty-sm-20 empty-xs-20"></div>
@@ -40,22 +45,28 @@
                             <input type="checkbox">
                             <span>
                       <i></i>
-                      <p>Privacy police agreement</p>
+                      <p>Đồng ý điều khoản của trang web</p>
                     </span>
                         </label>
                     </div>
+
+                    <div class="simple-text  text-center xs forgot" style="color: red;">
+                        <div id="empty-error"></div>
+                        <p id="register-error-text"></p>
+                    </div>
+
                     <div class="empty-sm-30 empty-xs-20"></div>
                     <div class="text-center">
                         <div class="page-button button-style-1 type-2">
                             <input type="submit">
-                            <span class="txt">register</span><i></i>
+                            <span class="txt">Đăng kí</span><i></i>
                         </div>
                     </div>
                 </form>
                 <div class="empty-sm-30 empty-xs-30"></div>
                 <div class="text-center sign-as">
                     <div class="simple-text color-3">
-                        <p>Sign in us</p>
+                        <p>Đăng nhập bằng</p>
                     </div>
                 </div>
                 <div class="empty-sm-30 empty-xs-30"></div>

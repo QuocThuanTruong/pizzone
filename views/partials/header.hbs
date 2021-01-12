@@ -11,7 +11,7 @@
                                 <div class="page-span-4 page-span"></div>
                                 <div class="search-form-wrap">
                                     <form method="GET" action="/dishes" class="search-form">
-                                        <input type="text" placeholder="Search for..." class="input-search" id="input-search" name="name" required="">
+                                        <input type="text" placeholder="Tìm kiếm món ăn của bạn..." class="input-search" id="input-search" name="name" required="">
                                         <div class="submit-search">
                                             <input type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="14px" height="14px">
@@ -92,8 +92,9 @@
                   </svg>
                     </a>
 
-                    <div class="shop-card-item">
-                        <div class="shop-icon">
+
+                    <div class="shop-card-item" >
+                        <div class="shop-icon" >
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129" width="16px" height="16px">
                                 <g>
                                     <g>
@@ -106,9 +107,11 @@
                                 \{{cart.totalDishInCart}}
                             </script>
                         </div>
-                        <span class="shop-card-price" id="total-cost-in-cart">Total: <b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span>
+                        <a href="/cart">
+                        <span class="shop-card-price" id="total-cost-in-cart">Tổng: <b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span>
+                        </a>
                         <script type="text/x-handlebars-template" id="total-cost-in-cart-template">
-                                Total: <b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b>
+                                Tổng: <b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b>
                         </script>
                         <div class="shop-card-list">
                             <div class="shop-card-align-mobile">
@@ -188,7 +191,7 @@
                                     </script>
 
                                     <div class="fr">
-                                        <a class="page-button button-style-1 type-2" href="/cart" onclick="return(isUserLogin({{isLogin}}))">
+                                        <a class="page-button button-style-1 type-2" href="/cart/checkout" onclick="return(isUserLogin({{isLogin}}))">
                                             <span class="txt">Đặt món</span>
                                         </a>
                                     </div>
@@ -197,11 +200,12 @@
                         </div>
                     </div>
 
+
                     {{#if isLogin}}
                         <div class="login-item">
                             <ul class="header-menu">
                                 <li>
-                                    <a href="/user" class="menu-arr user-profile">Hi {{user.name}}</a>
+                                    <a href="/user" class="menu-arr user-profile">Hi! {{user.name}}</a>
 
                                     <div class="login-item user-profile-img">
                                         <a href="/user">
@@ -220,7 +224,7 @@
                         </div>
                     {{else}}
                         <div class="login-item">
-                            <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Log in</a>  / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Sign up</a>
+                            <a href="#" class="open-popup" data-open="popup-login" data-rel="3">Đăng nhập</a>  / <a href="#" class="open-popup" data-open="popup-register" data-rel="4">Đăng kí</a>
                         </div>
                     {{/if}}
 
@@ -297,15 +301,15 @@
                 </div>
                 <nav>
                     <ul class="header-menu">
-                        <li class="{{homePageActive}}"><a href="/">Home</a>
+                        <li class="{{homePageActive}}"><a href="/">Trang chủ</a>
                         </li>
 
                         <li class="{{menuPageActive}}"><a href="/dishes">Menu</a>
                         </li>
 
-                        <li class="{{aboutPageActive}}"><a href="/about">About</a></li>
+                        <li class="{{aboutPageActive}}"><a href="/about">Về chúng tôi</a></li>
 
-                        <li class="{{contactPageActive}}"><a href="/contact">Contact<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <li class="{{contactPageActive}}"><a href="/contact">Liên hệ<img src="/img/down-arrow.png" alt="" class="menu-arr"></a>
                         </li>
                     </ul>
                 </nav>
