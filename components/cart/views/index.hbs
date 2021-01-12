@@ -1,5 +1,6 @@
 <section class="full-height-slider type-1">
-    <div class="bg ready data-jarallax" data-jarallax="5" style="background-image: url(/img/shop/main-naner-bg-2.jpg)" data-swiper-parallax="50%"></div>
+    <div class="bg ready data-jarallax" data-jarallax="5" style="background-image: url(/img/shop/main-naner-bg-2.jpg)"
+         data-swiper-parallax="50%"></div>
     <div class="table-view mobile-rel-block">
         <div class="table-cell">
             <div class="container no-padd">
@@ -27,128 +28,220 @@
     <div class="empty-lg-120 empty-md-100 empty-sm-60 empty-xs-60"></div>
     <div class="container">
         <div class="row">
-                        <ul>
-                            <li  >
-                                <div >
-                                        <div class="empty-sm-50 empty-xs-30"></div>
-                                        <div >
-                                            <div class="menu-item menu-item-7" >
-                                                <div class="image hover-zoom">
-                                                    <a href="#" class="like-product main-fill-col">
-                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
+            <ul id="cart-item-index">
+                {{#each cart.itemInCart}}
+                    <li>
+                        <div>
+                            <div class="empty-sm-50 empty-xs-30"></div>
+                            <div>
+                                <div class="menu-item menu-item-7">
+                                    <div class="image hover-zoom">
+                                        <a href="#" class="like-product main-fill-col">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 viewBox="0 0 471.701 471.701"
+                                                 style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve"
+                                                 width="16px" height="16px">
                                                             <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
                                                             c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
                                                             l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
                                                             C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
                                                             s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
                                                             c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                                                            C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                                                        </svg>
-                                                    </a>
-                                                    <a href="/dishes/{{dish_id}}" class="image-hover color-1 use-transparent"><img src="/img/shop_list_img_1.png" alt=""></a>
-                                                </div>
+                                                            C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                        </svg>
+                                        </a>
+                                        <a href="/dishes/{{dish_id}}" class="image-hover color-1 use-transparent"><img src="{{avatar}}" alt=""></a>
+                                    </div>
 
-                                                <div class="text">
+                                    <div class="text">
+                                        <h5 class="h5 caption tt"><a href="/dishes/{{dish_id}}" class="link-hover-line">{{name}} ({{sizeName}})</a></h5>
 
-
-                                                    <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">PIZZA HẢI SẢN PESTO <XANH></XANH></a></h5>
-
-                                                    <div class="empty-sm-5 empty-xs-5"></div>
-                                                    <div class="align-inline">
-                                                        <div class="empty-sm-5 empty-xs-5"></div>
-                                                        <div class="simple-text">
-                                                            <p>Nguyên liệu abc xyzt</p>
-                                                        </div>
-
-                                                        <div class="empty-sm-5 empty-xs-5"></div>
-                                                        <h5 class="h6  color-1 ">Kích thước</h5>
-                                                        <div class="empty-sm-5 empty-xs-5"></div>
-                                                        <div class="checkbox-entry-wrap align-inline" style="margin-right: 12px;">
-                                                            <label class="checkbox-entry">
-                                                                <input type="radio" name="sizes" {{set-default @index}}>
-                                                                <span>
-                                                                     <i></i>
-                                                                    <p>XLMN</span></p>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="checkbox-entry-wrap align-inline" style="margin-right: 12px;">
-                                                            <label class="checkbox-entry">
-                                                                <input type="radio" name="sizes" {{set-default @index}}>
-                                                                <span>
-                                                                     <i></i>
-                                                                    <p>XLMN</span></p>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                        <span>&nbsp;&nbsp;&nbsp;</span>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="shop-counter">
-                                                    <div class="custom-input-number">
-                                                        <button type="button" class="cin-btn cin-decrement">
-                                                            <img src="img/left_arr.png" alt="">
-                                                        </button>
-                                                        <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                                        <button type="button" class="cin-btn cin-increment">
-                                                            <img src="img/right_arr.png" alt="">
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <div class="menu-price style-2">
-                                                    <div class="row">
-                                                <span class="h4 simple-text old-price ">
-                                                    Giá
-                                                </span>
-                                                    </div>
-
-                                                    <div class="custome-padd-top-10">
-                                                        <div class="h4  new-price row">
-                                                            <b>20.000 đ</b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="close-item main-fill-hover" style="margin-left: 30px">
-                                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
-                                                    </svg>
-                                                </div>
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="align-inline">
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>{{render_description detail_description}}</p>
                                             </div>
 
+                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                        </div>
+                                    </div>
 
+                                    <div class="shop-counter">
+                                        <div class="custom-input-number">
+                                            <button type="button" class="cin-btn cin-decrement" onclick="changeCart({{dish_id}}, 2, {{size}})">
+                                                <img src="img/left_arr.png" alt="">
+                                            </button>
+                                            <input type="number" class="cin-input input-field" step="1" value="{{quantity}}" min="1" max="1000">
+                                            <button type="button" class="cin-btn cin-increment" onclick="changeCart({{dish_id}}, 1, {{size}})">
+                                                <img src="img/right_arr.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-price style-2">
+                                        <div class="row">
+                                        <span class="h4 simple-text old-price ">
+                                            Giá
+                                        </span>
                                         </div>
 
+                                        <div class="custome-padd-top-10">
+                                            <div class="h4  new-price row">
+                                                <b>{{standardPrice quantity price}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="close-item main-fill-hover" style="margin-left: 30px" onclick="changeCart({{dish_id}}, 3, {{size}})">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
+                                             viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             enable-background="new 0 0 64 64">
+                                            <g>
+                                                <path fill="#1D1D1B"
+                                                      d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/>
+                                            </g>
+                                        </svg>
+                                    </div>
                                 </div>
-
-
-                            </li>
-
-
-                        </ul>
-
-                     <div class="empty-sm-15 empty-xs-25"></div>
-                        <div class="buy-bar">
-                            <div class="fl">
-                                <h4 class="h4 caption">TỔNG:<b class="main-col">$19.60</b></h4>
-                            </div>
-                            <div class="fr">
-                                <a class="button size-2 style-3">
-                                    <span class="button-wrapper">
-                               <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
-                               <span class="text">Đặt hàng</span>
-                                    </span>
-                                </a>
                             </div>
                         </div>
+                    </li>
+                {{/each}}
+            </ul>
+            <script type="text/x-handlebars-template" id="cart-item-index-template">
+                 \{{#each cart.itemInCart}}
+                    <li>
+                        <div>
+                            <div class="empty-sm-50 empty-xs-30"></div>
+                            <div>
+                                <div class="menu-item menu-item-7">
+                                    <div class="image hover-zoom">
+                                        <a href="#" class="like-product main-fill-col">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 viewBox="0 0 471.701 471.701"
+                                                 style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve"
+                                                 width="16px" height="16px">
+                                                            <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
+                                                            c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
+                                                            l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
+                                                            C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
+                                                            s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
+                                                            c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
+                                                            C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                                <g></g>
+                                        </svg>
+                                        </a>
+                                        <a href="/dishes/\{{dish_id}}" class="image-hover color-1 use-transparent"><img
+                                                src="\{{avatar}}" alt=""></a>
+                                    </div>
 
+                                    <div class="text">
+                                        <h5 class="h5 caption tt"><a href="http://localhost:3000/dishes/" class="link-hover-line">\{{name}} (\{{sizeName}})</a></h5>
+
+                                        <div class="empty-sm-5 empty-xs-5"></div>
+                                        <div class="align-inline">
+                                            <div class="empty-sm-5 empty-xs-5"></div>
+                                            <div class="simple-text">
+                                                <p>\{{render_description detail_description}}</p>
+                                            </div>
+
+                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="shop-counter">
+                                        <div class="custom-input-number">
+                                            <button type="button" class="cin-btn cin-decrement" onclick="changeCart(\{{dish_id}}, 2, \{{size}})">
+                                                <img src="img/left_arr.png" alt="">
+                                            </button>
+                                            <input type="number" class="cin-input input-field" step="1" value="\{{quantity}}" min="1" max="1000">
+                                            <button type="button" class="cin-btn cin-increment" onclick="changeCart(\{{dish_id}}, 1, \{{size}})">
+                                                <img src="img/right_arr.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-price style-2">
+                                        <div class="row">
+                                        <span class="h4 simple-text old-price ">
+                                            Giá
+                                        </span>
+                                        </div>
+
+                                        <div class="custome-padd-top-10">
+                                            <div class="h4  new-price row">
+                                                <b>\{{standardPrice quantity price}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="close-item main-fill-hover" style="margin-left: 30px" onclick="changeCart({{dish_id}}, 3, {{size}})">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
+                                             viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             enable-background="new 0 0 64 64">
+                                            <g>
+                                                <path fill="#1D1D1B"
+                                                      d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                \{{/each}}
+            </script>
+
+            <div class="empty-sm-15 empty-xs-25"></div>
+            <div class="buy-bar">
+                <div class="fl" id="total-cost">
+                    <h4 class="h4 caption">TỔNG:<b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></h4>
+                </div>
+                <script type="text/x-handlebars-template" id="total-cost-template">
+                    <h4 class="h4 caption">TỔNG:<b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></h4>
+                </script>
+                <div class="fr">
+                    <a class="button size-2 style-3" href="/cart/checkout" onclick="return(isUserLogin({{isLogin}}))">
+                        <span class="button-wrapper">
+                           <span class="icon"><img src="../../img/icon-4.png" alt=""></span>
+                           <span class="text">Đặt hàng</span>
+                        </span>
+                    </a>
+                </div>
             </div>
-
         </div>
     </div>
     <div class="empty-lg-120 empty-md-100 empty-sm-60 empty-xs-60"></div>

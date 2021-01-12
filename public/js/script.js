@@ -11,10 +11,6 @@ function closePopup(dish) {
     $(id).removeClass('active')
 }
 
-function getPriceFilter() {
-
-}
-
 function submitSearchFromHomepage() {
     let inputSearch = document.getElementById('input-search').value;
 

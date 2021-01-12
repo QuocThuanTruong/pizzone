@@ -37,7 +37,7 @@ exports.getListReviewByDishId = async (page, dish_id) => {
 }
 
 exports.getTotalReviewById = async (dish_id) => {
-    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes_review WHERE is_active = 1')
+    const queryResult =  await execQuery('SELECT COUNT(*) as total FROM dishes_review WHERE dish = ' + dish_id + ' and  is_active = 1')
 
     return queryResult[0].total
 }

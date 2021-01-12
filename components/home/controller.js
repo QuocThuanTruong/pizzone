@@ -74,9 +74,6 @@ exports.resend = (req, res, next) => {
         isNew = true;
     }
 
-
-
-
     res.render('../components/home/views/resend', {notification: notification, email: req.query.email, isNew: isNew});
 }
 

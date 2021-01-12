@@ -2386,6 +2386,7 @@ transition: all 0.35s ease-out; }
 .product-label.green{background: #b8cd06;}
 .product-label.red{background: #d80505;}
 .product-label.yellow{background: #f4a01b;}
+.product-label.blue{background: #2FECF2;}
 .small-items-line{overflow: hidden;}
 .small-items-line>.row{margin-bottom: -31px;}
 .small-items-line>.row>*[class*="col"]{margin-bottom: 60px;}

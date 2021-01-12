@@ -112,9 +112,6 @@ function gotoReview(dish, page) {
 
 
 function changeCart(dish_id, type, sizeDish) {
-    console.log(dish_id)
-    console.log(type)
-    console.log(sizeDish)
     let sizes = document.getElementsByName('sizes');
 
     if (sizes.length === 0) {
@@ -165,6 +162,10 @@ function changeCart(dish_id, type, sizeDish) {
             let cart = cartTemplate({cart: cartItem})
             $('#cart-item').html(cart)
 
+            let cartIndexTemplate = Handlebars.compile($('#cart-item-index-template').html());
+            let cartIndex = cartIndexTemplate({cart: cartItem})
+            $('#cart-item-index').html(cartIndex)
+
             //render total dish in cart
             let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
             let totalDishInCart = totalDishInCartTemplate({cart: cartItem})
@@ -179,6 +180,10 @@ function changeCart(dish_id, type, sizeDish) {
             let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
             let totalCostInCart2 = totalCostInCart2Template({cart: cartItem})
             $('#total-cost-in-cart-2').html(totalCostInCart2)
+
+            let totalCostTemplate = Handlebars.compile($('#total-cost-template').html());
+            let totalCost = totalCostTemplate({cart: cartItem})
+            $('#total-cost').html(totalCost)
 
         },
         error: function (err) {
@@ -375,16 +380,16 @@ function checkUser() {
 
 
 function cancelOrder(order_id, ordinal_number, dish_id) {
-    const url = '/order/cancel?order_id='+order_id+'&ordinal_number='+ordinal_number+'&dish='+dish_id;
+    const url = '/order/cancel?order_id='+order_id;
     $.ajax({
         url: url,
         type: "GET",
         success: function (data) {
             console.log(data)
 
-            let currentOrderTemplate = Handlebars.compile($('#current-order-template').html());
+            let currentOrderTemplate = Handlebars.compile($('#current-orders-template').html());
             let currentOrder = currentOrderTemplate({currentOrders: data})
-            $('#current-order').html(currentOrder)
+            $('#current-orders').html(currentOrder)
         },
         error: function (err) {
             console.log(err)

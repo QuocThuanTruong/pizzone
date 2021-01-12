@@ -14,8 +14,8 @@ router.get('/change-password', controller.isLogin, controller.chagePassword);
 router.post('/change-password', controller.isLogin, controller.changePasswordConfirm);
 
 router.get('/my-orders', controller.isLogin, controller.orders);
-router.get('/dummyOrder', controller.dummy);
-router.get('/dummyDetail', controller.dummyDetail);
+router.get('/dummyOrder', controller.isLogin, controller.dummy);
+router.get('/dummyDetail/:id', controller.isLogin, controller.dummyDetail);
 router.get('/api/is-exist/:username', api.isExistsAPI)
 
 router.get('/api/check-user', api.checkUserAPI)
