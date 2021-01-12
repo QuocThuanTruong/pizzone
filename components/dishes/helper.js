@@ -1,11 +1,9 @@
 function helper(hbs) {
     hbs.registerHelper('render_pagination', function (category, page, totalPage) {
-        let currentPage = parseInt(page)
-        let rearLeftPage = currentPage - 2
-        let previousPage = currentPage - 1
-        let nextPage = currentPage + 1
-        let rearRightPage = currentPage + 2
-        let lastPage = parseInt(totalPage)
+        let currentPage = parseInt(page);
+        let previousPage = currentPage - 1;
+        let nextPage = currentPage + 1;
+        let lastPage = parseInt(totalPage);
 
         let html = '<div class="page-navigation">';
 

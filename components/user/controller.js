@@ -68,7 +68,7 @@ exports.editInfo = async (req, res, next) => {
             newUser.avatar = oldUser.avatar
         }
 
-        rimraf.sync(path.join(__dirname, '..', 'tempImages'))
+        fs.rmdirSync(path.join(__dirname, '..', 'tempImages'), {recursive: true})
 
         console.log(newUser)
 
