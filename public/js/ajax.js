@@ -28,7 +28,7 @@ function gotoPage(categoryId, page) {
         subcategoryFilter += ')';
     }
 
-    const totalDishPerPageArr = [1, 2, 3, 4]
+    const totalDishPerPageArr = [3, 6, 9, 12]
     const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
 
     const sortByArr = [1, 2, 3, 4]
@@ -48,9 +48,6 @@ function gotoPage(categoryId, page) {
         url: url,
         type: "GET",
         success: function (data) {
-
-            console.log(data)
-
             //render dishes
             let dishesTemplate = Handlebars.compile($('#dishes-template-grid').html());
             let dishes = dishesTemplate({dishes: data.dishes});
@@ -90,18 +87,15 @@ function gotoReview(dish, page) {
         url: url,
         type: "GET",
         success: function (data) {
-
             //render review
             let reviewsTemplate = Handlebars.compile($('#review-template').html());
             let reviews = reviewsTemplate({review: data.review});
             $('#review').html(reviews);
 
-
             //render pagination-navigation
             let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
             let pageNavigation = paginationTemplate({id: data.review[0].dish, page: data.currentPage, totalPage: data.totalPage});
             $('#page-navigation').html(pageNavigation);
-
 
         },
         error: function (err) {
@@ -285,8 +279,6 @@ function checkExistUsername(username) {
                 $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
                 $('#check-exists-username-content').html('Username is valid')
             }
-
-
         },
         error: function (err) {
             console.log(err)
@@ -307,7 +299,6 @@ function validationForm(element, name) {
                 $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
                 $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
                 $('#check-exists-username-content').html('Username is already exists')
-
 
                 return false
             } else {
@@ -350,8 +341,6 @@ function checkUser() {
         url: url,
         type: "GET",
         success: function (data) {
-            console.log(data)
-
             if (!data) {
                 if (username !== '' && password !== '') {
                     document.getElementById('login-error-text').innerHTML = 'Username or password is not correct'
@@ -378,8 +367,7 @@ function checkUser() {
     })
 }
 
-
-function cancelOrder(order_id, ordinal_number, dish_id) {
+function cancelOrder(order_id) {
     const url = '/order/cancel?order_id='+order_id;
     $.ajax({
         url: url,
