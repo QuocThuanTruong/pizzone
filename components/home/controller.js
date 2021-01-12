@@ -1,4 +1,6 @@
 const dishModel = require('../dishes/model')
+const userModel = require('../user/model')
+const userService = require('../user/service')
 
 exports.index = async (req, res, next) => {
     const dishesHasHotDeal = await dishModel.getDishesHasHotDeal()
@@ -36,14 +38,77 @@ exports.index = async (req, res, next) => {
     res.render('../components/home/views/index', dataContext);
 };
 
+exports.login = async (req, res, next) => {
+    res.render('../components/home/views/index', {activeLogin: 'active'});
+}
+
+exports.register = async (req, res, next) => {
+    res.render('../components/home/views/index', {activeRegister: 'active'});
+}
+
 exports.verifyEmail = (req, res, next) => {
+    let isNew = false
+    let email = ''
 
+    if (req.query.is_new == 1) {
+        isNew = true;
+    }
 
+    if (req.query.email) {
+        email = req.query.email
+    }
 
-
-    res.render('../components/home/views/verify');
+    res.render('../components/home/views/verify', {email:email, isNew: isNew});
 }
 
-exports.recoverPassword = (req, res, next) => {
-    res.render('../components/home/views/recoverPassword');
+exports.resend = (req, res, next) => {
+
+    let notification = ''
+    let isNew = false
+
+    if (req.query.status == 0) {
+       notification = 'Xác thực không thành công'
+    }
+
+    if (req.query.is_new == 1) {
+        isNew = true;
+    }
+
+
+
+
+    res.render('../components/home/views/resend', {notification: notification, email: req.query.email, isNew: isNew});
 }
+
+
+exports.recoverPassword = async (req, res, next) => {
+    let email = req.query.email
+    res.render('../components/home/views/recoverPassword', {email: email});
+}
+
+exports.updatePassword = async (req, res, next) => {
+    let newPass = req.body.newPassword
+    let retypePass = req.body.retypePassword
+    let email = req.query.email
+
+    console.log(email)
+    console.log(newPass)
+    console.log(retypePass)
+
+    let user_id = await userModel.getUserIDByEmail(email)
+
+    console.log(user_id)
+
+    if (newPass === retypePass) {
+
+        await userService.changePassword(user_id, newPass);
+
+    }
+
+    res.redirect('')
+}
+
+
+
+
+

@@ -8,26 +8,25 @@
                     <h2 class="h2 title">Verify email</h2>
                     <div class="empty-sm-30"></div>
                     <div class="col-md-10 col-md-offset-1">
-                        <div class="simple-text md">
-                            <p>Vui lòng nhập email để nhận link xác thực</p>
-                        </div>
 
                         <!-- thông báo lỗi -->
-                        <div class="simple-text md">
-                            <p id="verify-fail" style="color: red;"></p>
+                        <div class="simple-text md" >
+                            <p  style='color: red;'>{{notification}}</p>
                         </div>
+
+                        <div class="simple-text md">
+                            <p>Nếu bạn chưa nhận được link xác thực, bạn có thể gửi lại</p>
+                        </div>
+
+
 
                     </div>
                     <div class="empty-sm-55 empty-xs-25"></div>
 
-                    <form action="/auth/send" method="post" id="verify-form">
+                    <form action="/auth/send" method="post" id="resend-form">
                         <div class="col-md-12">
                             <div class="input-field-icon">
-                                {{#if isNew}}
-                                    <input type="text" class="input-field" value="Người dùng mới" name="isNewUser" id="new-user" readonly>
-                                {{/if}}
-
-                                <input type="email" class="input-field" placeholder="Email*" value="{{email}}" name="verifyEmail" id="verify-email" required="">
+                                <input type="email" class="input-field" placeholder="Email*" name="verifyEmail" id="verify-email" required="" value="{{email}}">
                                 <div class="icon">
                                     <i class="fa fa-bars"></i>
                                 </div>
@@ -38,16 +37,13 @@
                         <div class="empty-sm-30  empty-xs-20"></div>
 
                         <div class="row">
-<!--                            <div class="page-button button-style-1 type-3" style="margin-right: 40px;">-->
-<!--                                <input type="submit">-->
-<!--                                <span class="txt">Resend</span><i></i>-->
-<!--                            </div>-->
+                                                        <div class="page-button button-style-1 type-3">
+                                                            <input type="submit">
+                                                            <span class="txt">Resend</span><i></i>
+                                                        </div>
 
 
-                            <div class="page-button button-style-1 type-2">
-                                <input type="submit">
-                                <span class="txt">Send</span><i></i>
-                            </div>
+
                         </div>
                     </form>
                 </div>
