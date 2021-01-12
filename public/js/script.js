@@ -17,3 +17,7 @@ function submitSearchFromHomepage() {
 
     window.location.replace('/dishes?name=' + inputSearch);
 }
+
+function verifySubmit() {
+    $('#verify-form').submit();
+}

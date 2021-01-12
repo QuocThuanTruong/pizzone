@@ -37,6 +37,10 @@ exports.index = async (req, res, next) => {
 };
 
 exports.verifyEmail = (req, res, next) => {
+
+
+
+
     res.render('../components/home/views/verify');
 }
 

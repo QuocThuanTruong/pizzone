@@ -9,20 +9,21 @@
                     <div class="empty-sm-30"></div>
                     <div class="col-md-10 col-md-offset-1">
                         <div class="simple-text md">
-                            <p>Vui lòng nhập mã xác thực đã được gửi đến email của bạn</p>
+                            <p>Vui lòng nhập email để nhận link xác thực</p>
                         </div>
 
                         <!-- thông báo lỗi -->
                         <div class="simple-text md">
-                            <p style="color: red;">Mã xác thực không đúng.</p>
+                            <p id="verify-fail" style="color: red;"></p>
                         </div>
 
                     </div>
                     <div class="empty-sm-55 empty-xs-25"></div>
-                    <form action="/user/change-password" method="post" id="change-password-form">
+
+                    <form action="/auth/send" method="post" id="verify-form">
                         <div class="col-md-12">
                             <div class="input-field-icon">
-                                <input type="text" class="input-field" placeholder="Verify code*" name="oldPassword" id="old-password" required="">
+                                <input type="email" class="input-field" placeholder="Email*" name="verifyEmail" id="verify-email" required="">
                                 <div class="icon">
                                     <i class="fa fa-bars"></i>
                                 </div>
@@ -33,20 +34,16 @@
                         <div class="empty-sm-30  empty-xs-20"></div>
 
                         <div class="row">
-                            <a href="/order" class="button size-2 style-2" style="margin-right: 30px">
-                            <span class="button-wrapper">
-                                <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                <span class="text">resend</span>
-                            </span>
-                            </a>
+                            <div class="page-button button-style-1 type-3" style="margin-right: 40px;">
+                                <input type="submit">
+                                <span class="txt">Resend</span><i></i>
+                            </div>
 
 
-                            <a href="/recover-password" class="button size-2 style-3">
-                            <span class="button-wrapper">
-                                <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                <span class="text">Next</span>
-                            </span>
-                            </a>
+                            <div class="page-button button-style-1 type-2">
+                                <input type="submit">
+                                <span class="txt">Send</span><i></i>
+                            </div>
                         </div>
                     </form>
                 </div>
