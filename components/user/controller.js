@@ -29,7 +29,7 @@ exports.order = async (req, res, next) => {
         cancelOrders: cancelOrders
     }
 
-    res.render('../components/user/views/dummyOrder', dataContext);
+    res.render('../components/user/views/order', dataContext);
 }
 
 exports.orderDetail = async (req, res, next) => {
@@ -44,7 +44,7 @@ exports.orderDetail = async (req, res, next) => {
         order: order
     }
 
-    res.render('../components/user/views/dummyDetail', dataContext);
+    res.render('../components/user/views/orderDetail', dataContext);
 }
 
 exports.index = (req, res, next) => {

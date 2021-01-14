@@ -4,9 +4,9 @@ const cartModel = require('./model')
 exports.index = async (req, res, next) => {
 
     let dataContext = {
-        cart: req.user.cart,
-        isLogin: true,
-        user: req.user,
+        cart: req.user ? req.user.cart : req.session.cart,
+        isLogin: req.user ? true : false,
+        user: req.user ? req.user : null,
     }
 
     res.render('../components/cart/views/index', dataContext);

@@ -151,35 +151,43 @@ function changeCart(dish_id, type, sizeDish) {
                 totalCostInCart: data.totalCostInCart,
                 totalDishInCart: data.totalDishInCart
             }
-
+            console.log('cc1')
             //render mini cart
             let cartTemplate = Handlebars.compile($('#cart-item-template').html());
             let cart = cartTemplate({cart: cartItem})
             $('#cart-item').html(cart)
+            console.log('cc2')
 
-            let cartIndexTemplate = Handlebars.compile($('#cart-item-index-template').html());
-            let cartIndex = cartIndexTemplate({cart: cartItem})
-            $('#cart-item-index').html(cartIndex)
+            if ($('#cart-item-index-template').html()) {
+                let cartIndexTemplate = Handlebars.compile($('#cart-item-index-template').html());
+                let cartIndex = cartIndexTemplate({cart: cartItem})
+                $('#cart-item-index').html(cartIndex)
+            }
 
+            console.log('cc3')
             //render total dish in cart
             let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
             let totalDishInCart = totalDishInCartTemplate({cart: cartItem})
             $('#total-dish-in-cart').html(totalDishInCart)
-
+            console.log('cc4')
             //render mini cost in cart
             let totalCostInCartTemplate = Handlebars.compile($('#total-cost-in-cart-template').html());
             let totalCostInCart = totalCostInCartTemplate({cart: cartItem})
             $('#total-cost-in-cart').html(totalCostInCart)
-
+            console.log('cc5')
             //render mini cost in cart 2
             let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
             let totalCostInCart2 = totalCostInCart2Template({cart: cartItem})
             $('#total-cost-in-cart-2').html(totalCostInCart2)
+            console.log('cc6')
 
-            let totalCostTemplate = Handlebars.compile($('#total-cost-template').html());
-            let totalCost = totalCostTemplate({cart: cartItem})
-            $('#total-cost').html(totalCost)
+            if ($('#total-cost-template').html()) {
+                let totalCostTemplate = Handlebars.compile($('#total-cost-template').html());
+                let totalCost = totalCostTemplate({cart: cartItem})
+                $('#total-cost').html(totalCost)
+            }
 
+            console.log('cc7')
         },
         error: function (err) {
             console.log(err)
