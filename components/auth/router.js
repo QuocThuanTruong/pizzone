@@ -14,7 +14,7 @@ router.post('/login',
     passport.authenticate('local'),
     function(req, res, next) {
         if (req.user.name ==='') {
-            res.redirect('/user/edit  ')
+            res.redirect('/user/edit')
         }
 
         if (req.session.cart) {
@@ -107,7 +107,6 @@ let isverify = false;
 
 router.get('/verify', async function(req,res, next){
     console.log(req.protocol+":/"+req.get('host'));
-
 
     if((req.protocol+"://"+req.get('host')) === ("http://"+host))
     {
