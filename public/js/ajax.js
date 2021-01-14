@@ -317,16 +317,20 @@ function validationForm(element, name) {
     let password = document.getElementById('password').value;
     let retype = document.getElementById('retype').value;
 
-    console.log(password)
-
     if (password.length > 0 && password === retype) {
         $('#register-error-text').html('');
         $('#empty-error').html('<div class="empty-0"></div>')
-        return true;
     } else {
         $('#register-error-text').html('Retyped-password is not correct');
         $('#empty-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
         return false;
+    }
+
+    if (!document.getElementById('agree').checked) {
+        alert('Đồng ý với điều khoản')
+        return false;
+    } else {
+        return true;
     }
 }
 

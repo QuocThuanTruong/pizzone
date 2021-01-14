@@ -89,7 +89,7 @@ exports.update = async (newUser) => {
 }
 
 exports.isExistsUser = async (username) => {
-    let result = await execQuery('SELECT EXISTS(SELECT * FROM user WHERE username = \''+username+'\' and is_active = 1) as e')
+    let result = await execQuery('SELECT EXISTS(SELECT * FROM user WHERE username = \''+username+'\') as e')
 
     return result[0].e;
 }
