@@ -208,7 +208,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="close-item main-fill-hover" style="margin-left: 30px" onclick="changeCart({{dish_id}}, 3, {{size}})">
+                                    <div class="close-item main-fill-hover" style="margin-left: 30px" onclick="changeCart(\{{dish_id}}, 3, \{{size}})">
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
                                              viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink"
                                              enable-background="new 0 0 64 64">
@@ -231,7 +231,7 @@
                     <h4 class="h4 caption">TỔNG:<b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></h4>
                 </div>
                 <script type="text/x-handlebars-template" id="total-cost-template">
-                    <h4 class="h4 caption">TỔNG:<b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></h4>
+                    <h4 class="h4 caption">TỔNG:<b class="main-col">\{{standardPrice 1 cart.totalCostInCart}}</b></h4>
                 </script>
                 <div class="fr">
                     <a class="button size-2 style-3" href="/cart/checkout" onclick="return(isUserLogin({{isLogin}}))">
