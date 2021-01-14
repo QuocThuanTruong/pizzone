@@ -15,7 +15,7 @@ const userModel = require('./model')
 const orderModel = require('../order/model')
 const userService = require('./service')
 
-exports.dummy = async (req, res, next) => {
+exports.order = async (req, res, next) => {
     req.session.currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);
     let successOrders = await orderModel.getSuccessOrderByUserId(req.user.user_id)
     let cancelOrders = await orderModel.getCancelOrderByUserId(req.user.user_id)
@@ -32,7 +32,7 @@ exports.dummy = async (req, res, next) => {
     res.render('../components/user/views/dummyOrder', dataContext);
 }
 
-exports.dummyDetail = async (req, res, next) => {
+exports.orderDetail = async (req, res, next) => {
     let order = await orderModel.getOrderById(req.params.id)
 
     console.log(order)

@@ -13,9 +13,8 @@ router.post('/edit', controller.isLogin, controller.editInfo);
 router.get('/change-password', controller.isLogin, controller.chagePassword);
 router.post('/change-password', controller.isLogin, controller.changePasswordConfirm);
 
-router.get('/my-orders', controller.isLogin, controller.orders);
-router.get('/dummyOrder', controller.isLogin, controller.dummy);
-router.get('/dummyDetail/:id', controller.isLogin, controller.dummyDetail);
+router.get('/order', controller.isLogin, controller.order);
+router.get('/order/detail/:id', controller.isLogin, controller.orderDetail);
 router.get('/api/is-exist/:username', api.isExistsAPI)
 
 router.get('/api/check-user', api.checkUserAPI)
