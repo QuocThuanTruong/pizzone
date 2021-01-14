@@ -22,10 +22,13 @@
 
                     <form action="/auth/send" method="post" id="verify-form">
                         <div class="col-md-12">
+
+                            {{#if isNew}}
+                                <input type="text" class="input-field" value="Người dùng mới" name="isNewUser" id="new-user" readonly style="border-color: transparent">
+                            {{/if}}
+
                             <div class="input-field-icon">
-                                {{#if isNew}}
-                                    <input type="text" class="input-field" value="Người dùng mới" name="isNewUser" id="new-user" readonly>
-                                {{/if}}
+
 
                                 <input type="email" class="input-field" placeholder="Email*" value="{{email}}" name="verifyEmail" id="verify-email" required="">
                                 <div class="icon">
