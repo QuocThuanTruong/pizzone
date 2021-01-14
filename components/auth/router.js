@@ -14,7 +14,7 @@ router.post('/login',
     passport.authenticate('local'),
     function(req, res, next) {
         if (req.user.name ==='') {
-            res.redirect('/user/edit')
+            res.redirect('/user/edit  ')
         }
 
         if (req.session.cart) {
