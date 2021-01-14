@@ -38,6 +38,14 @@ exports.index = async (req, res, next) => {
     res.render('../components/home/views/index', dataContext);
 };
 
+exports.about = async (req, res, next) => {
+    res.render('../components/home/views/about', { aboutPageActive: "active"});
+}
+
+exports.contact = async (req, res, next) => {
+    res.render('../components/home/views/contact', { contactPageActive: "active"});
+}
+
 exports.login = async (req, res, next) => {
     res.render('../components/home/views/index', {activeLogin: 'active'});
 }
