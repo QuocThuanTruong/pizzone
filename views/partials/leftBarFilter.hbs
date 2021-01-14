@@ -34,7 +34,9 @@
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
             {{#each categories}}
-                <li><a href="/dishes?category={{category_id}}" class="link-hover">{{name}}<span>({{totalDishInCategory}})</span></li>
+                <li>
+                    <a class="link-hover" href="/dishes?category={{category_id}}"/>{{name}}<span>({{totalDishInCategory}})</span>
+                </li>
             {{/each}}
         </ul>
     </aside>
@@ -59,13 +61,12 @@
         </form>
 
         <a class="button size-1 style-3" style="margin-top: 13px !important;" onclick="gotoPage({{category}}, 1)">
-                                                <span class="button-wrapper">
-                                                    <span class="icon"><img src="./img/icon-4.png" alt=""></span>
-                                                    <span class="text">Lọc</span>
-                                                </span>
+            <span class="button-wrapper">
+                <span class="icon"><img src="./img/icon-4.png" alt=""></span>
+                <span class="text">Lọc</span>
+            </span>
         </a>
     </aside>
-
     <aside>
         <div class="empty-sm-65 empty-xs-30"></div>
         {{#if byCategory}}

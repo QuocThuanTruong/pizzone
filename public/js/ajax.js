@@ -30,9 +30,8 @@ function gotoPage(categoryId, page) {
 
     const totalDishPerPageArr = [3, 6, 9, 12]
     const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
-
     const sortByArr = [1, 2, 3, 4]
-    const sortBy = totalDishPerPageArr[document.getElementById('sort-by').selectedIndex]
+    const sortBy = sortByArr[document.getElementById('sort-by').selectedIndex]
     let minPrice = parseInt(document.getElementById('min-price').value);
     let maxPrice = parseInt(document.getElementById('max-price').value);
 
