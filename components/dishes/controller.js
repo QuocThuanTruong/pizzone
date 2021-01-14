@@ -256,32 +256,34 @@ exports.detail = async (req, res, next) => {
 
     let choose1dish = Math.floor(Math.random() * 2) + 1
 
-    if (choose1dish === 1 && otherDishType1.length >= 2 && otherDishType2.length >= 1) {
-        let indexDishType1_1 = Math.floor(Math.random() * otherDishType1.length)
+    if (choose1dish === 1) {
+        let indexDishType1_1 = Math.floor(Math.random() * otherDishType1.length) + 1
         let indexDishType1_2 = 0;
         do{
-            indexDishType1_2 = Math.floor(Math.random() * otherDishType1.length)
+            indexDishType1_2 = Math.floor(Math.random() * otherDishType1.length) + 1
         } while (indexDishType1_1 === indexDishType1_2)
 
         otherDishResult.push(otherDishType1[indexDishType1_1])
+
+        let indexDishType2 = Math.floor(Math.random() * otherDishType2.length) + 1
+        otherDishResult.push(otherDishType2[indexDishType2])
+
         otherDishResult.push(otherDishType1[indexDishType1_2])
 
-        let indexDishType2 = Math.floor(Math.random() * otherDishType2.length)
-        otherDishResult.push(otherDishType2[indexDishType2])
     } else {
-        let indexDishType2_1 = Math.floor(Math.random() * otherDishType2.length)
+        let indexDishType2_1 = Math.floor(Math.random() * otherDishType2.length) + 1
         let indexDishType2_2 = 0;
         do{
-            indexDishType2_2 = Math.floor(Math.random() * otherDishType2.length)
+            indexDishType2_2 = Math.floor(Math.random() * otherDishType2.length) + 1
         } while (indexDishType2_1 === indexDishType2_2)
 
         otherDishResult.push(otherDishType1[indexDishType2_1])
-        otherDishResult.push(otherDishType1[indexDishType2_2])
 
-        let indexDishType1 = Math.floor(Math.random() * otherDishType1.length)
+        let indexDishType1 = Math.floor(Math.random() * otherDishType1.length) + 1
         otherDishResult.push(otherDishType2[indexDishType1])
-    }
 
+        otherDishResult.push(otherDishType1[indexDishType2_2])
+    }
 
     let review = await reviewModel.getListReviewByDishId(1, id)
 

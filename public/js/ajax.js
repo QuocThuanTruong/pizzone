@@ -263,7 +263,6 @@ function changeCartQuickView(dish_id, type, sizeDish) {
 function isUserLogin(isLogin) {
     if (!isLogin) {
         $('#login-alert-popup').addClass('active');
-
     } else {
 
     }
