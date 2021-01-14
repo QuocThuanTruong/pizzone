@@ -205,7 +205,7 @@ exports.getDishById = async (id) => {
 }
 
 exports.getListSizeById = async (id) => {
-    return await execQuery('SELECT * FROM dishes_sizes where dish = ' +id)
+    return await execQuery('SELECT * FROM dishes_sizes where dish = ' +id + ' ORDER BY size_id')
 }
 
 exports.getListImageById = async (id) => {
