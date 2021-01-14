@@ -26,11 +26,16 @@ exports.getListReviewByDishId = async (page, dish_id) => {
         let avatar = await execQuery('SELECT avatar as a FROM user where user_id = ' + reviews[i].user)
 
         if (avatar.length > 0) {
-            reviews[i].avatar = avatar[0].avatar
+            if (avatar[0].a.length > 0) {
+                reviews[i].avatar = avatar[0].avatar
+            } else {
+                reviews[i].avatar = '/img/user_avatar.png'
+            }
         } else {
             reviews[i].avatar = '/img/user_avatar.png'
         }
 
+        reviews[i].posted_date = reviews[i].posted_date.toISOString().slice(0, 19).replace('T', ' ')
     }
 
     return reviews;

@@ -417,8 +417,16 @@ function validReview(dish_id) {
             console.log(data)
 
             let reviewTemplate = Handlebars.compile($('#review-template').html());
-            let review = reviewTemplate({review: data})
+            let review = reviewTemplate({review: data.review})
             $('#review').html(review)
+
+            let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
+            let pageNavigation = paginationTemplate({id: data.review[0].dish, page: data.currentPage, totalPage: data.totalPage});
+            $('#page-navigation').html(pageNavigation);
+
+            let reviewFormTemplate = Handlebars.compile($("#review-form-template").html());
+            let reviewForm = reviewFormTemplate({user: data.user});
+            $('#review-form').html(reviewForm);
         },
         error: function (err) {
             console.log(err)

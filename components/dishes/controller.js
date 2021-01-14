@@ -305,6 +305,12 @@ exports.detail = async (req, res, next) => {
 
     let totalPage = Math.ceil(totalReviews / (5 * 1.0))
 
+    let hasReview = false;
+
+    if (totalReviews > 0) {
+        hasReview = true;
+    }
+
     const dataContext = {
         id: id,
         menuPageActive: "active",
@@ -316,7 +322,8 @@ exports.detail = async (req, res, next) => {
         totalPage: totalPage,
         page: 1,
         otherDish: otherDishResult,
-        review: review
+        review: review,
+        hasReview: hasReview
     }
 
     await dishModel.updateView(dish);
