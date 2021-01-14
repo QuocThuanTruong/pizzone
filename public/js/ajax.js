@@ -61,11 +61,12 @@ function gotoPage(categoryId, page) {
             let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
             let pageNavigation = paginationTemplate({category: data.category, page : data.currentPage, totalPage: data.totalPage});
             $('#page-navigation').html(pageNavigation);
-
+            console.log($('#page-navigation-template').html())
             //render total result
             let totalResultTemplate = Handlebars.compile($("#total-result-template").html());
             let totalResult = totalResultTemplate({totalResult: data.totalResult})
             $('#total-result').html(totalResult)
+            console.log($('#total-result-template').html())
         },
             error: function (err) {
             console.log(err)
@@ -490,4 +491,16 @@ function checkPassWord(username) {
             console.log(err)
         }
     })
+}
+
+function extraSizePrice(dish_id, extraPrice) {
+    if (extraPrice === 0) {
+        document.getElementById('extra-price-' + dish_id).innerText = '';
+    } else {
+        let extraPriceStr = extraPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1.').toString()
+
+        extraPriceStr = extraPriceStr.substr(0, extraPriceStr.length - 3) + 'đ'
+
+        document.getElementById('extra-price-' + dish_id).innerText = ' + ' + extraPriceStr;
+    }
 }

@@ -72,21 +72,17 @@
                             </div>
                             <div class="simple-article size-2 align-inline">{{dish.total_reviews}} Lượt xem</div>
                         </div>
-                        <!--                        <div class="col-lg-5">-->
-                        <!--                                <input type="hidden" class="rating"/>-->
-                        <!--                            <div class="simple-article size-2 align-inline">128 Đánh giá</div>-->
-                        <!--                        </div>-->
                     </div>
 
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <h5 class="h5 sm color-2">Giá:
                         {{#if dish.hasHotDeal}}
-                            <span class="h4 main-col"><b>{{standardPrice 1 dish.hotDeal.hotDealPrice}}</b></span>
+                            <span class="h4 main-col"><b>{{standardPrice 1 dish.hotDeal.hotDealPrice}}</b></span><span class="h5 simple-text" id="extra-price-{{dish_id}}"><b></b></span>
                             <span class="h5 line-through simple-text">
                                 {{standardPrice 1 dish.price}}
                             </span>
                         {{else}}
-                            <span class="h4 main-col"><b>{{standardPrice 1 dish.price}}</b></span>
+                            <span class="h4 main-col"><b>{{standardPrice 1 dish.price}}</b></span><span class="h5 simple-text" id="extra-price-{{dish.dish_id}}"><b></b></span>
                         {{/if}}
                     </h5>
                 </aside>
@@ -97,7 +93,7 @@
                     {{#each dish.sizes}}
                         <div class="checkbox-entry-wrap">
                             <label class="checkbox-entry">
-                                <input type="radio" name="sizes" {{set-default @index}}>
+                                <input type="radio" name="sizes" {{set-default @index}} onchange="extraSizePrice({{dish}}, {{extra_price}})">
                                 <span>
                               <i></i>
                               <p>{{name}}</span></p>

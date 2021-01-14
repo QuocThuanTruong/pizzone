@@ -27,26 +27,27 @@ exports.index = async (req, res, next) => {
             option3: false,
             option4: false
         }
+
         switch (totalDishPerPage) {
-            case 1 :
+            case 3 :
                 totalDishPerPageOption.option1 = true;
                 totalDishPerPageOption.option2 = false;
                 totalDishPerPageOption.option3 = false;
                 totalDishPerPageOption.option4 = false;
                 break;
-            case 2 :
+            case 6 :
                 totalDishPerPageOption.option1 = false;
                 totalDishPerPageOption.option2 = true;
                 totalDishPerPageOption.option3 = false;
                 totalDishPerPageOption.option4 = false;
                 break;
-            case 3 :
+            case 9 :
                 totalDishPerPageOption.option1 = false;
                 totalDishPerPageOption.option2 = false;
                 totalDishPerPageOption.option3 = true;
                 totalDishPerPageOption.option4 = false;
                 break;
-            case 4 :
+            case 12 :
                 totalDishPerPageOption.option1 = false;
                 totalDishPerPageOption.option2 = false;
                 totalDishPerPageOption.option3 = false;
@@ -228,8 +229,8 @@ exports.detail = async (req, res, next) => {
             isActive.isDrinkCatActive = false;
             isActive.isSideCatActive = false;
 
-            otherDishType1 = await dishModel.listByCategory(2, 0, 1000000, 1, 2, '1')
-            otherDishType2 = await dishModel.listByCategory(3, 0, 1000000,1, 2, '1')
+            otherDishType1 = await dishModel.listByCategory(2, 0, 1000000, 1, 10, '1')
+            otherDishType2 = await dishModel.listByCategory(3, 0, 1000000,1, 10, '1')
             break;
 
         case 2:
@@ -237,8 +238,8 @@ exports.detail = async (req, res, next) => {
             isActive.isDrinkCatActive = true;
             isActive.isSideCatActive = false;
 
-            otherDishType1 = await dishModel.listByCategory(1, 0, 1000000,1, 2, '1')
-            otherDishType2 = await dishModel.listByCategory(3, 0, 1000000,1, 2, '1')
+            otherDishType1 = await dishModel.listByCategory(1, 0, 1000000,1, 10, '1')
+            otherDishType2 = await dishModel.listByCategory(3, 0, 1000000,1, 10, '1')
             break;
 
         case 3:
@@ -246,24 +247,41 @@ exports.detail = async (req, res, next) => {
             isActive.isDrinkCatActive = false;
             isActive.isSideCatActive = true;
 
-            otherDishType1 = await dishModel.listByCategory(1, 0, 1000000,1, 2, '1')
-            otherDishType2 = await dishModel.listByCategory(2, 0, 1000000,1, 2, '1')
+            otherDishType1 = await dishModel.listByCategory(1, 0, 1000000,1, 10, '1')
+            otherDishType2 = await dishModel.listByCategory(2, 0, 1000000,1, 10, '1')
             break;
     }
 
     let otherDishResult = [];
 
-    for (let i = 0; i < otherDishType1.length; i++) {
-        subcategoryName = await dishModel.getSubCategory(otherDishType1[i].category, otherDishType1[i].subcategory)
-        otherDishType1[i].subcategoryName = subcategoryName.name
-        otherDishResult.push(otherDishType1[i])
+    let choose1dish = Math.floor(Math.random() * 2) + 1
+
+    if (choose1dish === 1 && otherDishType1.length >= 2 && otherDishType2.length >= 1) {
+        let indexDishType1_1 = Math.floor(Math.random() * otherDishType1.length)
+        let indexDishType1_2 = 0;
+        do{
+            indexDishType1_2 = Math.floor(Math.random() * otherDishType1.length)
+        } while (indexDishType1_1 === indexDishType1_2)
+
+        otherDishResult.push(otherDishType1[indexDishType1_1])
+        otherDishResult.push(otherDishType1[indexDishType1_2])
+
+        let indexDishType2 = Math.floor(Math.random() * otherDishType2.length)
+        otherDishResult.push(otherDishType2[indexDishType2])
+    } else {
+        let indexDishType2_1 = Math.floor(Math.random() * otherDishType2.length)
+        let indexDishType2_2 = 0;
+        do{
+            indexDishType2_2 = Math.floor(Math.random() * otherDishType2.length)
+        } while (indexDishType2_1 === indexDishType2_2)
+
+        otherDishResult.push(otherDishType1[indexDishType2_1])
+        otherDishResult.push(otherDishType1[indexDishType2_2])
+
+        let indexDishType1 = Math.floor(Math.random() * otherDishType1.length)
+        otherDishResult.push(otherDishType2[indexDishType1])
     }
 
-    for (let i = 0; i < otherDishType2.length; i++) {
-        subcategoryName = await dishModel.getSubCategory(otherDishType2[i].category, otherDishType2[i].subcategory)
-        otherDishType2[i].subcategoryName = subcategoryName.name
-        otherDishResult.push(otherDishType2[i])
-    }
 
     let review = await reviewModel.getListReviewByDishId(1, id)
 

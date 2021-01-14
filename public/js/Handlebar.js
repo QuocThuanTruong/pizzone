@@ -12,10 +12,8 @@ Handlebars.registerHelper('render_description', function(description) {
 
 Handlebars.registerHelper('render_pagination', function (category, page, totalPage) {
     let currentPage = parseInt(page)
-    let rearLeftPage = currentPage - 2
     let previousPage = currentPage - 1
     let nextPage = currentPage + 1
-    let rearRightPage = currentPage + 2
     let lastPage = parseInt(totalPage)
 
     let html = '<div class="page-navigation">';
@@ -125,9 +123,9 @@ Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" 
                             <h4 class="h3 sm tt color-2">\{{name}}</h4>
                             <div class="empty-sm-20 empty-xs-20"></div>
                             \{{#if hasHotDeal}}
-                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 hotDeal.hotDealPrice}}</b></span><span class="h5 line-through simple-text">{{standardPrice 1 price}}</span></h5>
+                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 hotDeal.hotDealPrice}}</b></span><span class="h5 simple-text" id="extra-price-\{{dish_id}}"><b></b></span><span class="h5 line-through simple-text">{{standardPrice 1 price}}</span></h5>
                             \{{else}}
-                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 price}}</b></span></h5>
+                                <h5 class="h5 sm color-2">Giá: <span class="h4 main-col"><b>\{{standardPrice 1 price}}</b></span><span class="h5 simple-text" id="extra-price-\{{dish_id}}"><b></b></span></h5>
                             \{{/if}}
                         </aside>
                         <div class="empty-sm-20 empty-xs-20"></div>
@@ -136,7 +134,7 @@ Handlebars.registerPartial('quickView', `<div class="popup index-popup-gallery" 
                             \{{#each sizes}}
                                 <div class="checkbox-entry-wrap">
                                     <label class="checkbox-entry">
-                                        <input type="radio" name="sizes-quick-view-\{{dish}}" \{{set-default @index}}>
+                                        <input type="radio" name="sizes-quick-view-\{{dish}}" \{{set-default @index}} onchange="extraSizePrice(\{{dish}}, \{{extra_price}})">
                                         <span>
                                     <i></i>
                                     <p>\{{name}}</span></p>
