@@ -30,36 +30,37 @@
                 </div>
                 <div class="empty-sm-40 empty-xs-20"></div>
                 <table class="order-list" cols="4" cellspacing="0">
+                    {{#each order.ordersDetail}}
                         <tr>
                             <td>
                                 <div class="img hover-zoom">
                                     <div class="color-type-1">
-                                        <a href="/dishes/{{dish_id}}" class="image-hover"><img src="/img/shop_list_img_1.png" alt=""></a>
+                                        <a href="/dishes/{{dishDetail.dish_id}}" class="image-hover"><img src="{{dishDetail.avatar}}" alt=""></a>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <h5 class="h5 caption"><a href="#" class="link-hover">Pizza hải sản pesto xanh (Size xxxlg)</a></h5>
+                                <h5 class="h5 caption"><a href="#" class="link-hover">{{dishDetail.name}} (Size: {{sizeName}})</a></h5>
                             </td>
                             <td>
                                 <div class="shop-item">
-                                    <h6 class="h6">3 items</h6>
+                                    <h6 class="h6">Số lượng: {{dishDetail.quantity}}</h6>
                                 </div>
                             </td>
                             <td>
-                                <h5 class="h5 sm order-price main-col">500.000 đ</h5>
+                                <h5 class="h5 sm order-price main-col">{{standardPrice 1 dishDetail.orderPrice}}</h5>
                             </td>
                         </tr>
+                    {{/each}}
                 </table>
                 <div class="empty-sm-30 empty-xs-15"></div>
 
-
                 <div class="cart-total" id="cart-total">
                     <ul>
-                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 cart.totalCostInCart}}</b></span></h5></li>
-                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">{{standardPrice 1 shippingFee}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Tổng tiền món ăn<span><b class="main-col">{{standardPrice 1 order.totalCostInOrder}}</b></span></h5></li>
+                        <li><h5 class="tt h5 sm color-2 height-50">Phí vận chuyển<span><b class="main-col">{{standardPrice 1 order.shipping_fee}}</b></span></h5></li>
                         <div class="empty-sm-15 empty-xs-15"></div>
-                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 totalCost}}</b></span></h4></li>
+                        <li><h4 class="tt h4 color-2 height-50">Tổng:<span><b class="main-col">{{standardPrice 1 order.total_price}}</b></span></h4></li>
                     </ul>
                 </div>
 
@@ -114,22 +115,23 @@
                         </div>
                     </div>
                     <div class="input-field-wrap">
-                        <textarea placeholder="Message" class="input-field color-2" readonly></textarea>
+                        <textarea placeholder="Message" class="input-field color-2" readonly>FROM MIXI GAMING WITH LOVE</textarea>
                         <div class="focus"></div>
                     </div>
-
 
                     <div class="empty-sm-50 empty-xs-50"></div>
 
                     <!-- nếu đơn hàng đang giao -->
-                    <div class="fr button-full-width">
-                        <a href="/order" class="button size-2 style-3">
+                    {{#if order.isCurrentOrder}}
+                        <div class="fr button-full-width">
+                            <a href="/order/cancel?order_id={{order.order_id}}&detail=1" class="button size-2 style-3">
                             <span class="button-wrapper">
                                 <span class="icon"><img src="/img/icon-4.png" alt=""></span>
                                 <span class="text">Hủy đơn</span>
                             </span>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    {{/if}}
                 </form>
             </div>
         </div>

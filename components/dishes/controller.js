@@ -16,7 +16,7 @@ exports.index = async (req, res, next) => {
         }
 
         if (req.session.totalDishPerPage === undefined) {
-            req.session.totalDishPerPage = 1
+            req.session.totalDishPerPage = 3
         }
 
         let totalDishPerPage = parseInt(req.session.totalDishPerPage)
@@ -54,13 +54,12 @@ exports.index = async (req, res, next) => {
                 break;
         }
 
+        let categories = await dishModel.getAllCategory()
+
         let subcategories = await dishModel.getListSubcategory(categoryId)
 
         let result = {
             totalResult : await dishModel.totalDish(0, 1000000),
-            totalPizza : await dishModel.totalPizza(),
-            totalDrink : await dishModel.totalDrink(),
-            totalSide : await dishModel.totalSide()
         }
 
         let totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
@@ -125,6 +124,7 @@ exports.index = async (req, res, next) => {
             isLogin: req.user ? true : false,
             user: req.user,
             cart: cart,
+            categories: categories,
             result: result,
             totalDishPerPageOption: totalDishPerPageOption,
             isActive: isActive,
@@ -204,9 +204,6 @@ exports.pagination = async (req, res, next) => {
     res.send(data)
 }
 
-
-
-
 exports.detail = async (req, res, next) => {
     const id = req.params.id
 
@@ -257,8 +254,6 @@ exports.detail = async (req, res, next) => {
     let otherDishResult = [];
 
     for (let i = 0; i < otherDishType1.length; i++) {
-        console.log(otherDishType1[i].category)
-        console.log( otherDishType1[i].subcategory)
         subcategoryName = await dishModel.getSubCategory(otherDishType1[i].category, otherDishType1[i].subcategory)
         otherDishType1[i].subcategoryName = subcategoryName.name
         otherDishResult.push(otherDishType1[i])
@@ -290,11 +285,7 @@ exports.detail = async (req, res, next) => {
 
     let totalReviews = await reviewModel.getTotalReviewById(id)
 
-
     let totalPage = Math.ceil(totalReviews / (5 * 1.0))
-
-
-
 
     const dataContext = {
         id: id,

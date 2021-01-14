@@ -338,6 +338,17 @@ exports.getDishesHasHotDeal = async () => {
 
     return dihes;
 }
+
+exports.getAllCategory = async () => {
+    let result = await execQuery('SELECT * FROM dishes_category where is_active = 1')
+
+    for (let i = 0; i < result.length; i++) {
+        let total = await execQuery('SELECT COUNT(*) as total FROM dishes where category = ' + result[i].category_id + ' and is_active = 1')
+        result[i].totalDishInCategory = total[0].total
+    }
+
+    return result
+}
 /*
 exports.test = async () => {
    await execQuery('UPDATE user SET avatar = \'https://res.cloudinary.com/hcmus-web/image/upload/v1607362757/WebFinalProject/Images/user/1/73083634_2453241641624544_6378836173334249472_o_z20x96.jpg\' where user_id = 1')

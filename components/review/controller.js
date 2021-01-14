@@ -16,20 +16,14 @@ exports.postedReview = async (req, res, next) => {
 exports.reviewPagination = async (req, res, next) => {
     let currentPage = req.query.page;
 
-    console.log(currentPage)
-
     if (currentPage === undefined)
         currentPage = 1;
-
-    console.log('id ' + req.params.id)
 
     let review;
     let totalReviews = await reviewModel.getTotalReviewById(req.params.id)
     let totalPage = Math.ceil(totalReviews / (5 * 1.0))
 
-
     review = await reviewModel.getListReviewByDishId(currentPage, req.params.id)
-
 
     const data = {
         currentPage: currentPage,

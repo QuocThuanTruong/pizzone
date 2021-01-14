@@ -15,12 +15,36 @@ const userModel = require('./model')
 const orderModel = require('../order/model')
 const userService = require('./service')
 
-exports.dummy = (req, res, next) => {
-    res.render('../components/user/views/dummyOrder');
+exports.dummy = async (req, res, next) => {
+    req.session.currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);
+    let successOrders = await orderModel.getSuccessOrderByUserId(req.user.user_id)
+    let cancelOrders = await orderModel.getCancelOrderByUserId(req.user.user_id)
+
+    let dataContext = {
+        cart: req.user.cart,
+        isLogin: true,
+        user: req.user,
+        currentOrders : req.session.currentOrders,
+        successOrders : successOrders,
+        cancelOrders: cancelOrders
+    }
+
+    res.render('../components/user/views/dummyOrder', dataContext);
 }
 
-exports.dummyDetail = (req, res, next) => {
-    res.render('../components/user/views/dummyDetail');
+exports.dummyDetail = async (req, res, next) => {
+    let order = await orderModel.getOrderById(req.params.id)
+
+    console.log(order)
+
+    let dataContext = {
+        cart: req.user.cart,
+        isLogin: true,
+        user: req.user,
+        order: order
+    }
+
+    res.render('../components/user/views/dummyDetail', dataContext);
 }
 
 exports.index = (req, res, next) => {
@@ -76,7 +100,7 @@ exports.editInfo = async (req, res, next) => {
             newUser.avatar = oldUser.avatar
         }
 
-        rimraf.sync(path.join(__dirname, '..', 'tempImages'))
+        fs.rmdirSync(path.join(__dirname, '..', 'tempImages'), {recursive: true})
 
         console.log(newUser)
 
@@ -118,7 +142,7 @@ exports.changePasswordConfirm = async (req, res, next) => {
 }
 
 exports.orders = async (req, res, next) => {
-    let currentOrders = await orderModel.getCurrentOrderByUserId(req.user.user_id);
+
     let ordereds = await orderModel.getOrderedByUserId(req.user.user_id);
 
     const dataContext = {

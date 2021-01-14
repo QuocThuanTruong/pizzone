@@ -3,6 +3,7 @@ const dishModel = require('../dishes/model')
 
 function execQuery(queryString) {
     return new Promise(data => {
+       /* console.log(queryString)*/
         db.query(queryString, (err, results, fields) => {
             if (err) {
                 console.log(err)
@@ -31,7 +32,7 @@ exports.getMaxOrdinalNumberInCartItemsById = async (id) => {
 }
 
 exports.getOrdinalNumberInCartItems = async (cart, user_id) => {
-    const result = await execQuery('SELECT * from cart_items where user = ' + user_id +' and dish = ' + cart.dish_id);
+    const result = await execQuery('SELECT * from cart_items where user = ' + user_id +' and dish = ' + cart.dish_id + ' and size = ' + cart.size);
 
     return result[0].ordinal_number
 }

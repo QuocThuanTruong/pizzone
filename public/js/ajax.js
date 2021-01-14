@@ -28,7 +28,7 @@ function gotoPage(categoryId, page) {
         subcategoryFilter += ')';
     }
 
-    const totalDishPerPageArr = [1, 2, 3, 4]
+    const totalDishPerPageArr = [3, 6, 9, 12]
     const totalDishPerPage = totalDishPerPageArr[document.getElementById('total_dish_per_page').selectedIndex]
 
     const sortByArr = [1, 2, 3, 4]
@@ -48,9 +48,6 @@ function gotoPage(categoryId, page) {
         url: url,
         type: "GET",
         success: function (data) {
-
-            console.log(data)
-
             //render dishes
             let dishesTemplate = Handlebars.compile($('#dishes-template-grid').html());
             let dishes = dishesTemplate({dishes: data.dishes});
@@ -90,18 +87,15 @@ function gotoReview(dish, page) {
         url: url,
         type: "GET",
         success: function (data) {
-
             //render review
             let reviewsTemplate = Handlebars.compile($('#review-template').html());
             let reviews = reviewsTemplate({review: data.review});
             $('#review').html(reviews);
 
-
             //render pagination-navigation
             let paginationTemplate = Handlebars.compile($("#page-navigation-template").html());
             let pageNavigation = paginationTemplate({id: data.review[0].dish, page: data.currentPage, totalPage: data.totalPage});
             $('#page-navigation').html(pageNavigation);
-
 
         },
         error: function (err) {
@@ -112,9 +106,6 @@ function gotoReview(dish, page) {
 
 
 function changeCart(dish_id, type, sizeDish) {
-    console.log(dish_id)
-    console.log(type)
-    console.log(sizeDish)
     let sizes = document.getElementsByName('sizes');
 
     if (sizes.length === 0) {
@@ -165,6 +156,10 @@ function changeCart(dish_id, type, sizeDish) {
             let cart = cartTemplate({cart: cartItem})
             $('#cart-item').html(cart)
 
+            let cartIndexTemplate = Handlebars.compile($('#cart-item-index-template').html());
+            let cartIndex = cartIndexTemplate({cart: cartItem})
+            $('#cart-item-index').html(cartIndex)
+
             //render total dish in cart
             let totalDishInCartTemplate = Handlebars.compile($('#total-dish-in-cart-template').html());
             let totalDishInCart = totalDishInCartTemplate({cart: cartItem})
@@ -179,6 +174,10 @@ function changeCart(dish_id, type, sizeDish) {
             let totalCostInCart2Template = Handlebars.compile($('#total-cost-in-cart-template-2').html());
             let totalCostInCart2 = totalCostInCart2Template({cart: cartItem})
             $('#total-cost-in-cart-2').html(totalCostInCart2)
+
+            let totalCostTemplate = Handlebars.compile($('#total-cost-template').html());
+            let totalCost = totalCostTemplate({cart: cartItem})
+            $('#total-cost').html(totalCost)
 
         },
         error: function (err) {
@@ -280,8 +279,6 @@ function checkExistUsername(username) {
                 $('#check-exists-username-result').addClass('valid-username').removeClass('error-username')
                 $('#check-exists-username-content').html('Username is valid')
             }
-
-
         },
         error: function (err) {
             console.log(err)
@@ -303,7 +300,6 @@ function validationForm(element, name) {
                 $('#check-exists-username-result').addClass('error-username').removeClass('valid-username')
                 $('#check-exists-username-content').html('Username is already exists')
 
-
                 return false
             } else {
                 $('#empty-user-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
@@ -321,16 +317,20 @@ function validationForm(element, name) {
     let password = document.getElementById('password').value;
     let retype = document.getElementById('retype').value;
 
-    console.log(password)
-
     if (password.length > 0 && password === retype) {
         $('#register-error-text').html('');
         $('#empty-error').html('<div class="empty-0"></div>')
-        return true;
     } else {
         $('#register-error-text').html('Retyped-password is not correct');
         $('#empty-error').html('<div class="empty-sm-15 empty-xs-15"></div>')
         return false;
+    }
+
+    if (!document.getElementById('agree').checked) {
+        alert('Đồng ý với điều khoản')
+        return false;
+    } else {
+        return true;
     }
 }
 
@@ -345,8 +345,6 @@ function checkUser() {
         url: url,
         type: "GET",
         success: function (data) {
-            console.log(data)
-
             if (!data) {
                 if (username !== '' && password !== '') {
                     document.getElementById('login-error-text').innerHTML = 'Username or password is not correct'
@@ -373,18 +371,17 @@ function checkUser() {
     })
 }
 
-
-function cancelOrder(order_id, ordinal_number, dish_id) {
-    const url = '/order/cancel?order_id='+order_id+'&ordinal_number='+ordinal_number+'&dish='+dish_id;
+function cancelOrder(order_id) {
+    const url = '/order/cancel?order_id='+order_id;
     $.ajax({
         url: url,
         type: "GET",
         success: function (data) {
             console.log(data)
 
-            let currentOrderTemplate = Handlebars.compile($('#current-order-template').html());
+            let currentOrderTemplate = Handlebars.compile($('#current-orders-template').html());
             let currentOrder = currentOrderTemplate({currentOrders: data})
-            $('#current-order').html(currentOrder)
+            $('#current-orders').html(currentOrder)
         },
         error: function (err) {
             console.log(err)

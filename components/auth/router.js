@@ -75,12 +75,11 @@ router.post('/send', async function(req, res, next) {
 
     link="http://"+req.get('host')+"/auth/verify?id="+hash + '&email=' + email;
 
-
     let transporter =  nodemailer.createTransport({ // config mail server
         service: 'Gmail',
         auth: {
-            user: 'ltweb1831.hcmus@gmail.com',
-            pass: 'Ltweb123#'
+            user: process.env.GMAIL_SMTP_USER,
+            pass: process.env.GMAIL_SMTP_PASSWORD
         }
     });
 
@@ -101,8 +100,6 @@ router.post('/send', async function(req, res, next) {
            res.redirect('/resend?email=' + email)
         }
     });
-
-
 });
 
 

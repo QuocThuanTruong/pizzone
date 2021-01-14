@@ -2,7 +2,14 @@ const dishModel = require('../dishes/model')
 const cartModel = require('./model')
 
 exports.index = async (req, res, next) => {
-    res.render('../components/cart/views/index');
+
+    let dataContext = {
+        cart: req.user.cart,
+        isLogin: true,
+        user: req.user,
+    }
+
+    res.render('../components/cart/views/index', dataContext);
 }
 
 exports.checkout = async (req, res, next) => {
@@ -32,6 +39,7 @@ exports.checkout = async (req, res, next) => {
     dataContext.shippingFee = shippingFee;
     dataContext.totalCost = dataContext.shippingFee + dataContext.cart.totalCostInCart;
     req.session.totalCost = dataContext.totalCost;
+    req.session.shippingFee = shippingFee
 
     res.render('../components/cart/views/checkout', dataContext);
 }
@@ -77,8 +85,6 @@ exports.add = async (req, res, next) => {
 
     if (!req.user) {
         let index = cart.itemInCart.findIndex(d => d.dish_id == id && d.size == size)
-
-        console.log(index)
 
         switch (type) {
             case 1: //Add or Increase

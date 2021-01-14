@@ -58,7 +58,22 @@ exports.verifyEmail = (req, res, next) => {
         email = req.query.email
     }
 
-    res.render('../components/home/views/verify', {email:email, isNew: isNew});
+    let cart = {};
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
+    res.render('../components/home/views/verify', {cart: cart, email:email, isNew: isNew});
 }
 
 exports.resend = (req, res, next) => {
@@ -74,16 +89,44 @@ exports.resend = (req, res, next) => {
         isNew = true;
     }
 
+    let cart = {};
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
 
-
-
-    res.render('../components/home/views/resend', {notification: notification, email: req.query.email, isNew: isNew});
+    res.render('../components/home/views/resend', {cart: cart, notification: notification, email: req.query.email, isNew: isNew});
 }
 
 
 exports.recoverPassword = async (req, res, next) => {
     let email = req.query.email
-    res.render('../components/home/views/recoverPassword', {email: email});
+
+    let cart = {};
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
+    res.render('../components/home/views/recoverPassword', {cart: cart, email: email});
 }
 
 exports.updatePassword = async (req, res, next) => {
