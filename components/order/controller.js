@@ -17,7 +17,7 @@ exports.order = async (req, res, next) => {
     req.user.cart.totalDishInCart = 0;
     req.user.cart.totalCostInCart = 0;
 
-    res.redirect('/user/my-orders');
+    res.redirect('/user/order');
 }
 
 exports.cancel = async (req, res, next) => {
