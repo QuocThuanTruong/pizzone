@@ -63,8 +63,6 @@ exports.index = async (req, res, next) => {
             totalResult : await dishModel.totalDish(0, 1000000),
         }
 
-        let totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
-
         let dishes;
         let isActive = {
             isPizzaCatActive : false,
@@ -79,7 +77,6 @@ exports.index = async (req, res, next) => {
             dishes = await dishModel.listByCategory(categoryId, 0, 1000000, 1, totalDishPerPage, sortBy)
 
             result.totalResult = await dishModel.totalDishByCategory(categoryId, 0, 1000000);
-            totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
 
             switch (categoryId) {
                 case '1':
@@ -119,6 +116,8 @@ exports.index = async (req, res, next) => {
                 }
             }
         }
+
+        let totalPage = Math.ceil(result.totalResult / (totalDishPerPage * 1.0))
 
         const dataContext = {
             menuPageActive: "active",
@@ -176,7 +175,6 @@ exports.pagination = async (req, res, next) => {
 
     let dishes;
     let totalResult = await dishModel.totalDish(minPrice, maxPrice);
-    let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
     if (keyName !== undefined) {
         dishes = await dishModel.searchByKeyName(keyName, minPrice, maxPrice, currentPage, totalDishPerPage, sortBy)
@@ -187,11 +185,12 @@ exports.pagination = async (req, res, next) => {
             dishes = await dishModel.listByCategoryAndFilter(categoryId, minPrice, maxPrice, currentPage, totalDishPerPage, subcategory, sortBy);
             totalResult = await dishModel.totalDishByCategoryAndFilter(categoryId, minPrice, maxPrice, subcategory);
 
-            totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
         } else {
             dishes = await dishModel.dishlist(currentPage, minPrice, maxPrice, totalDishPerPage, sortBy)
         }
     }
+
+    let totalPage = Math.ceil(totalResult / (totalDishPerPage * 1.0))
 
     const data = {
         category: categoryId,
