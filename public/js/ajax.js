@@ -71,6 +71,7 @@ function gotoPage(categoryId, page) {
             console.log(err)
         }
     })
+
 }
 
 

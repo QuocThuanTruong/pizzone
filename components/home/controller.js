@@ -205,7 +205,7 @@ exports.updatePassword = async (req, res, next) => {
 
     }
 
-    res.redirect('')
+    res.redirect('/login')
 }
 
 
