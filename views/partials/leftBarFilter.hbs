@@ -10,6 +10,7 @@
         </div>
     </form>
 </aside>
+
 <div class="filter-open">
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
                 <g><path d="M1,9h3v4c0,0.553,0.447,1,1,1h12c0.553,0,1-0.447,1-1V9h35c0.553,0,1-0.447,1-1s-0.447-1-1-1H18V3c0-0.553-0.447-1-1-1H5
@@ -21,6 +22,7 @@
                 </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
               </svg>
 </div>
+
 <div class="menu-filter">
     <div class="close-filter main-fill-col">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="18px" height="18px">
@@ -34,10 +36,17 @@
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
             {{#each categories}}
-                <li><a href="/dishes?category={{category_id}}" class="link-hover">{{name}}<span>({{totalDishInCategory}})</span></li>
+
+                <li>
+
+                    <a href="/dishes?category={{category_id}}" class="link-hover">
+                    {{name}}<span>({{totalDishInCategory}})</span>
+                    </a>
+                </li>
             {{/each}}
         </ul>
     </aside>
+
     <aside>
         <div class="empty-sm-65 empty-xs-30"></div>
         <h5 class="tt h5 color-2">Giá tiền</h5>
