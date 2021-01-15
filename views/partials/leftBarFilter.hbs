@@ -1,6 +1,6 @@
 <aside>
     <!-- Search-->
-    <form method="POST" action="/dishes" class="search-form type-2">
+    <form class="search-form type-2" onsubmit="return false">
         <input type="text" placeholder="Tìm kiếm..." class="input-search" required="" id="key-name">
         <div class="submit-search">
             <input onclick="gotoPage({{category}}, 1)">
@@ -36,9 +36,7 @@
         <div class="empty-sm-20 empty-xs-10"></div>
         <ul class="list-style-4 type-2 ul-list">
             {{#each categories}}
-
                 <li>
-
                     <a href="/dishes?category={{category_id}}" class="link-hover">
                     {{name}}<span>({{totalDishInCategory}})</span>
                     </a>
