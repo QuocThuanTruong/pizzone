@@ -39,11 +39,60 @@ exports.index = async (req, res, next) => {
 };
 
 exports.about = async (req, res, next) => {
-    res.render('../components/home/views/about', { aboutPageActive: "active"});
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
+    const dataContext = {
+        cart: cart,
+        isLogin: req.user ? true : false,
+        user : req.user,
+        aboutPageActive: "active",
+    }
+
+    req.session.oldURL = req.originalUrl;
+
+    res.render('../components/home/views/about', dataContext);
 }
 
 exports.contact = async (req, res, next) => {
-    res.render('../components/home/views/contact', { contactPageActive: "active"});
+    let cart = {}
+
+    if (req.user) {
+        cart = req.user.cart
+    } else {
+        if (req.session.cart) {
+            cart = req.session.cart
+        } else {
+            cart = {
+                itemInCart : [],
+                totalCostInCart : 0,
+                totalDishInCart : 0
+            }
+        }
+    }
+
+    const dataContext = {
+        cart: cart,
+        isLogin: req.user ? true : false,
+        user : req.user,
+        contactPageActive: "active",
+    }
+
+    req.session.oldURL = req.originalUrl;
+    res.render('../components/home/views/contact', dataContext);
 }
 
 exports.login = async (req, res, next) => {
