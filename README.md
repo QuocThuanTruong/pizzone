@@ -94,3 +94,7 @@ Pizzone là một trang web về đặt pizza và các món ăn đi kèm. Pizzon
 ### Demo
 
 > ***https://www.youtube.com/watch?v=t6uYl3_9qDI***
+
+### License
+
+Adopt Me is available under the [MIT license](https://opensource.org/licenses/MIT) . See [LICENSE](https://github.com/QuocThuanTruong/Pizzone/blob/master/LICENSE) for the full license text.
