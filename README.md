@@ -84,12 +84,12 @@ Pizzone là một trang web về đặt pizza và các món ăn đi kèm. Pizzon
 - Client: (username: user, password: user)
 > ***http://pizzone.herokuapp.com***
 
-<p align="center"><img src="https://github.com/QuocThuanTruong/Pizzone/blob/master/Img/client.png" height="1920"/></p>
+<p align="center"><img src="https://github.com/QuocThuanTruong/Pizzone/blob/master/Img/client.png" width="1920"/></p>
 
 - Admin: (username: admin, password: admin)
 > ***https://admin-pizzone.herokuapp.com***
 
-<p align="center"><img src="https://github.com/QuocThuanTruong/Pizzone/blob/master/Img/admin.png" height="1920"/></p>
+<p align="center"><img src="https://github.com/QuocThuanTruong/Pizzone/blob/master/Img/admin.png" width="1920"/></p>
 
 ### Demo
 
