@@ -12,10 +12,10 @@ Pizzone là một trang web về đặt pizza và các món ăn đi kèm. Pizzon
 
 ### Thông tin nhóm
 
-|       Họ và tên      |   MSSV   |
-|----------------------|:--------:|
-| Trương Quốc Thuận    | 18120583 |
-| Lê Nhật Tuấn         | 18120632 |
+|       Họ và tên      |   MSSV   |    Vai trò   |
+|----------------------|:--------:|:------------:|
+| Trương Quốc Thuận    | 18120583 |  Trưởng nhóm |
+| Lê Nhật Tuấn         | 18120632 |  Thành viên  |
 
 ### Technical stack
 
