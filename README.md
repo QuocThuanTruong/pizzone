@@ -24,6 +24,9 @@ Pizzone là một trang web về đặt pizza và các món ăn đi kèm. Pizzon
 - AJAX.
 - mySQL.
 
+### Pizzone admin
+> ***https://github.com/QuocThuanTruong/Pizzone-Admin***
+
 ### Các chức năng của trang web
 
 - **1. Chức năng khi chưa đăng nhập**
